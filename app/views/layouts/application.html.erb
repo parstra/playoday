@@ -3,33 +3,34 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>PlayODay</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-        
-        <link href='http://fonts.googleapis.com/css?family=Permanent+Marker|Akronim' rel='stylesheet' type='text/css'>
-        <%= stylesheet_link_tag "base", :media => "all" %>
-        <%= javascript_include_tag "application" %>
-        <%= csrf_meta_tags %>
+        <head>
+          <meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+          <title>PlayODay</title>
+          <meta name="description" content="">
+          <meta name="viewport" content="width=device-width">
 
-    </head>
-    <body>
-      <hgroup>
-      <h1>play</h1><h2>O</h2><h1>day</h1>
-    </hgroup>
- 
-        <%= yield %>
+          <link href='http://fonts.googleapis.com/css?family=Permanent+Marker|Akronim' rel='stylesheet' type='text/css'>
+          <%= stylesheet_link_tag "base", :media => "all" %>
+          <%= javascript_include_tag "application" %>
+          <%= csrf_meta_tags %>
 
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
+        </head>
+        <body>
+          <div class="wrapper">
+            <hgroup>
+              <h1>play</h1>
+              <h2>O</h2>
+              <h1>day</h1>
+            </hgroup>
+            <%= yield %>
+          </div>
+          <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+          <script>
             var _gaq=[['_setAccount','UA-35541167-1'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
-    </body>
-</html>
+              g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+              s.parentNode.insertBefore(g,s)}(document,'script'));
+          </script>
+        </body>
+      </html>

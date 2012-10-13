@@ -1,8 +1,11 @@
+// Up tp 1180px, responsive below this
+$max-content-width:1180px;
+
 hgroup {
   background-color:white;
   h1 {
     font-family: 'Permanent Marker', cursive;
-    font-size:90px;
+    font-size:70px;
     color:#f68b24;
     position:relative;
     z-index:1;
@@ -10,8 +13,8 @@ hgroup {
   }
   h2 {
     font-family: 'Akronim', cursive;
-    font-size:160px;
-    color:white;
+    font-size:140px;
+    color:#333;
     position:relative;
     left:-22px;
     bottom:-20px;
@@ -24,4 +27,18 @@ hgroup {
     color:#3886e7;
   }
 }
+
+.wrapper {
+  position:relative;
+  overflow:hidden;
+  width:98%;
+  max-width:$max-content-width;
+  margin:0 auto;
+  @include box-sizing(border-box);
+  background-color:#ccc;
+}
+
+
+
+
 
