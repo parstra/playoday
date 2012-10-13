@@ -51,3 +51,22 @@ describe Tournament do
   end
 end
 
+# == Schema Information
+#
+# Table name: tournaments
+#
+#  id              :integer          not null, primary key
+#  description     :string(255)      not null
+#  tournament_hash :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  game_type       :integer
+#  company_id      :integer
+#  owner_id        :integer
+#  name            :string(255)
+#  duration        :integer
+#  total_rounds    :integer
+#  round_duration  :integer
+#  active          :boolean          default(FALSE)
+#
+

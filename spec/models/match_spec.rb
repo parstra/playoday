@@ -20,3 +20,21 @@ describe Match do
   end
 end
 
+# == Schema Information
+#
+# Table name: matches
+#
+#  id             :integer          not null, primary key
+#  round_id       :integer          not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  matchdate      :datetime
+#  match_hash     :string(255)
+#  home_score     :integer
+#  away_score     :integer
+#  played         :boolean          default(FALSE)
+#  home_player_id :integer
+#  away_player_id :integer
+#  winner_id      :integer
+#
+

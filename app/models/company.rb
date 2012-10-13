@@ -9,3 +9,14 @@ class Company < ActiveRecord::Base
   validates_presence_of :domain
   validates_uniqueness_of :domain
 end
+
+# == Schema Information
+#
+# Table name: companies
+#
+#  id         :integer          not null, primary key
+#  domain     :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
