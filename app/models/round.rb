@@ -3,6 +3,8 @@ class Round < ActiveRecord::Base
   has_many :matches
 
   scope :active, where(active: true)
+
+  attr_accessible :home_score, :away_score
 end
 
 # == Schema Information

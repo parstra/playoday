@@ -14,29 +14,14 @@
 ActiveRecord::Schema.define(:version => 20121013135530) do
 
   create_table "companies", :force => true do |t|
-    t.string   "domain"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "name"
   end
 
   create_table "companies_users", :force => true do |t|
     t.integer  "user_id"
     t.integer  "company_id"
-    t.integer  "role"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "companies", :force => true do |t|
-    t.string   "domain"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "companies_users", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "company_id"
-    t.integer  "role"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -109,7 +94,7 @@ ActiveRecord::Schema.define(:version => 20121013135530) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "company_name"
+    t.integer  "company_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -24,6 +24,9 @@ class Tournament < ActiveRecord::Base
 
   before_create :create_tournament_hash
 
+  attr_accessible :name, :description, :game_type, :name, :duration,
+    :total_rounds, :round_duration, :started_at
+
   def active_round
     rounds.active.last
   end
