@@ -31,9 +31,17 @@ describe Tournament do
     let(:active_tournament) { FactoryGirl.create(:tournament, active: true) }
     let(:inactive_tournament) { FactoryGirl.create(:tournament, active: false) }
 
+    let(:tournament) { FactoryGirl.create(:tournament, active: true) }
+    let!(:rounds) { FactoryGirl.create_list(:round, 5, tournament: tournament) }
+    let!(:active_round) { FactoryGirl.create(:active_round, tournament: tournament) }
+
     it ".active" do
       active_tournament.should be_active
       inactive_tournament.should_not be_active
+    end
+
+    it "active_round" do
+      tournament.active_round.should == active_round
     end
   end
 

@@ -24,6 +24,10 @@ class Tournament < ActiveRecord::Base
 
   before_create :create_tournament_hash
 
+  def active_round
+    rounds.active.last
+  end
+
   private
 
   def create_tournament_hash

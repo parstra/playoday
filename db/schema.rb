@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013124339) do
+ActiveRecord::Schema.define(:version => 20121013135530) do
 
   create_table "companies", :force => true do |t|
     t.string   "domain"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20121013124339) do
     t.datetime "updated_at",    :null => false
     t.datetime "started_at"
     t.datetime "ended_at"
+    t.boolean  "active"
   end
 
   create_table "tournament_users", :force => true do |t|

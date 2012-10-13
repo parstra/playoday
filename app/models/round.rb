@@ -1,6 +1,8 @@
 class Round < ActiveRecord::Base
   belongs_to :tournament
   has_many :matches
+
+  scope :active, where(active: true)
 end
 
 # == Schema Information
