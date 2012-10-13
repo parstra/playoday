@@ -4,7 +4,7 @@ class CreateTournamentUserTable < ActiveRecord::Migration
 
       t.integer :user_id, null: false
       t.integer :tournament_id, null: false
-      t.boolean :admin, :boolean, default: false
+      t.boolean :admin, default: false
 
       t.timestamps
     end
