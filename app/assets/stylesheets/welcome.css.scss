@@ -37,7 +37,7 @@ section {
   p {
     float:left;
     margin-right:300px;
-    font:normal $bu*1.5 $basic_font_stack;
+    font:300 $bu*1.5 $basic_font_stack;
     line-height:1.3em;
     color:$dirty_white;
   }
@@ -68,7 +68,7 @@ section {
         margin:0px;
         background-color:$dirty_white;
         height:$bu*4.5;
-        padding:$bu/1.5;
+        padding:$bu;
         position:relative;
         -webkit-filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
         -moz-filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
@@ -89,7 +89,7 @@ section {
       cite {
         display:block;
         background-color:$dark_white;
-        padding:$bu $bu/2;
+        padding:$bu*1.5 $bu/2;
         color:$light_black;
         span {
           display:block;

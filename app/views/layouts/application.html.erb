@@ -10,7 +10,7 @@
           <meta name="description" content="">
           <meta name="viewport" content="width=device-width">
 
-          <link href='http://fonts.googleapis.com/css?family=Permanent+Marker|Akronim|Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+          <link href='http://fonts.googleapis.com/css?family=Permanent+Marker|Akronim|Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
           <%= stylesheet_link_tag "application", :media => "all" %>
           <%= javascript_include_tag "application" %>
           <%= csrf_meta_tags %>
@@ -41,27 +41,24 @@
           <footer>
           <div class="wrapper">
             <ul> 
-              <li><%= link_to "FAQ", "https://github.com/railsrumble/r12-team-336" %></li>
-              <li><%= link_to "FAQ", "https://github.com/railsrumble/r12-team-336" %></li>
-            </ul>
-
-            <ul> 
-              <li><%= link_to "A RailsRumble project", "https://github.com/railsrumble/r12-team-336" %></li>
+              <li>about us</li>
+              <li><%= link_to "railsRumble", "https://github.com/railsrumble/r12-team-336" %></li>
               <li><%= link_to "code@github", "https://github.com/railsrumble/r12-team-336" %></li>
+              <li><%= link_to "meat the team", "https://github.com/railsrumble/r12-team-336" %></li>
             </ul>
 
             <ul> 
-              <li><%= link_to "Follow us on twitter", "https://github.com/railsrumble/r12-team-336" %></li>
-              <li><%= link_to "Stalk us on Facebook", "https://github.com/railsrumble/r12-team-336" %></li>
-            </ul>
-
-            <ul> 
-              <li><%= link_to "Contact", "https://github.com/railsrumble/r12-team-336" %></li>
-              <li><%= link_to "Terms of use", "https://github.com/railsrumble/r12-team-336" %></li>
+              <li>sundication</li>
+              <li><%= link_to "follow us on twitter", "#", :rel => "external nofollow" %></li>
+              <li><%= link_to "stalk us on Facebook", "#", :rel => "external nofollow" %></li>
+              <li><%= mail_to "send us an email", "contact@playoday.com", :rel => "external nofollow" %></li>
             </ul>
 
             <p class="copyright">
-            © 20[0-9]{2} PlayOday - All Rights and Lefts reserved
+              © 20[0-9]{2} PlayOday 
+              <span>
+                All Rights and Lefts reserved
+              </span>
             </p>
           </div>
           </footer>
