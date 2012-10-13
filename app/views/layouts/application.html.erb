@@ -10,7 +10,7 @@
           <meta name="description" content="">
           <meta name="viewport" content="width=device-width">
 
-          <link href='http://fonts.googleapis.com/css?family=Permanent+Marker|Akronim' rel='stylesheet' type='text/css'>
+          <link href='http://fonts.googleapis.com/css?family=Permanent+Marker|Akronim|Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
           <%= stylesheet_link_tag "application", :media => "all" %>
           <%= javascript_include_tag "application" %>
           <%= csrf_meta_tags %>
@@ -20,9 +20,9 @@
           <header>
           <div class="wrapper">
             <hgroup>
-              <h1>play</h1>
-              <h2>O</h2>
-              <h1>day</h1>
+            <h1>play</h1>
+            <h2>O</h2>
+            <h1>day</h1>
             </hgroup>
           </div>
           </header>
@@ -30,12 +30,31 @@
             <%= yield %>
           </div>
           <footer>
-          <ul class="wrapper"> 
+          <div class="wrapper">
+            <ul> 
+              <li><%= link_to "FAQ", "https://github.com/railsrumble/r12-team-336" %></li>
+              <li><%= link_to "FAQ", "https://github.com/railsrumble/r12-team-336" %></li>
+            </ul>
+
+            <ul> 
+              <li><%= link_to "A RailsRumble project", "https://github.com/railsrumble/r12-team-336" %></li>
               <li><%= link_to "code@github", "https://github.com/railsrumble/r12-team-336" %></li>
-              <li><%= link_to "code@github", "https://github.com/railsrumble/r12-team-336" %></li>
-              <li><%= link_to "code@github", "https://github.com/railsrumble/r12-team-336" %></li>
-              <li>© 20[0-9]{2} PlayOday - All Rights and Lefts reserved</li>
-          </ul>
+            </ul>
+
+            <ul> 
+              <li><%= link_to "Follow us on twitter", "https://github.com/railsrumble/r12-team-336" %></li>
+              <li><%= link_to "Stalk us on Facebook", "https://github.com/railsrumble/r12-team-336" %></li>
+            </ul>
+ 
+            <ul> 
+              <li><%= link_to "Contact", "https://github.com/railsrumble/r12-team-336" %></li>
+              <li><%= link_to "Terms of use", "https://github.com/railsrumble/r12-team-336" %></li>
+            </ul>
+
+            <p class="copyright">
+              © 20[0-9]{2} PlayOday - All Rights and Lefts reserved
+            </p>
+          </div>
           </footer>
           <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
           <script>

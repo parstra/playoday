@@ -3,59 +3,113 @@ section {
 }
 
 .quick_intro {
-  li {
-    list-style-type:none;
-    display:inline-block;
-    text-align:center;
-    margin-right:$bu;
-    img {
-      padding:3px;
-      @include box-shadow(3px,3px,0px,0px,rgba(0,0,0,0.2));
-      background-color:white;
+  ul {
+    margin:0px;
+    padding:0px;
+    li {
+      float:left;
+      text-align:center;
+      width:25%;
+      @include box-sizing(border-box);
+      padding-right:$bu*1.5;
+      img {
+        padding:3px;
+        background-color:white;
+      }
+      h2 {
+        font:normal $bu*2 $marker_font;
+      }
+    }
+    li:last-child {
+      padding-right:0;
+    }
   }
 }
-li:last-child {
-  margin-right:none;
-}
-}
 
-.cta {
-
+.convert {
+  div {
+    background-color:$dirty_white;
+    box-shadow:5px 5px 10px rgba(0,0,0,0.3);
+    border-radius:3px;
+    padding:$bu*2;
+    margin:0px;
+  }
+  p {
+    float:left;
+    margin-right:300px;
+    font:normal $bu*1.2 $basic_font_stack;
+    line-height:2em;
+  }
+  .cta {
+    float:right;
+    margin-left:-300px;
+     border-top: 1px solid #f5b37a;
+     background: #f5770a;
+     background: -webkit-gradient(linear, left top, left bottom, from(#f68924), to(#f5770a));
+     background: -webkit-linear-gradient(top, #f68924, #f5770a);
+     background: -moz-linear-gradient(top, #f68924, #f5770a);
+     background: -ms-linear-gradient(top, #f68924, #f5770a);
+     background: -o-linear-gradient(top, #f68924, #f5770a);
+     padding: $bu $bu*2;
+     border-radius: 8px;
+     -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+     -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+     box-shadow: rgba(0,0,0,1) 0 1px 0;
+     text-shadow: rgba(0,0,0,.4) 0 1px 0;
+     color: white;
+     font-size: 34px;
+     font-family: $basic_font_stack;
+     font-weight:bold;
+     text-decoration: none;
+     vertical-align: middle;
+     }
+  .cta:hover {
+     border-top-color: #f5770a;
+     background: #f5770a;
+     color: #000000;
+     }
+  .cta:active {
+     border-top-color: #1b435e;
+     background: #1b435e;
+   }
 }
 
 .testimonials {
   h2 {
     font-family:'Permanent Marker', cursive;
     font-size:$bu*2;
-    margin-bottom:$bu;
-}
-ul {
-  li {
-    display:inline-block;
-    width:33%;
-    padding-right:$bu*2;
-    @include box-sizing(border-box);
-    blockquote {
-      font-size:$bu*1.2;
-      margin:0px;
-    }
-    blockquote:before {
-      content:"\201C";
-      font:normal 60px/18px Helvetica,arial,sans-serif;
-      text-shadow:2px 2px 0px #999;
-      display:inline;
-    }
+    margin-bottom:$bu*2;
+    margin-top:0px;
+  }
+  ul {
+    margin:0px;
+    li {
+      float:left;
+      width:25%;
+      padding-right:$bu*4;
+      @include box-sizing(border-box);
+      blockquote {
+        font-size:$bu*1.2;
+        margin:0px;
+      }
+      blockquote:before {
+        content:"\201C";
+        font:normal 40px Helvetica,arial,sans-serif;
+        line-height:$bu*1.2;
+        text-shadow:2px 2px 0px #999;
+        display:inline;
+      }
 
-    blockquote:after {
-      content:"\201D";
-      font:normal 60px Helvetica,arial,sans-serif;
-      text-shadow:2px 2px 0px #999;
-      float:right;
+      blockquote:after {
+        content:"\201D";
+        font:normal 40px Helvetica,arial,sans-serif;
+        text-shadow:2px 2px 0px #999;
+        float:right;
+      }
+      cite {
+        margin-top:$bu*2;
+        display:block;
+      }
     }
-    cite {
-      margin-top:$bu*2;
-      display:block;
-    }
-   }
   }
 }

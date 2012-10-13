@@ -3,6 +3,10 @@ $max-content-width:1180px;
 $main_orange:#f68b24;
 $main_black:#333;
 $dirty_white:#f1f1f1;
+$dark_white:#dfdfdf;
+$basic_font_stack:'Source Sans Pro', Verdana,Arial,sans-serif;
+$marker_font: 'Permanent Marker', cursive;
+$akronim_font: 'Akronim', cursive;
 
 // The basic unit of measure
 $bu:12px;
@@ -18,11 +22,11 @@ body {
 }
 
 header {
-  background-color:$dirty_white;
+  background-color:$main_black;
   box-shadow:0px 5px 15px rgba(0,0,0,0.1);
   hgroup {
     h1 {
-      font-family: 'Permanent Marker', cursive;
+      font-family: $marker_font;
       font-size:70px;
       color:$main_orange;
       position:relative;
@@ -30,9 +34,9 @@ header {
       display:inline;
     }
     h2 {
-      font-family: 'Akronim', cursive;
+      font-family: $akronim_font;
       font-size:140px;
-      color:$main_black;
+      color:$dirty_white;
       position:relative;
       left:-22px;
       bottom:-20px;
@@ -50,22 +54,35 @@ header {
 footer {
   background-color:$main_black;
   color:$dirty_white;
-  position:fixed;
-  bottom:0px;
   width:100%;
+  padding:$bu*2 0;
   ul {
-    columns:100px 3;
-    -webkit-columns:100px 3; /* Safari and Chrome */
-    -moz-columns:100px 3; /* Firefox */
+    display:inline-block;
+    width:24%;
+    padding:0 $bu*3 0 0 ;
+    @include box-sizing(border-box);
     li {
       list-style-type:none;
-      padding:$bu;
+      padding:$bu/2 0;
+      a {
+        text-decoration:none;
+        color:$main_orange;
+      }
+      a:hover {
+        border-bottom:1px dotted $main_orange;
+      }
+      a:visited, a:active {
+        
+      }
     }
+  }
+  .copyright {
+    color:$dark_white;
+    font-size:11px;
   }
 }
 
 .wrapper {
-  width:98%;
   max-width:$max-content-width;
   margin:0 auto;
   @include box-sizing(border-box);

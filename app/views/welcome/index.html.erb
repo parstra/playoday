@@ -1,6 +1,6 @@
 <section class="quick_intro">
 <!-- Defining fun via playOday -->
-<ul>
+<ul class="cf">
   <li>
   <%= image_tag "http://placehold.it/250x250" %>
   <!-- Document Outlines: http://www.456bereastreet.com/archive/201104/html5_document_outline_revisited/ -->
@@ -20,14 +20,19 @@
   </li>
 </ul>
 </section>
-<section class="cta">
-
+<section class="convert">
+<div class="wrapper cf">
+  <p>
+  Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec id elit non mi porta gravida at eget metus. 
+  </p>
+  <%= link_to "Sign up Now &raquo;".html_safe, "",:class => "cta" %>
+</div>
 </section>
 <section class="testimonials">
 <h2>People actually said about playOday:</h2>
 <!-- Do not use divs everywhere. These are similar items and we should reflect this in the html. Yes I know this can be applied to pretty much all of the DOM. Do not argue with me in here. This is my code!! -->
-<ul>
-<li>
+<ul class="cf">
+  <li>
   <blockquote>
     I lost 100 pounds in 3 days organizing my play days with playOday.
   </blockquote>
@@ -35,9 +40,9 @@
     Jim Lerris<br/>
     Author & Enterpreneur
   </cite>
-</li>
+  </li>
 
-<li>
+  <li>
   <blockquote>
     I attribute all my racing achievements to playOday! What? ... yes I know I never actually finished a race...
   </blockquote>
@@ -45,9 +50,9 @@
     David Reinemacher Jenson<br/>
     Python Core Developer
   </cite>
-</li>
+  </li>
 
-<li>
+  <li>
   <blockquote>
     Ni, ni, ni, ni, ni, ni...
   </blockquote>
@@ -55,6 +60,17 @@
     The knights who say ni<br/>
     Killer knights
   </cite>
-</li>
+  </li>
+
+  <li>
+  <blockquote>
+    Tender Love Making at its best! Respect
+  </blockquote>
+  <cite>
+    Guess Who<br/>
+    Cat affinado
+  </cite>
+  </li>
+
 </ul>
 </section>
