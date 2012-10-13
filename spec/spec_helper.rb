@@ -23,6 +23,8 @@ RSpec.configure do |config|
   config.filter_run :focus => true
   config.run_all_when_everything_filtered = true
 
+  config.include Devise::TestHelpers, :type => :controller
+
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -38,4 +40,11 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+end
+
+def login_user(user = nil)
+  @request.env["devise.mapping"] = Devise.mappings[:user]
+  the_user = user || User.create({email: "someone@someone.com",
+                               password: 'foobar'})
+  sign_in the_user
 end

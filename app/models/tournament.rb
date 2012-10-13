@@ -1,6 +1,6 @@
 class Tournament < ActiveRecord::Base
   belongs_to :company
-  belongs_to :owner, class_name: :user, foreign_key: :owner_id
+  belongs_to :owner, class_name: "User", foreign_key: :owner_id
 
   has_many :tournament_users
   has_many :users, through: :tournament_users
