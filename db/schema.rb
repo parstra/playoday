@@ -13,6 +13,20 @@
 
 ActiveRecord::Schema.define(:version => 20121013070914) do
 
+  create_table "companies", :force => true do |t|
+    t.string   "domain"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "companies_users", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.integer  "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "matches", :force => true do |t|
     t.integer  "round_id",                          :null => false
     t.datetime "created_at",                        :null => false
@@ -45,5 +59,24 @@ ActiveRecord::Schema.define(:version => 20121013070914) do
     t.integer  "game_type",       :limit => 1
     t.integer  "company_id"
   end
+
+  create_table "users", :force => true do |t|
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "company_name"
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
