@@ -41,6 +41,12 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    ffi (1.0.11)
+    guard (1.2.3)
+      listen (>= 0.4.2)
+      thor (>= 0.14.6)
+    guard-rspec (1.2.0)
+      guard (>= 1.1)
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
@@ -48,6 +54,10 @@ GEM
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
     json (1.7.5)
+    listen (0.4.7)
+      rb-fchange (~> 0.0.5)
+      rb-fsevent (~> 0.9.1)
+      rb-inotify (~> 0.8.8)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -79,6 +89,11 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (0.9.2.2)
+    rb-fchange (0.0.5)
+      ffi
+    rb-fsevent (0.9.1)
+    rb-inotify (0.8.8)
+      ffi (>= 0.5.0)
     rdoc (3.12)
       json (~> 1.4)
     rspec (2.11.0)
@@ -121,6 +136,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  guard-rspec
   jquery-rails
   mysql2
   rails (= 3.2.8)
