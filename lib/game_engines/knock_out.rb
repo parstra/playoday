@@ -17,8 +17,7 @@ module GameEngines
     def initialize(player_set)
       @player_set = player_set
 
-      @players = Hash[*@player_set.flatten]
-      @player_ids = @players.keys
+      @player_ids = @player_set.map(&:id)
 
       @num_of_players = @player_set.length
     end
@@ -48,7 +47,7 @@ module GameEngines
     #
     # @return [Boolean] result
     def first_round?
-      @players.values.reject{|k| !k}.empty?
+      @player_set.reject{|p| p.first_round? || p.has_lost?}.empty?
     end
 
     # Draws the next round.
@@ -65,7 +64,7 @@ module GameEngines
       if first_round?
         ids = @player_ids
       else
-        ids = @player_set.select(&:last).map(&:first)
+        ids = @player_set.select(&:has_won?).map(&:id)
       end
 
       ids.in_groups_of(2)
