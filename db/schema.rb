@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013104039) do
+ActiveRecord::Schema.define(:version => 20121013124339) do
 
   create_table "matches", :force => true do |t|
     t.integer  "round_id",                          :null => false
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(:version => 20121013104039) do
     t.integer  "tournament_id", :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.datetime "started_at"
+    t.datetime "ended_at"
   end
 
   create_table "tournament_users", :force => true do |t|
@@ -62,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20121013104039) do
     t.integer  "total_rounds"
     t.integer  "round_duration"
     t.boolean  "active",                       :default => false
+    t.datetime "started_at"
   end
 
   create_table "users", :force => true do |t|
