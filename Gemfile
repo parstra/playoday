@@ -21,3 +21,6 @@ end
 gem 'jquery-rails'
 
 gem "rspec-rails", :group => [:test, :development]
+
+gem "shoulda-matchers", :group => [:test]
+gem "watchr", :require => nil
