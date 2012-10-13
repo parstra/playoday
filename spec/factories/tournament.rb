@@ -11,7 +11,6 @@ FactoryGirl.define do
 
     # by default a CUP
     game_type Tournament::CUP
-    description "There can be only one!"
 
     trait :cup do
       game_type Tournament::CUP
