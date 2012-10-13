@@ -3,14 +3,6 @@
 
 <%= form_for resource, url: registration_path(resource_name) do |f| %>
   <%= devise_error_messages! %>
-  <% resource.companies.build if !resource.companies.present? %>
-  <%= f.fields_for :companies do |cf| %>
-    <div class="domain">
-      <%= cf.label :domain %>
-      http://<%= cf.text_field :domain %>.playoday.com
-      <small>Choose your domain wisely since this will be the entrypoint for all of the team members in your tournaments</small>
-    </div>
-  <% end  %>
 
   <div>
     <%= f.label :email %>

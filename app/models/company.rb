@@ -1,13 +1,12 @@
 class Company < ActiveRecord::Base
-  attr_accessible :domain
+  attr_accessible :name
 
   #associations
-  has_many  :users, :through => :companies_users
-  has_many :companies_users, :dependent => :destroy
+  has_many :users
 
   #validations
-  validates_presence_of :domain
-  validates_uniqueness_of :domain
+  validates_presence_of :name
+  validates_uniqueness_of :name
 end
 
 # == Schema Information

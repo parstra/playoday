@@ -1,21 +1,27 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
+
+  attr_accessible :company_name
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :companies_attributes
+  after_save
 
-  #associations
-  has_many :companies, :through => :companies_users
-  has_many :companies_users
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
+
+  belongs_to :company
 
   has_many :tournament_users
   has_many :tournaments, through: :tournament_users
 
-  accepts_nested_attributes_for :companies
+  private
+
+  #create the name of company if dosn't exist
+  def assign_company
+    self.company = Company.find_or_create_by_name(self.company_name)
+  end
+
 end
 
 # == Schema Information
@@ -37,4 +43,3 @@ end
 #  updated_at             :datetime         not null
 #  company_name           :string(255)
 #
-

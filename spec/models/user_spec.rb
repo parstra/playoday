@@ -2,7 +2,7 @@
 require 'spec_helper'
 describe User do
 
-  it { should have_many(:companies).through(:companies_users) }
+  it { should belong_to(:company) }
   it { should have_many(:tournaments).through(:tournament_users) }
 
 end
@@ -26,4 +26,3 @@ end
 #  updated_at             :datetime         not null
 #  company_name           :string(255)
 #
-
