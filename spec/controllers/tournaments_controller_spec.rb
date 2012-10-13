@@ -262,7 +262,7 @@ describe TournamentsController do
 
       it "redirects to the tournament page" do
         put :update, user_params
-        response.should redirect_to(tournament_path(tournament))
+        response.should redirect_to(tournaments_path)
       end
 
       it "doesn't update the tournament" do
@@ -285,7 +285,7 @@ describe TournamentsController do
 
       it "redirects to the tournament page" do
         put :update, user_params
-        response.should redirect_to(tournament_path(tournament))
+        response.should redirect_to(tournaments_path)
       end
 
       it "doesn't update the tournament" do

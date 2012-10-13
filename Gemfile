@@ -20,6 +20,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'cancan'
 gem 'devise'
 gem 'jquery-rails'
 gem 'rspec-rails'

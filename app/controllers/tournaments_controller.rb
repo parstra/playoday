@@ -1,7 +1,8 @@
 class TournamentsController < ApplicationController
+  load_and_authorize_resource
+
   before_filter :authenticate_user!
-  before_filter :fetch_tournament, :only => [:show, :edit, :update]
-  before_filter :authorize, :only => [:show, :edit]
+  before_filter :fetch_tournament, :only => [:show, :edit]
 
   # GET /index
   def index
@@ -54,16 +55,7 @@ class TournamentsController < ApplicationController
     @tournament = Tournament.find(params[:id])
   end
 
-  def authorize
-    # can user see this?
-    # TODO: cancan this
-    if @tournament.owner_id != current_user.id &&
-      TournamentUser.where(tournament_id: @tournament.id,
-                           user_id: current_user.id).count == 0
-      flash[:alert] = "You are not supposed to be here"
-      redirect_to tournaments_path
-      return false
-    end
-    true
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to tournaments_path, :alert => exception.message
   end
 end
