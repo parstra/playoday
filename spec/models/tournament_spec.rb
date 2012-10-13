@@ -8,13 +8,14 @@ describe Tournament do
   it { should belong_to :owner }
   it { should have_many(:users).through(:tournament_users) }
 
-  it { should validate_numericality_of :game_type }
-  it { should validate_presence_of :duration }
   it { should validate_presence_of :name }
-  it { should validate_presence_of :total_rounds }
-  it { should validate_presence_of :round_duration }
+  it { should validate_numericality_of :game_type }
   it { should validate_presence_of :owner_id }
-  it { should validate_presence_of :company_id }
+
+#  it { should validate_presence_of :duration }
+#  it { should validate_presence_of :total_rounds }
+#  it { should validate_presence_of :round_duration }
+#  it { should validate_presence_of :company_id }
 
 
   context "scopes" do

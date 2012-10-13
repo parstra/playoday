@@ -12,7 +12,9 @@ class Tournament < ActiveRecord::Base
   SWEDISH = 3
 
   validates :game_type, :numericality => { only_integer: true }
-  validates :name, :duration, :total_rounds, :round_duration, :owner_id, :company_id, presence: true
+  validates :name, :owner_id, presence: true
+
+#  validates :duration, :total_rounds, :round_duration, :company_id, presence: true
 
   scope :active, where(active: true)
   # TODO: test this
