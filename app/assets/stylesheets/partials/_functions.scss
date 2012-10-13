@@ -1,0 +1,10 @@
+/* Box Sizing */
+
+@mixin box-sizing($bs) 
+{
+  -moz-box-sizing: $bs;
+  -webkit-box-sizing: $bs;
+  box-sizing: $bs; 
+}
+
+
