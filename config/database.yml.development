@@ -1,0 +1,15 @@
+development:
+  adapter: mysql2
+  username: root
+  password: magrathea
+  database: helmet
+  host: 192.168.6.254
+  port: 20220
+  encoding: utf8
+test:
+  adapter: mysql2
+  username: root
+  password: magrathea
+  database: helmet_test
+  host: localhost
+  encoding: utf8
