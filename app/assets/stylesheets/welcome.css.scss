@@ -1,8 +1,61 @@
+section {
+  padding:$bu*4 $bu*2;
+}
+
 .quick_intro {
   li {
+    list-style-type:none;
+    display:inline-block;
+    text-align:center;
+    margin-right:$bu;
     img {
       padding:3px;
-      @include box-shadow(3px,3px,0px,rgba(0,0,0,0.2));
+      @include box-shadow(3px,3px,0px,0px,rgba(0,0,0,0.2));
+      background-color:white;
+  }
+}
+li:last-child {
+  margin-right:none;
+}
+}
+
+.cta {
+
+}
+
+.testimonials {
+  h2 {
+    font-family:'Permanent Marker', cursive;
+    font-size:$bu*2;
+    margin-bottom:$bu;
+}
+ul {
+  li {
+    display:inline-block;
+    width:33%;
+    padding-right:$bu*2;
+    @include box-sizing(border-box);
+    blockquote {
+      font-size:$bu*1.2;
+      margin:0px;
     }
+    blockquote:before {
+      content:"\201C";
+      font:normal 60px/18px Helvetica,arial,sans-serif;
+      text-shadow:2px 2px 0px #999;
+      display:inline;
+    }
+
+    blockquote:after {
+      content:"\201D";
+      font:normal 60px Helvetica,arial,sans-serif;
+      text-shadow:2px 2px 0px #999;
+      float:right;
+    }
+    cite {
+      margin-top:$bu*2;
+      display:block;
+    }
+   }
   }
 }
