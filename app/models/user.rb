@@ -12,5 +12,8 @@ class User < ActiveRecord::Base
   has_many :companies, :through => :companies_users
   has_many :companies_users
 
+  has_many :tournament_users
+  has_many :tournaments, through: :tournament_users
+
   accepts_nested_attributes_for :companies
 end
