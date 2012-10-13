@@ -1,5 +1,5 @@
 section {
-  padding:$bu*4 $bu*2;
+  padding:$bu*2;
 }
 
 .quick_intro {
@@ -43,35 +43,9 @@ section {
   .cta {
     float:right;
     margin-left:-300px;
-    border-top: 1px solid #f5b37a;
-    background: #d9680b;
-    background: -webkit-gradient(linear, left top, left bottom, from(#f68924), to(#d9680b));
-    background: -webkit-linear-gradient(top, #f68924, #d9680b);
-    background: -moz-linear-gradient(top, #f68924, #d9680b);
-    background: -ms-linear-gradient(top, #f68924, #d9680b);
-     background: -o-linear-gradient(top, #f68924, #d9680b);
-     padding: $bu $bu*2;
-     border-radius: 8px;
-     -webkit-box-shadow: rgba(0,0,0,.5) 0 1px 0;
-     -moz-box-shadow: rgba(0,0,0,.5) 0 1px 0;
-     box-shadow: rgba(0,0,0,.5) 0 1px 0;
-     text-shadow: rgba(0,0,0,.2) 0 1px 0;
-     color: white;
-     font-size: 34px;
-     font-family: $basic_font_stack;
-     font-weight:bold;
-     text-decoration: none;
-     vertical-align: middle;
-     }
-  .cta:hover {
-     border-top-color: #f5770a;
-     background: #f5770a;
-     color: #000000;
-     }
-  .cta:active {
-     border-top-color: #1b435e;
-     background: #1b435e;
-   }
+    font-weight:bold;
+    font-size:34px;
+  }
 }
 
 .testimonials {

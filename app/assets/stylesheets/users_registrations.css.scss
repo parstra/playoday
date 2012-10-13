@@ -1,0 +1,24 @@
+.signup {
+  width:60%;
+  border-right:1px dotted $light_black;
+  div {
+    margin-bottom:10px;
+    font-size:$bu*1.5;
+    position:relative;
+    small {
+      font-size:$bu*0.8;
+      left:110%;
+      width:30%;
+      position:absolute;
+    }
+  }
+  label {
+    font:bold $bu*1.5 $basic_font_stack;
+    display:block;
+    margin-bottom:5px;
+  }
+  input[type='text'], input[type='password'] {
+    padding:5px;
+    font:normal $bu*1.2 $basic_font_stack;
+  }
+}
