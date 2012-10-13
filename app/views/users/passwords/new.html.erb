@@ -1,3 +1,4 @@
+<section class="amnesia">
 <h2>Forgot your password?</h2>
 
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
@@ -6,7 +7,10 @@
   <div><%= f.label :email %>
   <%= f.email_field :email %></div>
 
-<div><%= f.submit "Send me reset password instructions", :class => "base_button" %></div>
+<div class="options">
+  <%= f.submit "Send me reset password instructions", :class => "base_button" %>
+  <%= render "/users/shared/links" %>
+</div>
 <% end %>
+</section>
 
-<%= render "devise/shared/links" %>

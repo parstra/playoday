@@ -9,7 +9,8 @@ $main_black:#333;
 $light_black:#707070;
 $grey_black:#999;
 
-$error: #45c3b8;
+$error: #EF4136;
+$light_error: #DFADAA;
 
 $dirty_white:#f1f1f1;
 $dark_white:#dfdfdf;
@@ -159,10 +160,33 @@ section {
      background: #1b435e;
 }
 
+label {
+  font-weight:bold;
+  font-size:$bu*1.5;
+  display:block;
+  margin-bottom:5px;
+}
+input[type='text'], input[type='password'], input[type='email'] {
+  padding:5px;
+  font-weight:normal;
+  font-size:$bu*1.2;
+}
 
 #error_explanation {
-  background-color:$error;
+  border:1px solid $error;
+  background-color:$light_error;
+  padding:$bu;
   h2 {
     font:bold $bu*1.4 $basic_font_stack;
+    margin-bottom:$bu;
   }
+  ul {
+    li {
+      font-size:$bu;
+    }
+  }
+}
+
+.field_with_errors input {
+  border:1px solid $error;
 }
