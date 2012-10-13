@@ -11,21 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013091714) do
-
-  create_table "companies", :force => true do |t|
-    t.string   "domain"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "companies_users", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "company_id"
-    t.integer  "role"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20121013104039) do
 
   create_table "companies", :force => true do |t|
     t.string   "domain"
@@ -78,13 +64,18 @@ ActiveRecord::Schema.define(:version => 20121013091714) do
   add_index "tournament_users", ["user_id"], :name => "index_tournament_users_on_user_id"
 
   create_table "tournaments", :force => true do |t|
-    t.string   "description",                  :null => false
+    t.string   "description",                                     :null => false
     t.string   "tournament_hash"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.integer  "game_type",       :limit => 1
     t.integer  "company_id"
     t.integer  "owner_id"
+    t.string   "name"
+    t.integer  "duration"
+    t.integer  "total_rounds"
+    t.integer  "round_duration"
+    t.boolean  "active",                       :default => false
   end
 
   create_table "users", :force => true do |t|
