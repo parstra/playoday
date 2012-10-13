@@ -1,15 +1,14 @@
 development:
   adapter: mysql2
   username: root
-  password: magrathea
-  database: helmet
-  host: 192.168.6.254
-  port: 20220
+  password: 
+  database: playoday
+  host: localhost
   encoding: utf8
 test:
   adapter: mysql2
   username: root
-  password: magrathea
-  database: helmet_test
+  password: 
+  database: playoday_test
   host: localhost
   encoding: utf8
