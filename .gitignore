@@ -19,3 +19,4 @@
 
 # Ignore config files and use local copies
 /config/database.yml
+/.rvmrc
