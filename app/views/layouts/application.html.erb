@@ -26,7 +26,11 @@
               <span>day</span></a>
              </h1>
              <nav>
-                <%= link_to "No idea what your user is?", new_user_password_path %>
+             <% if user_signed_in? %>
+                  <%= link_to "Logout", destroy_user_session_path, :method => "delete" %>
+                <% else %>
+                  <%= link_to "No idea what your user was? Recover Account.", new_user_password_path %>
+                <% end %>
              </nav>
           </div>
           </header>

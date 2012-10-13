@@ -3,8 +3,14 @@ $max-content-width:1180px;
 
 // Colors used, Please only use these vars if possible
 $main_orange:#f68b24;
+
+$dark_black:#3b3b3b;
 $main_black:#333;
-$light_black:#454545;
+$light_black:#707070;
+$grey_black:#999;
+
+$error: #45c3b8;
+
 $dirty_white:#f1f1f1;
 $dark_white:#dfdfdf;
 
@@ -22,7 +28,7 @@ html {
 }
 
 body {
-  font: normal 12px $basic_font_stack;
+  font: normal 14px $basic_font_stack;
   color: $main_black;
 }
 
@@ -31,6 +37,7 @@ h2 {
   font-size:$bu*2;
   margin-bottom:$bu*2;
   margin-top:0px;
+  text-shadow:1px 1px 0px white;
 }
  
 
@@ -69,8 +76,11 @@ header {
   }
   nav {
     float:right;
+    margin-top:100px;
     a {
       color:$dirty_white;
+      text-decoration:none;
+      border-bottom:1px dotted $dirty_white;
     }
   }
 }
@@ -147,4 +157,12 @@ section {
 .base_button:active {
      border-top-color: #1b435e;
      background: #1b435e;
+}
+
+
+#error_explanation {
+  background-color:$error;
+  h2 {
+    font:bold $bu*1.4 $basic_font_stack;
+  }
 }
