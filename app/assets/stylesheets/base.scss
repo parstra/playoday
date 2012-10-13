@@ -1,0 +1,29 @@
+@import "partials/_normalize"
+
+hgroup {
+  background-color:white;
+  h1 {
+    font-family: 'Permanent Marker', cursive;
+    font-size:90px;
+    color:#f68b24;
+    position:relative;
+    z-index:1;
+    display:inline;
+  }
+  h2 {
+    font-family: 'Akronim', cursive;
+    font-size:160px;
+    color:white;
+    position:relative;
+    left:-22px;
+    bottom:-20px;
+    z-index:0;
+    text-shadow:1px 1px 0px black;
+    display:inline;
+  }
+  h2 + h1 {
+    left:-50px;
+    color:#3886e7;
+  }
+}
+
