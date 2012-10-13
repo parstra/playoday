@@ -13,9 +13,12 @@ describe Match do
     it "played should be false" do
       match.should_not be_played
     end
+  end
 
-    it "create_match_hash! should populate match_hash with a md5 digest" do
-      expect { match.create_match_hash! }.to change { match.match_hash }
+  context ".save" do
+    let(:match) { FactoryGirl.build(:match) }
+    it "creates match_hash" do
+      expect { match.save }.to change { match.match_hash }.from(nil)
     end
   end
 end
