@@ -28,7 +28,6 @@ describe Tournament do
   end
 
   context "methods" do
-
     let(:active_tournament) { FactoryGirl.create(:tournament, active: true) }
     let(:inactive_tournament) { FactoryGirl.create(:tournament, active: false) }
 
@@ -36,7 +35,6 @@ describe Tournament do
       active_tournament.should be_active
       inactive_tournament.should_not be_active
     end
-
   end
 
   context "before create" do

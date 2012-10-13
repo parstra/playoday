@@ -15,6 +15,12 @@ class Tournament < ActiveRecord::Base
   validates :name, :duration, :total_rounds, :round_duration, :owner_id, :company_id, presence: true
 
   scope :active, where(active: true)
+  # TODO: test this
+  scope :for_user, lambda{|user|
+    includes(:tournament_users).
+    where("tournament_users.user_id = :user_id or tournaments.owner_id = :user_id",
+          {:user_id => user.id})
+  }
 
   before_create :create_tournament_hash
 
