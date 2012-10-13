@@ -28,7 +28,7 @@ section {
 
 .convert {
   div {
-    background-color:$dirty_white;
+    background-color:$dark_black;
     box-shadow:0px 0px 15px rgba(0,0,0,0.4);
     border-radius:3px;
     padding:$bu*2;
@@ -39,11 +39,11 @@ section {
     margin-right:300px;
     font:normal $bu*1.5 $basic_font_stack;
     line-height:1.3em;
+    color:$dirty_white;
   }
   .cta {
     float:right;
     margin-left:-300px;
-    font-weight:bold;
     font-size:34px;
   }
 }
@@ -64,6 +64,7 @@ section {
       @include box-sizing(border-box);
       blockquote {
         font-size:$bu*1.2;
+        font-style:italic;
         margin:0px;
         background-color:$dirty_white;
         height:$bu*4.5;
@@ -85,12 +86,16 @@ section {
         border-left:$arrow_head solid transparent;
         border-right:$arrow_head solid transparent;
       }
-      
-
       cite {
         display:block;
         background-color:$dark_white;
         padding:$bu $bu/2;
+        color:$light_black;
+        span {
+          display:block;
+          color:$grey_black;
+          font-size:$bu*0.9;
+        }
       }
     }
   }
