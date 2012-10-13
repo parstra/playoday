@@ -13,6 +13,20 @@
 
 ActiveRecord::Schema.define(:version => 20121013124339) do
 
+  create_table "companies", :force => true do |t|
+    t.string   "domain"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "companies_users", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.integer  "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "matches", :force => true do |t|
     t.integer  "round_id",                          :null => false
     t.datetime "created_at",                        :null => false
