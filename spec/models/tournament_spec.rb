@@ -68,5 +68,6 @@ end
 #  total_rounds    :integer
 #  round_duration  :integer
 #  active          :boolean          default(FALSE)
+#  started_at      :datetime
 #
 
