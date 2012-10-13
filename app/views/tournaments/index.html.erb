@@ -1,1 +1,10 @@
-<h1>Tournaments</h1>
+<section>
+<h2>Tournaments</h2>
+<% if @tournaments.any? %>
+<ol class="tournaments_list">
+  <%= render :partial => "tournament", :collection => @tournaments %>
+</ol>
+<% else %>
+  Nothing to show
+<% end %>
+</section>

@@ -1,3 +1,33 @@
 // Place all the styles related to the tournaments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.tournaments_list {
+  li {
+    padding:$bu;
+    background-color:$dirty_white;
+    position:relative;
+    h3 {
+      font-weight:700;
+      font-size:$bu*1.5;
+    }
+    p {
+      color:$grey_black;
+    }
+    .stats {
+      font-family:$marker_font;
+      font-size:$bu*3;
+      position:absolute;
+      right:$bu;
+      top:5px;
+      span {
+        color:$main_orange;
+      }
+    }
+  }
+  li:nth-child(2n+1) {
+    border-left:none;
+    border-right:none;
+    border-top:1px dotted $light_black;
+    border-bottom:1px dotted $light_black;
+  }
+}
