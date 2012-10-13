@@ -7,4 +7,20 @@
   box-sizing: $bs; 
 }
 
+/* Box Shadow */
+
+@mixin box-shadow($o,$v,$b,$s,$c:"",$inset:"") 
+{
+  @if $inset != "" {
+    -webkit-box-shadow:$inset $o $v $b $s $c;
+    -moz-box-shadow:$inset $o $v $b $s $c;
+    box-shadow:$inset $o $v $b $s $c;
+    }
+  @else {
+    -webkit-box-shadow:$o $v $b $s $c;
+    -moz-box-shadow:$o $v $b $s $c;
+    box-shadow:$o $v $b $s $c;
+  } 
+}
+
 
