@@ -199,98 +199,98 @@ describe TournamentsController do
         assigns(:tournament).description.should == 'some description'
       end
     end
+  end
 
-    describe "PUT update" do
-      context "user is owner" do
-        let(:tournament){FactoryGirl.create(:tournament, :cup, {owner: user})}
-        let(:user_params){
-          {
-            tournament: {
-              name: 'some-name',
-              description: 'some description'
-            },
-            id: tournament.id
-          }
+  describe "PUT update" do
+    context "user is owner" do
+      let(:tournament){FactoryGirl.create(:tournament, :cup, {owner: user})}
+      let(:user_params){
+        {
+          tournament: {
+            name: 'some-name',
+            description: 'some description'
+          },
+          id: tournament.id
         }
+      }
 
-        context "params valid" do
-          it "redirects to the tournament page" do
-            put :update, user_params
-            response.should redirect_to(tournament_path(tournament))
-          end
-
-          it "updates tournament parameters" do
-            put :update, user_params
-            tournament.reload.name.should == 'some-name'
-          end
-        end
-
-        context "params don't create a valid tournament" do
-          let(:user_params){
-            {
-              tournament: {
-                name: "",
-                description: 'some description'
-              },
-              id: tournament.id
-            }
-          }
-
-          it "renders edit page" do
-            put :update, user_params
-            response.should render_template("edit")
-          end
-        end
-      end
-
-      context "user is participant " do
-        let(:tournament){FactoryGirl.create(:tournament, :cup, {owner: another_user})}
-        let(:user_params){
-          {
-            tournament: {
-              name: 'some-name',
-              description: 'some description'
-            },
-            id: tournament.id
-          }
-        }
-
-        before do
-          tournament.users << user
-        end
-
+      context "params valid" do
         it "redirects to the tournament page" do
           put :update, user_params
           response.should redirect_to(tournament_path(tournament))
         end
 
-        it "doesn't update the tournament" do
+        it "updates tournament parameters" do
           put :update, user_params
-          tournament.reload.name.should_not == "some-name"
+          tournament.reload.name.should == 'some-name'
         end
       end
 
-      context "user has nothing to do with the tournament" do
-        let(:tournament){FactoryGirl.create(:tournament, :cup, {owner: another_user})}
+      context "params don't create a valid tournament" do
         let(:user_params){
           {
             tournament: {
-              name: 'some-name',
+              name: "",
               description: 'some description'
             },
             id: tournament.id
           }
         }
 
-        it "redirects to the tournament page" do
+        it "renders edit page" do
           put :update, user_params
-          response.should redirect_to(tournament_path(tournament))
+          response.should render_template("edit")
         end
+      end
+    end
 
-        it "doesn't update the tournament" do
-          put :update, user_params
-          tournament.reload.name.should_not == "some-name"
-        end
+    context "user is participant " do
+      let(:tournament){FactoryGirl.create(:tournament, :cup, {owner: another_user})}
+      let(:user_params){
+        {
+          tournament: {
+            name: 'some-name',
+            description: 'some description'
+          },
+          id: tournament.id
+        }
+      }
+
+      before do
+        tournament.users << user
+      end
+
+      it "redirects to the tournament page" do
+        put :update, user_params
+        response.should redirect_to(tournament_path(tournament))
+      end
+
+      it "doesn't update the tournament" do
+        put :update, user_params
+        tournament.reload.name.should_not == "some-name"
+      end
+    end
+
+    context "user has nothing to do with the tournament" do
+      let(:tournament){FactoryGirl.create(:tournament, :cup, {owner: another_user})}
+      let(:user_params){
+        {
+          tournament: {
+            name: 'some-name',
+            description: 'some description'
+          },
+          id: tournament.id
+        }
+      }
+
+      it "redirects to the tournament page" do
+        put :update, user_params
+        response.should redirect_to(tournament_path(tournament))
+      end
+
+      it "doesn't update the tournament" do
+        put :update, user_params
+        tournament.reload.name.should_not == "some-name"
       end
     end
   end
