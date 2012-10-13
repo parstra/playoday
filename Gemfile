@@ -26,3 +26,5 @@ gem "rspec-rails", :group => [:test, :development]
 
 gem "shoulda-matchers", :group => [:test]
 gem "guard-rspec", :group => [:test, :development]
+
+gem "factory_girl_rails", "~> 4.0.0"
