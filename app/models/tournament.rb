@@ -1,5 +1,6 @@
 class Tournament < ActiveRecord::Base
   has_many :rounds
+  belongs_to :company
 
   CUP     = 1
   LEAGUE  = 2
