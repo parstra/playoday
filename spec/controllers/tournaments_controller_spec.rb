@@ -6,12 +6,11 @@ describe TournamentsController do
                           :password => 'foobar'})}
   let(:another_user){User.create({:email => 'someoneelse@someone.com',
                                   :password => 'foobar'})}
+  before do
+    login_user(user)
+  end
 
   describe "GET index" do
-    before do
-      login_user(user)
-    end
-
     let!(:my_tournament){
       #TODO: update this factory to have a name
       FactoryGirl.create(:tournament, :cup, {owner: user})
@@ -52,10 +51,6 @@ describe TournamentsController do
       FactoryGirl.create(:tournament,{owner: another_user})
     }
 
-    before do
-      login_user(user)
-    end
-
     context "user owns tournament" do
       it "renders show template" do
         get :show, id: tournament.id
@@ -93,10 +88,6 @@ describe TournamentsController do
   end
 
   describe "GET new" do
-    before do
-      login_user(user)
-    end
-
     it "renders the new template" do
       get :new
       response.should render_template("new")
@@ -114,12 +105,8 @@ describe TournamentsController do
       FactoryGirl.create(:tournament,{owner: another_user})
     }
 
-    before do
-      login_user(user)
-    end
-
     context "user owns tournament" do
-      it "renders show template" do
+      it "renders edit template" do
         get :edit, id: tournament.id
         response.should render_template("edit")
       end
@@ -135,14 +122,9 @@ describe TournamentsController do
         another_tournament.users << user
       end
 
-      it "renders show template" do
+      it "doesn't render show page" do
         get :edit, id: another_tournament.id
-        response.should render_template("edit")
-      end
-
-      it "fetches tournament" do
-        get :edit, id: another_tournament.id
-        assigns(:tournament).should eq(another_tournament)
+        response.should redirect_to(tournaments_path)
       end
     end
 
@@ -154,5 +136,162 @@ describe TournamentsController do
     end
   end
 
+  describe "POST create" do
+    let(:user_params){
+      {
+        tournament: {
+          name: 'some-name',
+          game_type: Tournament::CUP,
+          description: 'some description'
+        }
+      }
+    }
 
+    context "params create a valid tournament" do
+      it "creates tournament" do
+        expect {post :create, user_params}.
+          to change(Tournament, :count).by(1)
+      end
+
+      it "redirects to the tournament page" do
+        post :create, user_params
+        response.should redirect_to(tournament_path(Tournament.last))
+      end
+
+      it "assigns the correct user id to the tournament" do
+        post :create, user_params
+
+        tournament = Tournament.last
+        tournament.owner_id.should == user.id
+      end
+
+      it "assigns parameters to the tournament" do
+        post :create, user_params
+
+        tournament = Tournament.last
+        tournament.name.should == 'some-name'
+      end
+    end
+
+    context "params don't create a valid tournament" do
+      let(:user_params){
+        {
+          tournament: {
+            name: "",
+            game_type: Tournament::CUP,
+            description: 'some description'
+          }
+        }
+      }
+
+      it "doesn't create a tournament" do
+        expect {post :create, user_params}.
+          to_not change(Tournament, :count)
+      end
+
+      it "renders create page again" do
+        post :create, user_params
+        response.should render_template("new")
+      end
+
+      it "assigns tournament parameters" do
+        post :create, user_params
+        assigns(:tournament).description.should == 'some description'
+      end
+    end
+
+    describe "PUT update" do
+      context "user is owner" do
+        let(:tournament){FactoryGirl.create(:tournament, :cup, {owner: user})}
+        let(:user_params){
+          {
+            tournament: {
+              name: 'some-name',
+              description: 'some description'
+            },
+            id: tournament.id
+          }
+        }
+
+        context "params valid" do
+          it "redirects to the tournament page" do
+            put :update, user_params
+            response.should redirect_to(tournament_path(tournament))
+          end
+
+          it "updates tournament parameters" do
+            put :update, user_params
+            tournament.reload.name.should == 'some-name'
+          end
+        end
+
+        context "params don't create a valid tournament" do
+          let(:user_params){
+            {
+              tournament: {
+                name: "",
+                description: 'some description'
+              },
+              id: tournament.id
+            }
+          }
+
+          it "renders edit page" do
+            put :update, user_params
+            response.should render_template("edit")
+          end
+        end
+      end
+
+      context "user is participant " do
+        let(:tournament){FactoryGirl.create(:tournament, :cup, {owner: another_user})}
+        let(:user_params){
+          {
+            tournament: {
+              name: 'some-name',
+              description: 'some description'
+            },
+            id: tournament.id
+          }
+        }
+
+        before do
+          tournament.users << user
+        end
+
+        it "redirects to the tournament page" do
+          put :update, user_params
+          response.should redirect_to(tournament_path(tournament))
+        end
+
+        it "doesn't update the tournament" do
+          put :update, user_params
+          tournament.reload.name.should_not == "some-name"
+        end
+      end
+
+      context "user has nothing to do with the tournament" do
+        let(:tournament){FactoryGirl.create(:tournament, :cup, {owner: another_user})}
+        let(:user_params){
+          {
+            tournament: {
+              name: 'some-name',
+              description: 'some description'
+            },
+            id: tournament.id
+          }
+        }
+
+        it "redirects to the tournament page" do
+          put :update, user_params
+          response.should redirect_to(tournament_path(tournament))
+        end
+
+        it "doesn't update the tournament" do
+          put :update, user_params
+          tournament.reload.name.should_not == "some-name"
+        end
+      end
+    end
+  end
 end

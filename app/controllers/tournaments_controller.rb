@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :fetch_tournament, :only => [:show, :edit]
+  before_filter :fetch_tournament, :only => [:show, :edit, :update]
   before_filter :authorize, :only => [:show, :edit]
 
   # GET /index
@@ -20,6 +20,33 @@ class TournamentsController < ApplicationController
 
   # GET edit
   def edit
+  end
+
+  # PUT update
+  def update
+    if @tournament.update_attributes(params[:tournament])
+      redirect_to tournament_path(@tournament), {
+        notice: 'Tournament updated'
+      }
+    else
+      flash[:alert] = "Could not update tournament"
+      render :edit
+    end
+  end
+
+  # POST create
+  def create
+    @tournament = Tournament.new(params[:tournament])
+    @tournament.owner = current_user
+
+    if @tournament.save
+      flash[:notice] = "Tournament successfully created"
+      redirect_to tournament_path(@tournament)
+    else
+      flash[:alert] = "Could not save tournament."
+      render :new
+    end
+
   end
 
   private
