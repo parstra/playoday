@@ -29,7 +29,7 @@ section {
 .convert {
   div {
     background-color:$dirty_white;
-    box-shadow:5px 5px 10px rgba(0,0,0,0.3);
+    box-shadow:0px 0px 15px rgba(0,0,0,0.4);
     border-radius:3px;
     padding:$bu*2;
     margin:0px;
@@ -37,25 +37,25 @@ section {
   p {
     float:left;
     margin-right:300px;
-    font:normal $bu*1.2 $basic_font_stack;
-    line-height:2em;
+    font:normal $bu*1.5 $basic_font_stack;
+    line-height:1.3em;
   }
   .cta {
     float:right;
     margin-left:-300px;
-     border-top: 1px solid #f5b37a;
-     background: #f5770a;
-     background: -webkit-gradient(linear, left top, left bottom, from(#f68924), to(#f5770a));
-     background: -webkit-linear-gradient(top, #f68924, #f5770a);
-     background: -moz-linear-gradient(top, #f68924, #f5770a);
-     background: -ms-linear-gradient(top, #f68924, #f5770a);
-     background: -o-linear-gradient(top, #f68924, #f5770a);
+    border-top: 1px solid #f5b37a;
+    background: #d9680b;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f68924), to(#d9680b));
+    background: -webkit-linear-gradient(top, #f68924, #d9680b);
+    background: -moz-linear-gradient(top, #f68924, #d9680b);
+    background: -ms-linear-gradient(top, #f68924, #d9680b);
+     background: -o-linear-gradient(top, #f68924, #d9680b);
      padding: $bu $bu*2;
      border-radius: 8px;
-     -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-     -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-     box-shadow: rgba(0,0,0,1) 0 1px 0;
-     text-shadow: rgba(0,0,0,.4) 0 1px 0;
+     -webkit-box-shadow: rgba(0,0,0,.5) 0 1px 0;
+     -moz-box-shadow: rgba(0,0,0,.5) 0 1px 0;
+     box-shadow: rgba(0,0,0,.5) 0 1px 0;
+     text-shadow: rgba(0,0,0,.2) 0 1px 0;
      color: white;
      font-size: 34px;
      font-family: $basic_font_stack;
@@ -86,29 +86,37 @@ section {
     li {
       float:left;
       width:25%;
-      padding-right:$bu*4;
+      padding-right:$bu*3;
       @include box-sizing(border-box);
       blockquote {
         font-size:$bu*1.2;
         margin:0px;
+        background-color:$dirty_white;
+        height:$bu*4.5;
+        padding:$bu/1.5;
+        position:relative;
+        -webkit-filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
+        -moz-filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
+        -ms-filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
+        -o-filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
+        filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
       }
-      blockquote:before {
-        content:"\201C";
-        font:normal 40px Helvetica,arial,sans-serif;
-        line-height:$bu*1.2;
-        text-shadow:2px 2px 0px #999;
-        display:inline;
-      }
-
+      $arrow_head:10px;
       blockquote:after {
-        content:"\201D";
-        font:normal 40px Helvetica,arial,sans-serif;
-        text-shadow:2px 2px 0px #999;
-        float:right;
+        content:"";
+        position:absolute;
+        bottom:-$arrow_head;
+        left:20px;
+        border-top:$arrow_head solid $dirty_white;
+        border-left:$arrow_head solid transparent;
+        border-right:$arrow_head solid transparent;
       }
+      
+
       cite {
-        margin-top:$bu*2;
         display:block;
+        background-color:$dark_white;
+        padding:$bu $bu/2;
       }
     }
   }
