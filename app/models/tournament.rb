@@ -11,10 +11,12 @@ class Tournament < ActiveRecord::Base
   LEAGUE  = 2
   SWEDISH = 3
 
+  AVAILABLE_GAMES = { cup: CUP, swedish: SWEDISH }
+
   validates :game_type, :numericality => { only_integer: true }
   validates :name, :owner_id, presence: true
   #validates :duration, :total_rounds, :round_duration, :company_id, presence: true
-  
+
   validates :name, :owner_id, presence: true
 
   scope :active, where(active: true)

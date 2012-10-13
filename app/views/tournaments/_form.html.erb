@@ -1,0 +1,19 @@
+<%= render :partial => "application/notice", :object => @tournament %>
+<%= form_for @tournament do |f| %>
+  <%= field_set_tag do %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  <% end %>
+
+  <%= field_set_tag do %>
+    <%= f.label :game_type %>
+    <%= f.select :game_type, Tournament::AVAILABLE_GAMES %>
+  <% end %>
+
+  <%= field_set_tag do %>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>
