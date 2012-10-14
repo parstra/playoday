@@ -14,7 +14,7 @@
   </div>
 <% else %>
   <% if @tournament.swedish? %>
-    <h2>Current round</h2>
+    <h2>Current round <small>(<%= @tournament.rounds.length %> / <%= @tournament.total_rounds %></small>)</h2>
     <ul>
       <%= render :partial => "matchup", :collection => @matches %>
     </ul>
