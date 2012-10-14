@@ -1,7 +1,7 @@
 ["george@skroutz.gr", "mikezaby@gmail.com", "stratosiii@gmail.com",
  "nemlah@skroutz.gr", "gakos.ioannis@gmail.com", "giorgos.tsiftsis@gmail.com",
  "alup@aloop.org", "demo@playoday.com"].each do |email|
-   User.create(email: email, password: 'rumbledemo')
+   User.create(email: email, password: 'rumbledemo', company_name: "skroutz")
  end
 
 t = Tournament.new({name: 'Ping pong hero',
