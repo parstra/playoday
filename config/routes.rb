@@ -18,8 +18,6 @@ Playoday::Application.routes.draw do
     post "recreate_hash", :on => :member
   end
 
-  match 'signup/:tournament_hash', :controller => :tournaments, :action => :signup, :as => :signup
-
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'welcome#index'
