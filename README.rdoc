@@ -6,14 +6,14 @@ matters for the final ranking)
 
 == Scenario
 
-The tournament owner (varies from CEO to John Doe) signs up at 
+The tournament owner (varies from CEO to John Doe) signs up at
 http://playoday.com and creates a tournament by providing a name and a short
 description. After that he shall choose the tournament type, by selecting the
 matchup algorithm and the ranking system (aka the extermination system).
 The total rounds are predecided and may or maynot rely on the tournament type.
 When each round is finished (all pairs have submited their scores), the
-organizer closes that round and either starts a new one. If we were at the 
-final round of the tournament and the winner playoday notifies the users that 
+organizer closes that round and either starts a new one. If we were at the
+final round of the tournament and the winner playoday notifies the users that
 the game is over and declares the winner.
 
 == Tournament Types
@@ -24,7 +24,7 @@ At the moment there are two available tournament types:
   * Players are matched up in pairs.
   * The winner proceeds to the next round.
   * The loser just feels great for playing.
-  * The advantages of that game type are the fact that it benefits weak players 
+  * The advantages of that game type are the fact that it benefits weak players
   and that it ends quickly (best for large player groups).
 
 2. Swedish.
@@ -50,3 +50,37 @@ A tournament can end in two ways:
 * when a predefined round's count is reached (swedish)
 * when there is only one left in a knockout
 Then a winner is declared.
+
+== The team
+
+=== Nemlah (a.k.a Vasilis Dimos)
+
+Nemlah performed evil UX trickery and devilish CSS hacks. He is responsible for
+the site not looking like the drawing of a five year old. He also rocked the decks
+during this 48 hour rumble.
+
+Follow: http://www.twitter.com/nemlah
+
+=== MikeZaby (a.k.a Mike Zabaras)
+
+Mike danced the CanCan, devised the Devise and generally he holds the key to every
+locked door in playoday. If you signup and start a tournament you need to thank him.
+
+Follow: http://www.twitter.com/mikezaby
+
+=== Xlembouras (a.k.a Stratos Paraskevaidis)
+
+Stratos modeled the shit out of everything and was brave enought to start writing
+this README in the first place. He also the reason we can deploy with Capistrano.
+He is also responsible for keeping the temperature of the room low.
+
+Follow: http://www.twitter.com/xlembouras
+
+=== Banditaras (a.k.a George Hadjigeorgiou)
+
+Nothing special except from holding the camera and not letting anyone do his job.
+I'm also responsible for any UX crime you might notice on playoday.com. Sorry :)
+
+Follow: http://www.twitter.com/banditaras
+
+
