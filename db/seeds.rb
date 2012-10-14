@@ -42,8 +42,10 @@ round.matches.each {|m|
 t.next_round
 t.save
 
+# a swedish tournament
 t = Tournament.new({name: 'Tennis Ninja',
                    description: "Do you think you have what it takes?",
+                   total_rounds: 8,
                    game_type: Tournament::SWEDISH})
 
 t.owner = User.first
@@ -71,3 +73,32 @@ t.start
   t.next_round
   t.save
 end
+
+t = Tournament.new({name: 'Ping pong hero',
+                   description: "Do you think you have what it takes?",
+                   game_type: Tournament::CUP})
+
+t.owner = User.first
+t.save!
+
+User.all.each do |u| t.users << u end
+
+t.start
+
+(t.total_rounds - 1).times do
+
+  round = t.rounds.last
+
+  round.matches.each {|m|
+    m.played = true
+    m.winner_id = [m.home_player_id, m.away_player_id][m.id.modulo(2)]
+    m.save!
+  }
+
+  # go the second round
+  t.next_round
+  t.save
+end
+
+t.status = Tournament::CLOSED
+t.save
