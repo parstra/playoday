@@ -13,6 +13,34 @@ describe Match do
     it "played should be false" do
       match.should_not be_played
     end
+
+    context ".set_winner" do
+      before(:each) do
+        @home_player = FactoryGirl.create(:user)
+        @away_player = FactoryGirl.create(:user)
+        @match = FactoryGirl.create(:match, home_player: @home_player,
+                                    away_player: @away_player)
+      end
+
+
+      it "should be winner the home player" do
+        @match.away_score = 41
+        @match.home_score = 23
+        expect { @match.save }.to change { @match.winner }.from(nil).to(@away_player)
+      end
+
+      it "should be winner the away player" do
+        @match.away_score = 11
+        @match.home_score = 23
+        expect { @match.save }.to change { @match.winner }.from(nil).to(@home_player)
+      end
+
+      it "should be nil for draw" do
+        @match.away_score = 11
+        @match.home_score = 11
+        expect { @match.save }.to_not change { @match.winner }
+      end
+    end
   end
 
   context ".save" do

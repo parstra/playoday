@@ -12,4 +12,7 @@
   <cite><%= matchup.away_player.username %></cite>:
     Yo Dog, your mama is so big, she actually turns around the earth.</blockquote>
 </div>
+<% if can? :update, matchup %>
+  <%= link_to "add score", edit_tournament_match_path(@tournament.id, matchup.id) %>
+<% end %>
 </li>

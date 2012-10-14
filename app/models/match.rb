@@ -7,12 +7,26 @@ class Match < ActiveRecord::Base
 
   attr_accessible :home_score, :away_score
 
-  before_save :create_match_hash
+  before_save :create_match_hash, :set_winner
 
   # TODO: add tests for this
   scope :for_user, lambda{|user|
     where("home_player_id = :uid or away_player_id = :uid", {uid: user.id})
   }
+
+  private
+
+  def set_winner
+    if self.away_score.present? &&  self.home_score.present?
+      if self.home_score > self.away_score
+        self.winner_id = self.home_player_id
+        self.played = true
+      elsif self.home_score < self.away_score
+        self.winner_id = self.away_player_id
+        self.played = true
+      end
+    end
+  end
 
   def create_match_hash
     self.match_hash = Digest::MD5.hexdigest("I fart at your general direction #{Time.now} #{rand 1000}")
