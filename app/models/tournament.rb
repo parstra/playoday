@@ -58,6 +58,15 @@ class Tournament < ActiveRecord::Base
     self.game_type == SWEDISH
   end
 
+  def can_start?
+    openable? && users.length >= 2
+  end
+
+  def player_count_valid?
+    swedish? ||
+      (cup? && Math.log2(self.users.length).modulo(1).zero?)
+  end
+
   # Opens a tournament and draws the first round
   #
   # It checks if the tournament can be opened and
@@ -66,12 +75,7 @@ class Tournament < ActiveRecord::Base
   def start
     raise TournamentCannotOpen if !openable?
     raise NotEnoughPlayers if users.length < 2
-
-    num_of_players = self.users.length
-
-    if cup? && Math.log2(num_of_players).modulo(1) != 0
-      raise TournamentPlayerCountInvalid
-    end
+    raise TournamentPlayerCountInvalid if !player_count_valid?
 
     self.status = Tournament::OPEN
 

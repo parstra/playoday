@@ -6,11 +6,15 @@
 <% if @tournament.pending? %>
   <h2>Participations</h2>
 <div class="participants">
-    <% if can?(:manage, @tournament) %>
-    <%= link_to "Start tournament", start_tournament_path(@tournament),
-      :class => "base_button", :method => "post"%>
+  <% if can?(:manage, @tournament) %>
+    <% if @tournament.player_count_valid? %>
+      <%= link_to "Start tournament", start_tournament_path(@tournament),
+        :class => "base_button", :method => "post"%>
+    <% else %>
+      <span class="state">Not enough participants to start this tournament</span>
     <% end %>
-    <%= render partial: 'player', collection: @tournament.users %>
+  <% end %>
+  <%= render partial: 'player', collection: @tournament.users %>
   </div>
 <% else%>
   <% if @tournament.open? && can?(:manage, @tournament) %>
