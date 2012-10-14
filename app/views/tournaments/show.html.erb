@@ -4,6 +4,7 @@
 
 <section class="tournament_rounds <%= 'cup' if @tournament.cup? %>">
 <% if @tournament.swedish? %>
+<h2>Current round</h2>
 <ul>
   <%= render :partial => "matchup", :collection => @matches %>
 </ul>

@@ -1,5 +1,6 @@
-<section>
+<section class="tournaments_list">
 <h2>Tournaments</h2>
+<%= link_to "Create a new tournament", new_tournament_path, :class => "base_button"%>
 <% if @tournaments.any? %>
   <ol class="tournaments_list">
     <% for tournament in @tournaments %>
