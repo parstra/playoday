@@ -41,7 +41,7 @@
       <h2>Previous Rounds
 
         <% @tournament.rounds.to(@tournament.rounds.length - 2).each_with_index do |round, index| %>
-          <%= link_to index,
+          <%= link_to (index + 1),
             tournament_path(:id => @tournament.id, :round_id => round.id),
             :class => round.id.to_s == params[:round_id] ? "selected" : "" %>
         <% end %>
