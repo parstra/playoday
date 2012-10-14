@@ -1,4 +1,4 @@
-<section>
+<section class="tournaments_list">
 <%= link_to "Create a new tournament", new_tournament_path, :class => "base_button"%>
 <h2>Tournaments
   <%= link_to "Open", tournaments_path,
@@ -7,7 +7,7 @@
     class: params[:all].blank? ? "" : "selected" %>
   </h2>
 <% if @tournaments.any? %>
-  <ol class="tournaments_list">
+  <ol>
     <% for tournament in @tournaments %>
       <li>
       <%= render :partial => "tournament", :object => tournament %>
