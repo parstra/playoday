@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :tournament_users
   has_many :tournaments, through: :tournament_users
 
+  validates :email, immutable: true
+
   private
 
   #create the name of company if dosn't exist
