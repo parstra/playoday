@@ -32,6 +32,7 @@ gem "rspec-rails", :group => [:test, :development]
 gem "shoulda-matchers", :group => [:test]
 gem "guard-rspec", :group => [:test, :development]
 gem "pry", :group => [:test, :development]
+gem "simplecov", :group => :test, :require => false
 
 gem "factory_girl_rails", "~> 4.0.0"
 
