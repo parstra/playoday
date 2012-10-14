@@ -9,7 +9,7 @@
   </h2>
 <% if @tournaments.any? %>
   <ol>
-    <% for tournament in @tournaments %>
+    <% @tournaments.each do |tournament| %>
       <li class="cf">
       <%= render :partial => "tournament", :object => tournament %>
       </li>
