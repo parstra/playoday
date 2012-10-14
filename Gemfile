@@ -34,7 +34,6 @@ group :test, :development do
   gem "factory_girl_rails", "~> 4.0.0"
 end
 
-gem "letter_opener", :group => [:development]
 gem "shoulda-matchers", :group => [:test]
 gem "simplecov", :group => :test, :require => false
 
