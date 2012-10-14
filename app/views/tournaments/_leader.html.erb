@@ -1,5 +1,7 @@
-<li class="leader">
+<li class="leader cf">
 <%= render :partial => "player", object: leader.player %>
-<span>Wins: <%= leader.wins %></span>
-<span>Losses: <%= leader.losses %></span>
+<div class="stats">
+  <span><b> <%= leader.wins %></b> wins</span>
+  <span><b> <%= leader.losses %></b> losses</span>
+</div>
 </li>

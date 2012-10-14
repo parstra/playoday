@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // This is a general playergotchi layout
-$sidebar_width: 400px;
+$sidebar_width: 30*$bu;
 
 .playergotchi {
     display:inline-block;
@@ -70,7 +70,6 @@ $sidebar_width: 400px;
     a:hover {
       border-bottom:1px dotted $main_orange;
     }
-
   }
   .leaders {
     float:right;
@@ -200,10 +199,22 @@ $arrow_head:10px;
     }
   }
   .round {
-    padding:$bu 0;
+    padding:$bu*3 0;
+    border-bottom:1px solid #ccc;
+    @include box-shadow(0px,1px,0px,0px,white);
+    .score {
+      border:1px solid $grey_black;
+      font-family:$marker_font;
+      background-color: $dirty_white;
+      padding:$bu*1.5 $bu*2;
+      font-size:$bu*3;
+      display:inline-block;
+      vertical-align:top;
+      margin-right:$bu*3;
+    }
     .player {
       display:inline-block;
-      width:35%;
+      width:40%;
       text-align:right;
       blockquote {
         font-size:$bu*1.2;
@@ -239,14 +250,31 @@ $arrow_head:10px;
         left:40px;
         right:auto;
       }
+      .score {
+        margin-left:$bu*3;
+        margin-right:0;
+      }
     }
     em {
-      font-size:60px;
+      font-size:40px;
+      padding:0 $bu;
       font-family:$marker_font;
       vertical-align:top;
-      margin:0px 3*$bu;
+      margin:0px 2*$bu;
       color:$error;
+      position:relative;
+      .base_button {
+        position:absolute;
+        bottom:-65px;
+        left:0;
+        font-size:$bu;
+        text-align:center;
+        padding:3px;
+      }
     }
+  }
+  .round:first-child {
+    padding-top:0px;
   }
   .round.small {
     .player {
@@ -293,7 +321,18 @@ $arrow_head:10px;
     counter-reset:li;
     li {
       position:relative;
-      padding:0px 0px $bu 40px;
+      padding:0px 0px $bu*2 40px;
+      .player {
+        float:left;
+        width:80px;
+      }
+      .stats span {
+        display:block;
+        font-size:$bu*1.3;
+        b {
+          font-size:$bu*1.8;
+        }
+      }
     }
     li:before {
       content:counter(li) ". ";
@@ -301,10 +340,10 @@ $arrow_head:10px;
       display:inline-block;
       position:absolute;
       left:0px;
-      top:5px;
+      top:15px;
       height:40px;
       width:40px;
-      color:white;
+      color:$main_black;
       text-align:center;
       font-family:$marker_font;
       font-size:2*$bu;

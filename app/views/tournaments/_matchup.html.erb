@@ -1,22 +1,30 @@
 <li class="round large">
 <div class="player">
-  <span class="playergotchi" style="background-image:url('<%= matchup.home_player.gravatar_url %>');"><br/>3 Wins<br/>4 Loses</span>
+  <% if matchup.home_score %>
+    <span class="score"><%= matchup.home_score %></span>
+  <% end %>
+  <span class="playergotchi" style="background-image:url('<%= matchup.home_player.gravatar_url %>');"></span>
   <blockquote>
     <cite><%= matchup.home_player.username %></cite>:
     <%= render :partial => 'trashtalk',
     :locals => { :matchup => matchup, :arena => :home } %>
   </blockquote>
 </div>
-<em>VS</em>
+<em>
+<% if can? :update, matchup %>
+  <%= link_to "enter game score", edit_tournament_match_path(@tournament.id, matchup.id), :class => "base_button" %>
+<% end %>
+  VS
+</em>
 <div class="player">
-  <span class="playergotchi" style="background-image:url('<%= matchup.away_player.gravatar_url %>');"><br/>3 Wins<br/>4 Loses</span>
+  <span class="playergotchi" style="background-image:url('<%= matchup.away_player.gravatar_url %>');"></span>
+  <% if matchup.away_score %>
+    <span class="score"><%= matchup.away_score %></span>
+  <% end %>
   <blockquote>
     <cite><%= matchup.away_player.username %></cite>:
     <%= render :partial => 'trashtalk',
     :locals => { :matchup => matchup, :arena => :away } %>
   </blockquote>
 </div>
-<% if can? :update, matchup %>
-  <%= link_to "add score", edit_tournament_match_path(@tournament.id, matchup.id) %>
-<% end %>
 </li>
