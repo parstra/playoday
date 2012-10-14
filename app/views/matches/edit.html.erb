@@ -1,0 +1,14 @@
+<%= render :partial => "application/notice", :object => @match %>
+<%= @match.home_player.username %> vs <%= @match.away_player.username %>
+<%= form_for [@tournament,@match] do |f| %>
+  <%= field_set_tag do %>
+    <%= f.label :home_score %>
+    <%= f.text_field :home_score %>
+  <% end %>
+  <%= field_set_tag do %>
+    <%= f.label :away_score %>
+    <%= f.text_field :away_score %>
+  <% end %>
+
+  <%= f.submit :class => "base_button" %>
+<% end %>
