@@ -93,23 +93,48 @@ describe Tournament do
       end
     end
 
-    context "that is pending and has at least two players" do
-      subject {FactoryGirl.build(:tournament, :pending, :cup, {owner: user})}
+    context "cup tournament" do
+      context "that is pending and has at least two players" do
+        subject {FactoryGirl.build(:tournament, :pending, :cup, {owner: user})}
 
-      before {
-        subject.users << FactoryGirl.create_list(:user, 4)
-        subject.save!
-      }
+        before {
+          subject.users << FactoryGirl.create_list(:user, 4)
+          subject.save!
+        }
 
-      it "moves status to open" do
-        subject.start
-        subject.reload.status.should == Tournament::OPEN
-      end
+        it "moves status to open" do
+          subject.start
+          subject.reload.status.should == Tournament::OPEN
+        end
 
-      it "creates a round" do
-        expect {subject.start}.to change(Round, :count).by(1)
+        it "creates a round" do
+          expect {subject.start}.to change(Round, :count).by(1)
+        end
+
       end
     end
+
+    context "swedish tournament" do
+      context "that is pending and has at least two players" do
+        subject {FactoryGirl.build(:tournament, :pending, :swedish, {owner: user})}
+
+        before {
+          subject.users << FactoryGirl.create_list(:user, 4)
+          subject.save!
+        }
+
+        it "moves status to open" do
+          subject.start
+          subject.reload.status.should == Tournament::OPEN
+        end
+
+        it "creates a round" do
+          expect {subject.start}.to change(Round, :count).by(1)
+        end
+
+      end
+    end
+
   end
 end
 

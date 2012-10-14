@@ -61,6 +61,9 @@ class Tournament < ActiveRecord::Base
     if self.game_type == CUP
       self.extend CupTournament
       self.move_to_next_round
+    else
+      self.extend SwedishTournament
+      self.move_to_next_round
     end
 
     self.save!
