@@ -9,10 +9,6 @@ class Match < ActiveRecord::Base
 
   before_save :create_match_hash
 
-  def played?
-    played
-  end
-
   def create_match_hash
     self.match_hash = Digest::MD5.hexdigest("I fart at your general direction #{Time.now} #{rand 1000}")
   end
