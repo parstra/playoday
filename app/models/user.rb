@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+  #gravatar
+  include Gravtastic
+  gravtastic
   attr_accessible :company_name
 
   devise :database_authenticatable, :registerable,
