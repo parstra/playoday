@@ -12,9 +12,9 @@ $sidebar_width: 400px;
     background-position:center center;
     background-repeat:no-repeat;
     overflow:hidden;
-    height:50px;
-    border-radius:13px;
-    width:50px;
+    height:60px;
+    border-radius:18px;
+    width:60px;
     border:2px solid white;
     color:transparent;
     text-align:center;
@@ -32,9 +32,9 @@ $sidebar_width: 400px;
 }
 
 .large .playergotchi {
-    height:100px;
+    height:80px;
     border-radius:26px;
-    width:100px;
+    width:80px;
 }
 
 .tournaments_list {
@@ -129,6 +129,26 @@ $arrow_head:10px;
     }
     em {
       font-size:20px;
+    }
+  }
+}
+
+.cup {
+  width:100%;
+  tr {
+    td {
+      padding:20px 5px;
+      text-align:center;
+    }
+    td:nth-child(2n) {
+      padding-right:40px;
+    }
+    th {
+        text-align:center;
+        padding:5px;
+        font-family:$marker_font;
+        background-color:$light_black;
+        color:$dirty_white;
     }
   }
 }

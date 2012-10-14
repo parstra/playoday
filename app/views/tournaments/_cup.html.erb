@@ -1,0 +1,33 @@
+<table class="cup">
+ <tr>
+    <% 8.times do |i|%>
+      <td colspan="2">
+        <%= render :partial => "player" %>
+      </td>  
+    <% end %>
+  </tr>
+  <tr>
+    <th colspan="16">
+      SEMIFINALS
+    </th>
+  </tr>
+  <tr>
+    <% 4.times do |i|%>
+      <td colspan="4">
+        <%= render :partial => "player" %>
+      </td>  
+    <% end %>
+  </tr>
+  <tr>
+    <th colspan="16">
+      THE GRAND FINALE
+    </th>
+  </tr>
+  <tr>
+    <% 2.times do |i|%>
+      <td colspan="8">
+        <%= render :partial => "player" %>
+      </td>  
+    <% end %>
+  </tr>
+</table>

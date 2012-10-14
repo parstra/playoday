@@ -5,22 +5,26 @@
 <% if can? :manage, @tournament %>
   <%= link_to "Edit the tournament", edit_tournament_path(@tournament) %>
 <% end %>
-<%= @tournament.active_round %>/<%= @tournament.total_rounds %>
+?/<%= @tournament.total_rounds %>
 </section>
 
 <section class="tournament_rounds">
+<% if @tournament.game_type == 3 %>
 <ul>
-  <%= render :partial => "matchup", :collection => @matches, :locals => {:size => "large"} %>
+  <%= render :partial => "matchup", :collection => @matches %>
 </ul>
+<% else %>
+  <%= render :partial => "cup" %>
+<% end %>
 </section>
 
 <section class="leaderboard">
 <h2>Leaderboard</h2>
 <ol>
-  <%= render :partial => "player" %>
-  <%= render :partial => "player" %>
-  <%= render :partial => "player" %>
-  <%= render :partial => "player" %>
+  <%= render :partial => "leader" %>
+  <%= render :partial => "leader" %>
+  <%= render :partial => "leader" %>
+  <%= render :partial => "leader" %>
 </ol>
 </section>
 <div class="cf"></div>
