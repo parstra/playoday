@@ -100,6 +100,15 @@ t.start
   t.save
 end
 
+round = t.rounds.last
+
+round.matches.each {|m|
+  m.played = true
+  m.winner_id = [m.home_player_id, m.away_player_id][m.id.modulo(2)]
+  m.save!
+}
+
+t.winner_id = Match.last.winner_id
 t.status = Tournament::CLOSED
 t.save
 
