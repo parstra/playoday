@@ -65,6 +65,12 @@ class Tournament < ActiveRecord::Base
 
     self.status = Tournament::OPEN
 
+    # in a cup the rounds are determined by the number of players
+    # We add one to divide in case number of players is an odd number (e.g. 15)
+    if self.cup?
+      self.total_rounds = (self.users.length + 1) / 2
+    end
+
     next_round
     self.save!
   end

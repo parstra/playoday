@@ -111,6 +111,11 @@ describe Tournament do
           expect {subject.start}.to change(Round, :count).by(1)
         end
 
+        it "saves total rounds depending on the number of players" do
+          subject.start
+          subject.total_rounds.should == 2
+        end
+
       end
     end
 
