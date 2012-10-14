@@ -1,6 +1,1 @@
-<% if can? :manage, tournament %>
-  Tournament registration url: <%= register_tournaments_url(tournament.tournament_hash) %><br>
-  <%= link_to "recreate tournament hash",
-        recreate_hash_tournament_path(tournament.id), :method => :post %>
-  <%= (link_to "edit", edit_tournament_path(tournament.id)) %>
-<% end %>
+

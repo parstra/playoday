@@ -55,7 +55,7 @@ $sidebar_width: 400px;
   }
   .stats {
     font-weight:400;
-    font-size:$bu*1.5;
+    font-size:$bu*1.2;
     position:absolute;
     right:$bu;
     top:15px;
@@ -73,10 +73,27 @@ $sidebar_width: 400px;
   }
 }
 
+.public_url {
+  padding:$bu;
+  margin:2*$bu 0;
+  color:$dirty_white;
+  background-color:$light_black;
+  a {
+    font-weight:700;
+    color:$main_orange;
+  }
+}
+
 .tournaments_list {
+    position:relative;
   li {
     padding:$bu;
     position:relative;
+  }
+  a.base_button {
+    position:absolute;
+    top:10px;
+    right:0px;
   }
 }
 

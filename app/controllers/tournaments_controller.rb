@@ -1,7 +1,7 @@
 class TournamentsController < ApplicationController
+  before_filter :authenticate_user!
   load_and_authorize_resource
 
-  before_filter :authenticate_user!
   before_filter :fetch_tournament, :only => [:show, :edit, :recreate_tournament_hash]
 
   # GET /index

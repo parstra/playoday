@@ -1,10 +1,12 @@
+<% if can? :manage, tournament  and !tournament.open? and action_name == "show" %>
+  <p class="public_url">Registration is open, players can sign up by following: <%= link_to register_tournaments_url(tournament.tournament_hash) %></p>
+<% end %> 
 <div class="tournament_summary">
-  <h3><%= link_to tournament.name, tournament %></h3>
+ <h3><%= link_to tournament.name, tournament %></h3>
   <div class="stats">
     Player Count: <span><%= tournament.users.size %></span><br/>
     Round <span><%= tournament.rounds.size %></span> out of <%= tournament.total_rounds %>.
-    <%= (link_to "edit tournament", edit_tournament_path(tournament.id)) if can? :manage, tournament %>
+    <%= (link_to "edit tournament".html_safe, edit_tournament_path(tournament.id)) if can? :manage, tournament %>
   </div>
   <p><%= tournament.description %></p>
-  <%= render partial: "manage_tournament", locals: { tournament: tournament } %>
 </div>

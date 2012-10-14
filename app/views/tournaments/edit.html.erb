@@ -2,4 +2,8 @@
 <section class="tournament_edit">
 <h2>Edit "<%= @tournament.name %>"</h2>
 <%= render partial: "form" %>
+<% if !@tournament.open? %>
+  <%= link_to "recreate tournament hash",
+        recreate_hash_tournament_path(@tournament.id), :method => :post %>
+<% end %>
 </section>
