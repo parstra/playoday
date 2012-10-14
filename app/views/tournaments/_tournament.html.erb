@@ -1,15 +1,22 @@
 <% if can? :manage, tournament  and tournament.pending? and action_name == "show" %>
   <p class="public_url">Registration is open, players can sign up by following: <%= link_to register_tournaments_url(tournament.tournament_hash) %></p>
 <% end %> 
-<div class="tournament_summary <%= to_css_class(tournament.status) %>">
+<div class="tournament_summary <%= to_css_class(tournament.status) %> cf">
+<div class="description">
   <h3><%= link_to tournament.name, tournament %></h3>
   <p><%= tournament.description %></p>
+   <%= (link_to "edit tournament".html_safe, edit_tournament_path(tournament.id)) if can? :manage, tournament %>
+</div>
   <div class="stats">
-    <% if tournament.open? && tournament.swedish? %>
-      <%= render partial: 'player', collection: tournament.top_three.map(&:player) %>
-    <% end %>
+    Round <span><%= tournament.rounds.size %></span> of <%= tournament.total_rounds %><br/>
     Player Count: <span><%= tournament.users.size %></span><br/>
-    Round <span><%= tournament.rounds.size %></span> out of <%= tournament.total_rounds %>.
-    <%= (link_to "edit tournament".html_safe, edit_tournament_path(tournament.id)) if can? :manage, tournament %>
+    Tournament Mode: <b><%=  tournament.swedish? ? "Swedish" : "Cup" %></b>
   </div>
+
+  <% if tournament.open? && tournament.swedish? && action_name != "show" %>
+    <div class="leaders">
+      <b>Leaders:</b>
+      <%= render partial: 'player', collection: tournament.top_three.map(&:player) %>
+    </div>
+  <% end %>
 </div>

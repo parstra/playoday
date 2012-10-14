@@ -38,57 +38,69 @@ $sidebar_width: 400px;
 }
 
 .tournament_summary {
-  padding:$bu;
+  padding:$bu*1.5;
   position:relative;
   z-index:2;
   background:$dirty_white;
   -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  h3 {
-    font-weight:700;
-    font-size:$bu*2;
-    margin-bottom:$bu;
-    a {
-      color:$main_black;
-      text-decoration:none;
-      border-bottom:1px dotted $main_black;
+  height:60px;
+  .description {
+    float:left;
+    h3 {
+      font-weight:700;
+      font-size:$bu*1.6;
+      a {
+        color:$main_black;
+        text-decoration:none;
+        border-bottom:1px dotted $main_black;
+      }
+      a:hover {
+        border-bottom:1px solid $main_black;
+      }
     }
-    a:hover {
-      border-bottom:1px solid $main_black;
-    }
-  }
-  p {
-    color:$grey_black;
-  }
-  .stats {
-    font-weight:400;
-    font-size:$bu*1.2;
-    position:absolute;
-    right:$bu;
-    top:15px;
-    span {
-      color:$main_orange;
+    p {
+      color:$grey_black;
     }
     a {
-      display:block;
       color:$main_orange;
       text-decoration:none;
     }
     a:hover {
       border-bottom:1px dotted $main_orange;
     }
+
+  }
+  .leaders {
+    float:right;
+    margin-right:$bu*4;
+    .player {
+      display:inline-block;
+    }
+  }
+  .stats {
+    font-weight:400;
+    font-size:$bu*1.2;
+    float:right;
+    span {
+      color:$main_orange;
+      font-weight:700;
+    }
   }
 }
 
-.tournament_summary.active:after {
-  content:"Active";
+.tournament_summary:after {
   position:absolute;
   z-index:0;
-  top:-20px;
-  padding:$bu/2 $bu;
+  top:-11px;
+  padding:2px $bu;
   border-radius:5px;
   right:0px;
+}
+
+.tournament_summary.inactive:after {
+  content:"Inactive";
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #da4f49;
@@ -103,7 +115,25 @@ $sidebar_width: 400px;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
-  
+}
+
+
+.tournament_summary.active:after {
+  content:"Active";
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #5bb75b;
+  *background-color: #51a351;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+  background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+  background-image: -o-linear-gradient(top, #62c462, #51a351);
+  background-image: linear-gradient(to bottom, #62c462, #51a351);
+  background-image: -moz-linear-gradient(top, #62c462, #51a351);
+  background-repeat: repeat-x;
+  border-color: #51a351 #51a351 #387038;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
 
 .public_url {
