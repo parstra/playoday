@@ -12,4 +12,30 @@ t.owner = User.first
 t.save!
 
 User.all.each do |u| t.users << u end
+
+# first round
 t.start
+
+round = t.rounds.first
+
+round.matches.each {|m|
+  m.played = true
+  m.winner_id = [m.home_player_id, m.away_player_id][m.id.modulo(2)]
+  m.save!
+}
+
+# go the second round
+t.next_round
+t.save
+
+#second round, four players left
+round = t.rounds.last
+
+round.matches.each {|m|
+  m.played = true
+  m.winner_id = [m.home_player_id, m.away_player_id][m.id.modulo(2)]
+  m.save!
+}
+
+t.next_round
+t.save
