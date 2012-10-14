@@ -18,6 +18,7 @@
     text-align:center;
     font-family:$marker_font;
     line-height:20px;
+    background-color:white;
 }
 
 .large .playergotchi:hover,
@@ -66,6 +67,7 @@
   }
 }
 
+$arrow_head:10px;
 .tournament_rounds {
   .round {
     padding:$bu 0;
@@ -90,7 +92,6 @@
           font-weight:700;
         }
       }
-      $arrow_head:10px;
       blockquote:after {
         content:"";
         position:absolute;
@@ -114,6 +115,7 @@
       font-family:$marker_font;
       vertical-align:bottom;
       margin:0px 3*$bu;
+      color:$error;
     }
   }
   .round.small {

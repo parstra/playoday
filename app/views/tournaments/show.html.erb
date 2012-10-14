@@ -10,13 +10,7 @@
 
 <section class="tournament_rounds">
 <ol>
-  <%= render :partial => "matchup", :locals => {:size => "large"} %>
-  <%= render :partial => "matchup", :locals => {:size => "small"} %>
-  <%= render :partial => "matchup", :locals => {:size => "small"} %>
-  <%= render :partial => "matchup", :locals => {:size => "small"} %>
-  <%= render :partial => "matchup", :locals => {:size => "small"} %>
-  <%= render :partial => "matchup", :locals => {:size => "small"} %>
-  <%= render :partial => "matchup", :locals => {:size => "small"} %>
+  <%= render :partial => "matchup", :collection => @matches, :locals => {:size => "large"} %>
 </ol>
 </section>
 
