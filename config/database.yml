@@ -1,0 +1,23 @@
+development:
+  adapter: mysql2
+  username: root
+  password: root
+  database: playoday
+  host: localhost
+  encoding: utf8
+
+production:
+  adapter: mysql2
+  username: playoday
+  password: gaobio
+  database: playoday
+  host: localhost
+  encoding: utf8
+
+test:
+  adapter: mysql2
+  username: root
+  password: root
+  database: playoday_test
+  host: localhost
+  encoding: utf8
