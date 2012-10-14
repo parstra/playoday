@@ -15,6 +15,8 @@ describe MatchesController do
       let(:tournament) { FactoryGirl.create(:tournament) }
       let(:round) { FactoryGirl.create(:round, tournament: tournament, active: true) }
       let(:match) { FactoryGirl.create(:match, round: round) }
+      let(:played_match) { FactoryGirl.create(:match, round: round, played: true) }
+
 
       let(:inactive_round) { FactoryGirl.create(:round, tournament: tournament, active: false) }
       let(:inactive_match) { FactoryGirl.create(:match, round: inactive_round) }
@@ -26,13 +28,24 @@ describe MatchesController do
         post :trashtalk, { :tournament_id => tournament.id, :id => '-1'}
         response.should redirect_to( root_path )
       end
-      it "should redirect to tournament page" do
-        post :trashtalk, { :tournament_id => tournament.id, :id => match.id}
-        response.should redirect_to tournament_path tournament
 
-        post :trashtalk, { :tournament_id => tournament.id, :id => inactive_match.id }
-        response.should redirect_to tournament_path tournament
+      context "should redirect to tournament page" do
+        it "if no comment is given" do
+          post :trashtalk, { :tournament_id => tournament.id, :id => match.id}
+          response.should redirect_to tournament_path tournament
+        end
+
+        it "if round is inactive (pasted)" do
+          post :trashtalk, { :tournament_id => tournament.id, :id => inactive_match.id }
+          response.should redirect_to tournament_path tournament
+        end
+
+        it "if match is played" do
+          post :trashtalk, { :tournament_id => tournament.id, :id => played_match.id }
+          response.should redirect_to tournament_path tournament
+        end
       end
+
     end
     context "unauthorized user" do
       it "should redirect to /"
@@ -41,7 +54,7 @@ describe MatchesController do
     context "valid data" do
       let(:tournament) { FactoryGirl.create(:tournament) }
       let(:round) { FactoryGirl.create(:round, tournament: tournament, active: true) }
-      let(:match) { FactoryGirl.create(:match, round: round, home_player: user) }
+      let(:match)  { FactoryGirl.create(:match, round: round, home_player: user) }
       let(:match2) { FactoryGirl.create(:match, round: round, away_player: user) }
 
       it "should create a comment for home_player and match" do

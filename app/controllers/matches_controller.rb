@@ -40,7 +40,7 @@ class MatchesController < ApplicationController
       return
     end
 
-    if params[:comment].blank? || !@match.round.active
+    if params[:comment].blank? || !@match.round.active || @match.played?
       redirect_to tournament_path(@tournament)
       return
     end
