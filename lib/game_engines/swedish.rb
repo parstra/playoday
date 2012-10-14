@@ -45,6 +45,7 @@ module GameEngines
     # @return [Boolean] result
     def to_be_byeed_id
       return nil if !byeable?
+      return @players_by_score.last.id if @byeed_ids.empty?
 
       # we'll substract already byeed ids from the list of available pool ids
       (@players_by_score.map(&:id) - @byeed_ids).last
