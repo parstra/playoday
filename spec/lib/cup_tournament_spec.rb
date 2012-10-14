@@ -48,10 +48,10 @@ describe CupTournament do
     end
 
     context "subsequent round" do
-      before do 
+      before do
         # create the first round
         round = Round.new
-        round.active = false
+        round.active = true
         round.tournament = subject
         round.save
 
@@ -83,9 +83,19 @@ describe CupTournament do
         expect {subject.move_to_next_round}.to change(Round, :count).by(1)
       end
 
+      it "deactivates the previous round" do
+        subject.move_to_next_round
+        subject.rounds.first.should_not be_active
+      end
+
+      it "marks new round as active" do
+        subject.move_to_next_round
+        subject.rounds.last.should be_active
+      end
+
       it "assigns round to tournament" do
         subject.move_to_next_round
-        subject.rounds.should_not be_empty
+        subject.rounds.length.should == 2
       end
 
       it "creates matches" do
