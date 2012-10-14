@@ -7,6 +7,8 @@ class Tournament < ActiveRecord::Base
 
   has_many :rounds
 
+  belongs_to :winner,  class_name: 'User', foreign_key: :winner_id
+
   CUP     = 1
   LEAGUE  = 2
   SWEDISH = 3
@@ -99,6 +101,10 @@ class Tournament < ActiveRecord::Base
 
   def open?
     self.status == OPEN
+  end
+
+  def closed?
+    self.status == CLOSED
   end
 
   def has_next_round?

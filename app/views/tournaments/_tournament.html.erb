@@ -18,5 +18,10 @@
       <b>Leaders:</b>
       <%= render partial: 'player', collection: tournament.top_three.map(&:player) %>
     </div>
+  <% elsif tournament.closed? && action_name != "show" %>
+    <div class="leaders winner">
+      <b>Winner</b>
+      <%= render partial: 'player', object: tournament.winner %>
+    </div>
   <% end %>
 </div>

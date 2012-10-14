@@ -6,6 +6,7 @@ describe Tournament do
   it { should have_many :rounds }
   it { should belong_to :company }
   it { should belong_to :owner }
+  it { should belong_to :winner}
   it { should have_many(:users).through(:tournament_users) }
 
   it { should validate_presence_of :name }
