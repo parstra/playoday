@@ -1,33 +1,14 @@
 <table class="cup">
- <tr>
-    <% 8.times do |i|%>
-      <td colspan="2">
-        <%= render :partial => "player" %>
-      </td>  
-    <% end %>
-  </tr>
-  <tr>
-    <th colspan="16">
-      SEMIFINALS
-    </th>
-  </tr>
-  <tr>
-    <% 4.times do |i|%>
-      <td colspan="4">
-        <%= render :partial => "player" %>
-      </td>  
-    <% end %>
-  </tr>
-  <tr>
-    <th colspan="16">
-      THE GRAND FINALE
-    </th>
-  </tr>
-  <tr>
-    <% 2.times do |i|%>
-      <td colspan="8">
-        <%= render :partial => "player" %>
-      </td>  
-    <% end %>
-  </tr>
+  <% @tournament.rounds.each do |round| %>
+      <tr>
+        <% round.matches.each do |match| %>
+          <td colspan="<%= (@tournament.users.length / 2) / round.matches.length %>">
+            <%= render :partial => "player", :object => match.home_player %>
+          </td>  
+          <td colspan="<%= (@tournament.users.length / 2) / round.matches.length %>">
+            <%= render :partial => "player", :object =>  match.away_player  %>
+          </td>  
+        <% end %>
+      </tr>
+  <% end %>
 </table>

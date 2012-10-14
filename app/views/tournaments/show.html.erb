@@ -13,12 +13,14 @@
 </section>
 
 <section class="leaderboard">
-<h2>Leaderboard</h2>
-<ol>
-  <%= render :partial => "leader" %>
-  <%= render :partial => "leader" %>
-  <%= render :partial => "leader" %>
-  <%= render :partial => "leader" %>
-</ol>
+<% if !@tournament.cup? %>
+  <h2>Leaderboard</h2>
+  <ol>
+    <%#= render :partial => "leader" %>
+    <%#= render :partial => "leader" %>
+    <%#= render :partial => "leader" %>
+    <%#= render :partial => "leader" %>
+  </ol>
+<% end %>
 </section>
 <div class="cf"></div>
