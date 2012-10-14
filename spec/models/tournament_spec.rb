@@ -54,9 +54,65 @@ describe Tournament do
         to change { new_tournament.tournament_hash }.from(nil)
       new_tournament.tournament_hash.length.should == 32
     end
+  end
 
+  context "starting a tournament" do
+    let(:user){FactoryGirl.create(:user)}
+
+    context "checking if it can be opened" do
+      context "when in pending mode" do
+        before {subject.status = Tournament::PENDING}
+        it {should be_openable}
+      end
+
+      context "when in open mode" do
+        before {subject.status = Tournament::OPEN}
+        it {should_not be_openable}
+      end
+
+      context "when in closed mode" do
+        before {subject.status = Tournament::CLOSED}
+        it {should_not be_openable}
+      end
+    end
+
+    context "that is already open" do
+      before {subject.status = Tournament::OPEN}
+      it "doesn't start" do
+        expect {subject.start}.to raise_error(TournamentCannotOpen)
+      end
+    end
+
+    context "that has less than 2 players" do
+      before {
+        subject.status = Tournament::PENDING
+      }
+
+      it "doesn't start" do
+        expect {subject.start}.to raise_error(NotEnoughPlayers)
+      end
+    end
+
+    context "that is pending and has at least two players" do
+      subject {FactoryGirl.build(:tournament, :pending, :cup, {owner: user})}
+
+      before {
+        subject.users << FactoryGirl.create_list(:user, 4)
+        subject.save!
+      }
+
+      it "moves status to open" do
+        subject.start
+        subject.status.should == Tournament::OPEN
+      end
+
+      it "creates a round" do
+        expect {subject.start}.to change(Round, :count).by(1)
+      end
+    end
   end
 end
+
 
 # == Schema Information
 #

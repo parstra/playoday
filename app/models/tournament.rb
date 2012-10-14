@@ -13,6 +13,16 @@ class Tournament < ActiveRecord::Base
 
   AVAILABLE_GAMES = { cup: CUP, swedish: SWEDISH }
 
+  # Tournament statuses
+  # When in pending mode a tournament can accept new players and even change
+  #  the game type
+  PENDING = 0
+  # When in open mode the tournament is commencing. No changes to players or
+  #  the game engine can be made
+  OPEN = 1
+  # Tournament is closed means all rounds finished and all match played
+  CLOSED = 2
+
   validates :game_type, :numericality => { only_integer: true }
   validates :name, :owner_id, presence: true
   #validates :duration, :total_rounds, :round_duration, :company_id, presence: true
@@ -36,6 +46,28 @@ class Tournament < ActiveRecord::Base
     rounds.active.last
   end
 
+  # Opens a tournament and draws the first round
+  #
+  # It checks if the tournament can be opened and
+  #  if so it moves to the next round by extending
+  #  the appropriate module.
+  def start
+    raise TournamentCannotOpen if !openable?
+    raise NotEnoughPlayers if users.length < 2
+
+    self.status = Tournament::OPEN
+
+    # check the game engine and extend tournament
+    if self.game_type == CUP
+      self.extend CupTournament
+      self.move_to_next_round
+    end
+  end
+
+  def openable?
+    self.status == PENDING
+  end
+
   private
 
   def create_tournament_hash
@@ -44,12 +76,16 @@ class Tournament < ActiveRecord::Base
 
 end
 
+class TournamentCannotOpen < Exception; end
+class NotEnoughPlayers < Exception; end
+
 # == Schema Information
+#
 #
 # Table name: tournaments
 #
 #  id              :integer          not null, primary key
-#  description     :string(255)      not null
+#  description     :string(255)
 #  tournament_hash :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -62,5 +98,6 @@ end
 #  round_duration  :integer
 #  active          :boolean          default(FALSE)
 #  started_at      :datetime
+#  status          :integer          default(0)
 #
 

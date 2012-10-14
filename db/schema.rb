@@ -11,19 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013135530) do
+ActiveRecord::Schema.define(:version => 20121013175202) do
 
   create_table "companies", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "name"
-  end
-
-  create_table "companies_users", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "company_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "matches", :force => true do |t|
@@ -46,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20121013135530) do
 
   create_table "rounds", :force => true do |t|
     t.integer  "tournament_id", :null => false
+    t.integer  "round_number"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.datetime "started_at"
@@ -57,7 +51,6 @@ ActiveRecord::Schema.define(:version => 20121013135530) do
     t.integer  "user_id",                          :null => false
     t.integer  "tournament_id",                    :null => false
     t.boolean  "admin",         :default => false
-    t.boolean  "boolean",       :default => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
   end
@@ -66,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20121013135530) do
   add_index "tournament_users", ["user_id"], :name => "index_tournament_users_on_user_id"
 
   create_table "tournaments", :force => true do |t|
-    t.string   "description",                                     :null => false
+    t.string   "description"
     t.string   "tournament_hash"
     t.datetime "created_at",                                      :null => false
     t.datetime "updated_at",                                      :null => false
@@ -79,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20121013135530) do
     t.integer  "round_duration"
     t.boolean  "active",                       :default => false
     t.datetime "started_at"
+    t.integer  "status",          :limit => 1, :default => 0
   end
 
   create_table "users", :force => true do |t|

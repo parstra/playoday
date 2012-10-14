@@ -8,6 +8,7 @@ FactoryGirl.define do
     duration 5
     total_rounds 4
     round_duration 7
+    status Tournament::PENDING
 
     # by default a CUP
     game_type Tournament::CUP
@@ -23,5 +24,18 @@ FactoryGirl.define do
     trait :swedish do
       game_type Tournament::SWEDISH
     end
+
+    trait :pending do
+      status Tournament::PENDING
+    end
+
+    trait :open do
+      status Tournament::OPEN
+    end
+
+    trait :close do
+      status Tournament::CLOSED
+    end
+
   end
 end
