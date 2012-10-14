@@ -57,6 +57,10 @@ class TournamentsController < ApplicationController
                                            }).last
       @matches = @round.matches
     end
+
+    if params[:round_id]
+      @previous_round = @tournament.rounds.where(id: params[:round_id]).first
+    end
   end
 
   # GET new

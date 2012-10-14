@@ -69,6 +69,18 @@ describe TournamentsController do
         assigns(:tournament).should eq(tournament)
       end
 
+      context "previous round" do
+        before do
+          tournament.users << FactoryGirl.create_list(:user, 2)
+          tournament.start
+        end
+
+        it "fetches previous round if parameter exist" do
+          get :show, id: tournament.id, round_id: tournament.rounds.last.id
+          assigns(:previous_round).should eq(tournament.rounds.last)
+        end
+      end
+
       context "open tournaments" do
         before do
           @round = Round.new
