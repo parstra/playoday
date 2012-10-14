@@ -149,6 +149,24 @@ class Tournament < ActiveRecord::Base
     create_tournament_hash
   end
 
+  # Closes the tournament
+  #
+  # It sets status to closed and assigns the winner id
+  # It must be the last round and all matches played
+  def close
+    raise TournamentCannotBeClosed if !closable?
+
+    self.status = CLOSED
+
+    if self.cup?
+      self.winner = self.current_round.matches.last.winner
+    else
+      self.winner = self.leaderboard.first.player
+    end
+
+    self.save!
+  end
+
   # Leaderboard only makes sense for swedish tournaments
   #
   # It returns players sorted by wins
@@ -198,6 +216,7 @@ class TournamentNotOpenYet < Exception; end
 class TournamentAllRoundsPlayed < Exception; end
 class TournamentPlayerCountInvalid < Exception; end
 class TournamentNotAllMatchesPlayed < Exception; end
+class TournamentCannotBeClosed < Exception; end
 
 # == Schema Information
 #

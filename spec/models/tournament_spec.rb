@@ -144,6 +144,39 @@ describe Tournament do
     end
   end
 
+  context "closing a tournament" do
+    subject{FactoryGirl.create(:tournament, :pending, :cup)}
+    before do
+      subject.users << FactoryGirl.create_list(:user, 2)
+      subject.start
+    end
+
+    context "that can be closed" do
+      before do
+        subject.rounds.last.matches.each do |match|
+          match.winner = match.home_player
+          match.played = true
+          match.save!
+        end
+
+        subject.close
+      end
+
+      it {should be_closed}
+
+      it "should have the winner" do
+        subject.winner.should == subject.users.first
+      end
+    end
+
+    context "that can't be closed" do
+      it "should raise an exception" do
+        expect {subject.close}.to raise_error(TournamentCannotBeClosed)
+      end
+    end
+
+  end
+
   context "moving to the next round" do
     subject {FactoryGirl.create(:tournament, :pending, :cup)}
     context "when tournament not open yet" do
