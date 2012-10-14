@@ -79,6 +79,11 @@ $sidebar_width: 400px;
       display:inline-block;
     }
   }
+  .leaders.winner {
+    .player .playergotchi{
+      border:2px solid gold;
+    }
+  }
   .stats {
     font-weight:400;
     font-size:$bu*1.2;

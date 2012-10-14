@@ -1,6 +1,6 @@
 <table>
   <% @tournament.rounds.each do |round| %>
-    <% if round == @tournament.rounds.last %>
+    <% if round == @tournament.rounds.last && @tournament.rounds.length == @tournament.total_rounds %>
       <tr>
         <th colspan="<%= @tournament.users.size %>">
           The Final

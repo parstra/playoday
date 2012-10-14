@@ -20,7 +20,7 @@
     </div>
   <% elsif tournament.closed? && action_name != "show" %>
     <div class="leaders winner">
-      <b>Winner</b>
+      <b>Winner:</b>
       <%= render partial: 'player', object: tournament.winner %>
     </div>
   <% end %>
