@@ -13,7 +13,7 @@ class Tournament < ActiveRecord::Base
   LEAGUE  = 2
   SWEDISH = 3
 
-  AVAILABLE_GAMES = { cup: CUP, swedish: SWEDISH }
+  AVAILABLE_GAMES = { "Cup (Knock out)" => CUP, "Swedish" => SWEDISH }
 
   # Tournament statuses
   # When in pending mode a tournament can accept new players and even change
