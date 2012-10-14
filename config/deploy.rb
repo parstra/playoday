@@ -29,11 +29,14 @@ role :db,  playoday, :primary => true # This is where Rails migrations will run
 
 
 namespace :deploy do
+  task :config_db do
+    run "ln -nfs #{shared_path}/database.yml #{release_path}/config/database.yml"
+  end
+
   task :setup_symlinks do
     commands = []
     commands << "test -d #{shared_path}/sockets || mkdir #{shared_path}/sockets"
     commands << "ln -nfs #{shared_path}/sockets #{release_path}/tmp/sockets"
-    commands << "ln -nfs #{shared_path}/database.yml #{release_path}/config/database.yml"
     run commands.map{ |cmd| "( #{cmd} )" }.join(' &&  ')
   end
   task :start, :roles => :app, :except => { :no_release => true } do 
@@ -54,6 +57,7 @@ namespace :deploy do
   end
 end
 
+before 'deploy:assets:precompile','deploy:config_db'
 after 'deploy:update_code', 'deploy:setup_symlinks'
 
 # if you want to clean up old releases on each deploy uncomment this:
