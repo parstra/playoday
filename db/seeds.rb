@@ -74,7 +74,7 @@ t.start
   t.save
 end
 
-t = Tournament.new({name: 'Ping pong hero',
+t = Tournament.new({name: 'Chess master',
                    description: "Do you think you have what it takes?",
                    game_type: Tournament::CUP})
 
@@ -102,3 +102,13 @@ end
 
 t.status = Tournament::CLOSED
 t.save
+
+#add a tournament with players but pending
+t = Tournament.new({name: 'Beer death match',
+                   description: "3 hours, last man standing wins",
+                   game_type: Tournament::CUP})
+
+t.owner = User.first
+t.save!
+
+User.all.each do |u| t.users << u end
