@@ -467,6 +467,12 @@ describe TournamentsController do
       before do
         tournament.users << FactoryGirl.create_list(:user, 4)
         tournament.start
+
+        tournament.current_round.matches.each do |m|
+          m.winner = m.home_player
+          m.played = true
+          m.save!
+        end
       end
 
       it "moves next round by owner" do

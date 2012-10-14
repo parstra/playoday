@@ -3,6 +3,13 @@ class Round < ActiveRecord::Base
   has_many :matches
 
   scope :active, where(active: true)
+
+  # Determines if this round can be closed
+  #
+  # All matches must be played and have and winner_id
+  def closable?
+    self.matches.select{|m| !m.played}.empty?
+  end
 end
 
 # == Schema Information

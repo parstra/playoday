@@ -99,6 +99,10 @@ class Tournament < ActiveRecord::Base
     openable?
   end
 
+  def closable?
+    last_round? && can_close_round?
+  end
+
   def open?
     self.status == OPEN
   end
@@ -108,11 +112,15 @@ class Tournament < ActiveRecord::Base
   end
 
   def has_next_round?
-    true
+    !last_round?
   end
 
   def can_close_round?
-    true
+    current_round.closable?
+  end
+
+  def current_round
+    self.rounds.last
   end
 
   # Moves to the next round if the tournament is already open
@@ -121,7 +129,12 @@ class Tournament < ActiveRecord::Base
   #  SwedishTournament modules
   def next_round
     raise TournamentNotOpenYet if pending?
-    raise TournamentAllRoundsPlayed if self.rounds.length >= self.total_rounds
+    raise TournamentAllRoundsPlayed if !has_next_round?
+
+    if current_round && !current_round.closable?
+      raise TournamentNotAllMatchesPlayed
+    end
+
     # check the game engine and extend tournament
     if self.game_type == CUP
       self.extend CupTournament
@@ -169,6 +182,10 @@ class Tournament < ActiveRecord::Base
 
   private
 
+  def last_round?
+    self.rounds.length == self.total_rounds
+  end
+
   def create_tournament_hash
     self.tournament_hash = Digest::MD5.hexdigest("I fart at your general direction #{Time.now} #{rand 1000}")
   end
@@ -180,6 +197,7 @@ class NotEnoughPlayers < Exception; end
 class TournamentNotOpenYet < Exception; end
 class TournamentAllRoundsPlayed < Exception; end
 class TournamentPlayerCountInvalid < Exception; end
+class TournamentNotAllMatchesPlayed < Exception; end
 
 # == Schema Information
 #

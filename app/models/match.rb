@@ -14,6 +14,10 @@ class Match < ActiveRecord::Base
     where("home_player_id = :uid or away_player_id = :uid", {uid: user.id})
   }
 
+  def played?
+    self.played && self.winner_id.present?
+  end
+
   private
 
   def set_winner

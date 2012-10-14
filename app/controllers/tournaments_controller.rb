@@ -123,7 +123,10 @@ class TournamentsController < ApplicationController
     begin
       @tournament.next_round
     rescue TournamentAllRoundsPlayed
-      flash[:notice] = "No more rounds for this tournament. Please close it"
+      flash[:alert] = "No more rounds for this tournament. Please close it"
+      return redirect_to tournament_path(@tournament)
+    rescue TournamentNotAllMatchesPlayed
+      flash[:alert] = "You must play all matches before closing a round"
       return redirect_to tournament_path(@tournament)
     end
 

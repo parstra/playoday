@@ -176,6 +176,55 @@ describe Tournament do
     end
   end
 
+  context "has an extra round" do
+    subject {FactoryGirl.build(:tournament, :pending,
+                               :swedish, {total_rounds: 2})}
+
+    before {
+      subject.users << FactoryGirl.create_list(:user, 4)
+      subject.save!
+      subject.start
+    }
+
+    it {should have_next_round}
+  end
+
+  context "this is the last round" do
+    subject {FactoryGirl.build(:tournament, :pending,
+                               :swedish, {total_rounds: 1})}
+
+    before {
+      subject.users << FactoryGirl.create_list(:user, 4)
+      subject.save!
+      subject.start
+    }
+
+    it {should_not have_next_round}
+
+    context "and all matches are played" do
+      before do
+        subject.rounds.last.matches.each do |m|
+          m.played = true
+          m.winner = m.home_player
+          m.save!
+        end
+      end
+
+      it {should be_closable}
+    end
+
+    context "and not all matches are played" do
+      before do
+        m = subject.rounds.last.matches.first
+        m.played = true
+        m.winner = m.home_player
+        m.save!
+      end
+
+      it {should_not be_closable}
+    end
+  end
+
   context "leaderboard" do
     subject {FactoryGirl.create(:tournament, :pending, :swedish)}
 
@@ -214,11 +263,7 @@ describe Tournament do
       subject.leaderboard.map(&:losses).should ==
         [0, 0, 1, 1]
     end
-
-
   end
-
-
 end
 
 
