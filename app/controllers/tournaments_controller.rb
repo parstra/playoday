@@ -95,6 +95,7 @@ class TournamentsController < ApplicationController
 
   # POST /start
   def start
+    authorize! :manage, @tournament
 
     begin
       @tournament.start

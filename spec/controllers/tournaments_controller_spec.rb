@@ -444,7 +444,7 @@ describe TournamentsController do
 
       it "redirects to tournament page" do
         post :start, id: tournament.id
-        response.should redirect_to(tournament_path(tournament))
+        response.should redirect_to(tournaments_path)
       end
     end
 
