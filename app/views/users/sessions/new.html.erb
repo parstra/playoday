@@ -6,12 +6,12 @@
 <%= render partial: "application/notice", object: current_user %>
   <div>
     <%= f.label :email %>
-    <%= f.email_field :email %>
+    <%= f.email_field :email %> For demo access use: <b>demo@playoday.com</b>
   </div>
 
   <div>
     <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.password_field :password %> For demo access use: <b>rumbledemo</b>
   </div>
 
   <% if devise_mapping.rememberable? -%>

@@ -73,7 +73,6 @@ $sidebar_width: 30*$bu;
  
 .looser {
   .player .playergotchi{
-    border:2px solid gold;
     @include filter(grayscale(100%));
   }
 }
@@ -338,21 +337,12 @@ $arrow_head:10px;
       text-align:center;
       border-bottom:1px solid white;
       position:relative;
+      .base_button {
+        padding:3px;
+        font-size:10px;
+      }
     }
-    td:nth-child(2n+1):after {
-      content:"vs";
-      display:block;
-      position:absolute;
-      right:-8px;
-      bottom:45px;
-      font-size:$bu*2;
-      color:$error;
-      font-family:$marker_font;
-    }
-    td:last-child:after {
-      content:"";
-    }
-    th {
+   th {
         text-align:center;
         padding:5px;
         padding-top:2*$bu;
