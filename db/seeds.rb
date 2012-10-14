@@ -51,6 +51,11 @@ round.matches.each {|m|
 t.next_round
 t.save
 
+t.current_round.matches.each {|m|
+  m.home_comment = trash_talks[m.id.modulo(4)]
+  m.save!
+}
+
 # a swedish tournament
 t = Tournament.new({name: 'Tennis Ninja',
                    description: "Do you think you have what it takes?",
