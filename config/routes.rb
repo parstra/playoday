@@ -18,7 +18,9 @@ Playoday::Application.routes.draw do
     post "recreate_hash", :on => :member
     post "start", :on => :member
     post "next_round", :on => :member
-    resources :matches, only: [:edit, :update, :show]
+    resources :matches, only: [:edit, :update, :show] do
+      post "trashtalk", :action => :trashtalk, :on => :member
+    end
   end
 
   # You can have the root of your site routed with "root"

@@ -30,4 +30,7 @@ class MatchesController < ApplicationController
     redirect_to tournaments_path, :alert => exception.message
   end
 
+  def trashtalk
+  end
+
 end
