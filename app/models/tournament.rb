@@ -44,10 +44,11 @@ end
 
 # == Schema Information
 #
+#
 # Table name: tournaments
 #
 #  id              :integer          not null, primary key
-#  description     :string(255)      not null
+#  description     :string(255)
 #  tournament_hash :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -60,5 +61,6 @@ end
 #  round_duration  :integer
 #  active          :boolean          default(FALSE)
 #  started_at      :datetime
+#  status          :integer          default(0)
 #
 
