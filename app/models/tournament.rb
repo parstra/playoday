@@ -46,6 +46,14 @@ class Tournament < ActiveRecord::Base
     rounds.active.last
   end
 
+  def cup?
+    self.game_type == CUP
+  end
+
+  def swedish?
+    self.game_type == SWEDISH
+  end
+
   # Opens a tournament and draws the first round
   #
   # It checks if the tournament can be opened and
