@@ -1,9 +1,9 @@
 <section class="fancy_form">
-<%= render partial: "application/notice", object: current_user %>
 
 <h2>Sign in</h2>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+<%= render partial: "application/notice", object: current_user %>
   <div>
     <%= f.label :email %>
     <%= f.email_field :email %>

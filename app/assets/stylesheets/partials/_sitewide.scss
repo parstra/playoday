@@ -39,6 +39,8 @@ h2 {
   margin-bottom:$bu*2;
   margin-top:0px;
   text-shadow:1px 1px 0px white;
+  border-bottom:1px solid $grey_black;
+  @include box-shadow(0px,1px,1px,0px,white);
 }
  
 
@@ -229,7 +231,7 @@ input[type='text'], input[type='password'], input[type='email'],textarea {
   font-size:$bu*1.2;
 }
 
-#error_explanation {
+#error_explanation,#alert {
   border:1px solid $error;
   background-color:$light_error;
   padding:$bu;

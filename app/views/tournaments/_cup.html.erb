@@ -9,10 +9,10 @@
     <% end %>
       <tr>
         <% round.matches.each do |match| %>
-          <td colspan="<%= (@tournament.users.length / 2) / round.matches.length %>">
+          <td colspan="<%= (@tournament.users.length / 2) / round.matches.length %>" class="<%=  match.home_player == match.winner ? "winner" : "looser" %>">
             <%= render :partial => "player", :object => match.home_player %>
-          </td>
-          <td colspan="<%= (@tournament.users.length / 2) / round.matches.length %>">
+          </td>  
+          <td colspan="<%= (@tournament.users.length / 2) / round.matches.length %>" class="<%=  match.away_player == match.winner ? "winner" : "looser" %>">
             <%= render :partial => "player", :object =>  match.away_player  %>
           </td>
         <% end %>

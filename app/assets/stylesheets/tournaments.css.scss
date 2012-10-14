@@ -37,6 +37,20 @@ $sidebar_width: 30*$bu;
     width:80px;
 }
 
+.winner {
+  .player .playergotchi{
+    border:2px solid gold;
+    @include filter(grayscale(0%));
+  }
+}
+ 
+.looser {
+  .player .playergotchi{
+    border:2px solid gold;
+    @include filter(grayscale(100%));
+  }
+}
+ 
 .tournament_summary {
   padding:$bu*1.5;
   position:relative;
@@ -78,12 +92,7 @@ $sidebar_width: 30*$bu;
       display:inline-block;
     }
   }
-  .leaders.winner {
-    .player .playergotchi{
-      border:2px solid gold;
-    }
-  }
-  .stats {
+ .stats {
     font-weight:400;
     font-size:$bu*1.2;
     float:right;
@@ -300,16 +309,26 @@ $arrow_head:10px;
     td {
       padding:20px 5px;
       text-align:center;
+      border-bottom:1px solid white;
+      position:relative;
     }
-    td:nth-child(2n) {
-      padding-right:40px;
+    td:nth-child(2n+1):after {
+      content:"vs";
+      display:block;
+      position:absolute;
+      right:-8px;
+      bottom:45px;
+      font-size:$bu*2;
+      color:$error;
+      font-family:$marker_font;
     }
     th {
         text-align:center;
         padding:5px;
+        padding-top:2*$bu;
         font-family:$marker_font;
-        background-color:$light_black;
-        color:$dirty_white;
+        color:$main_black;
+        font-size:2*$bu;
     }
   }
 }

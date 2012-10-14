@@ -7,6 +7,15 @@
   box-sizing: $bs; 
 }
 
+@mixin filter($f) 
+{
+  -moz-filter: $f;
+  -webkit-filter: $f;
+  filter: $f; 
+}
+
+
+
 /* Box Shadow */
 
 @mixin box-shadow($o,$v,$b,$s,$c:"",$inset:"") 
