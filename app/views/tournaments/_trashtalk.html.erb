@@ -1,0 +1,19 @@
+<% if arena == :home %>
+  <% if matchup.home_comment.nil? && matchup.home_player.id == current_user.id %>
+    <%= form_tag('match_comment_path(matchup)') do %>
+      <%= text_field_tag 'comment', nil, :placeholder => 'Enter statement' %>
+      <%= submit_tag 'Submit' %>
+    <% end %>
+  <% else %>
+      <%= matchup.home_comment || "Hasn't made any statements yet" %>
+  <% end %>
+<% elsif arena == :away %>
+  <% if matchup.away_comment.nil? && matchup.away_player.id == current_user.id %>
+    <%= form_tag('match_comment_path(matchup)') do %>
+      <%= text_field_tag 'comment', nil, :placeholder => 'Enter statement' %>
+      <%= submit_tag 'Submit' %>
+    <% end %>
+  <% else %>
+      <%= matchup.away_comment || "Hasn't made any statements yet" %>
+  <% end %>
+<% end %>

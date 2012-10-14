@@ -2,15 +2,19 @@
 <div class="player">
   <span class="playergotchi" style="background-image:url('<%= matchup.home_player.gravatar_url %>');"><br/>3 Wins<br/>4 Loses</span>
   <blockquote>
-  <cite><%= matchup.home_player.username %></cite>:
-    Yo Dog, your mama is so big, she actually turns around the earth.</blockquote>
+    <cite><%= matchup.home_player.username %></cite>:
+    <%= render :partial => 'trashtalk',
+    :locals => { :matchup => matchup, :arena => :home } %>
+  </blockquote>
 </div>
 <em>VS</em>
 <div class="player">
   <span class="playergotchi" style="background-image:url('<%= matchup.away_player.gravatar_url %>');"><br/>3 Wins<br/>4 Loses</span>
   <blockquote>
-  <cite><%= matchup.away_player.username %></cite>:
-    Yo Dog, your mama is so big, she actually turns around the earth.</blockquote>
+    <cite><%= matchup.away_player.username %></cite>:
+    <%= render :partial => 'trashtalk',
+    :locals => { :matchup => matchup, :arena => :away } %>
+  </blockquote>
 </div>
 <% if can? :update, matchup %>
   <%= link_to "add score", edit_tournament_match_path(@tournament.id, matchup.id) %>
