@@ -264,3 +264,9 @@ input[type='text'], input[type='password'], input[type='email'],textarea {
 .field_with_errors input {
   border:1px solid $error;
 }
+
+.status_code {
+  font-size:200px;
+  font-family:$marker_font;
+  color:$error;
+}
