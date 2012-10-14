@@ -1,5 +1,5 @@
 <% if can? :manage, tournament  and tournament.pending? and action_name == "show" %>
-  <p class="public_url">Registration is open, players can sign up by following: <%= link_to register_tournaments_url(tournament.tournament_hash) %></p>
+  <p class="tournament_notice">Registration is open, players can sign up by following: <%= link_to register_tournaments_url(tournament.tournament_hash) %></p>
 <% end %> 
 <div class="tournament_summary <%= to_css_class(tournament.status) %> cf">
 <div class="description">

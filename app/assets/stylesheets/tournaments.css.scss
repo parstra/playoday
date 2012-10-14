@@ -11,7 +11,6 @@ $sidebar_width: 30*$bu;
     background-size:cover;
     background-position:center center;
     background-repeat:no-repeat;
-    overflow:hidden;
     height:60px;
     border-radius:18px;
     width:60px;
@@ -21,6 +20,31 @@ $sidebar_width: 30*$bu;
     font-family:$marker_font;
     line-height:20px;
     background-color:white;
+    position:relative;
+    em {
+      display:none;
+      padding:$bu/2;
+      position:absolute;
+      bottom:-40px;
+      left:0px;
+      background-color:$dirty_white;
+      color:$dark_black;
+      z-index:10;
+      @include filter(drop-shadow(0 1px 5px rgba(0,0,0,.1)));
+      font-weight:bold;
+    }
+    em:after {
+      content:"";
+      height:1px; 
+      width:1px;
+      display:block;
+      position:absolute;
+      top:-10px;
+      left:10px;
+      border-left:10px solid transparent;
+      border-right:10px solid transparent;
+      border-bottom:10px solid $dirty_white;
+    }
 }
 
 .playergotchi:hover,
@@ -28,7 +52,10 @@ $sidebar_width: 30*$bu;
     border-color:$dark_black;
     color:white;
     font-size:$bu;
-    box-shadow:inset 0px 0px 75px 0px rgba(0,0,0,1);
+    box-shadow:inset 0px 0px 75px 0px rgba(0,0,0,0.7);
+    em {
+      display:block;
+    }
 }
 
 .large .playergotchi {
@@ -157,7 +184,7 @@ $sidebar_width: 30*$bu;
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
 }
 
-.public_url {
+.tournament_notice {
   padding:$bu;
   margin:2*$bu 0;
   color:$dirty_white;
@@ -200,7 +227,7 @@ $arrow_head:10px;
     position:relative;
     .base_button {
       position:absolute;
-      top:-60px;
+      top:-70px;
       right:0px;
     }
     .player {
@@ -233,11 +260,7 @@ $arrow_head:10px;
         background-color:$dirty_white;
         padding:$bu;
         position:relative;
-        -webkit-filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
-        -moz-filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
-        -ms-filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
-        -o-filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
-        filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
+        @include filter(drop-shadow(0 1px 5px rgba(0,0,0,.1)));
         margin-top:12px;
         cite {
           font-weight:700;

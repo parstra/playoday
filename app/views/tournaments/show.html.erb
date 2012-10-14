@@ -22,9 +22,9 @@
       <%= button_to "Close round", next_round_tournament_path(@tournament),
         :class => "base_button"%>
     <% elsif @tournament.has_next_round? && !@tournament.can_close_round? %>
-      <span class="state">Cannot close this round yet. All matches must be played first</span>
+      <p class="tournament_notice">Cannot close this round yet. All matches must be played first</p>
     <% elsif !@tournament.closable? %>
-      <span class="state">Cannot close tournament. Matches of the last round must be played first</span>
+      <p class="tournament_notice">Cannot close tournament. Matches of the last round must be played first</p>
     <% elsif @tournament.closable? %>
       <%= button_to "Close tournament", close_tournament_path(@tournament),
         :class => "base_button"%>
