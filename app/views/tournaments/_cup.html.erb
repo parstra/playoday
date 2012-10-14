@@ -11,9 +11,16 @@
         <% round.matches.each do |match| %>
           <td colspan="<%= (@tournament.users.length / 2) / round.matches.length %>" class="<%=  match.home_player == match.winner ? "winner" : "looser" %>">
             <%= render :partial => "player", :object => match.home_player, :locals => {:size => "large"} %>
-          </td>  
+            <% if can? :update, match %>
+              <%= link_to "enter game score", edit_tournament_match_path(@tournament.id, match.id), :class => "base_button" %>
+            <% end %>
+          </td>
           <td colspan="<%= (@tournament.users.length / 2) / round.matches.length %>" class="<%=  match.away_player == match.winner ? "winner" : "looser" %>">
             <%= render :partial => "player", :object =>  match.away_player, :locals => {:size => "large"}  %>
+            <% if can? :update, match %>
+              <%= link_to "enter game score", edit_tournament_match_path(@tournament.id, match.id), :class => "base_button" %>
+            <% end %>
+ 
           </td>
         <% end %>
       </tr>
