@@ -6,7 +6,7 @@ class Match < ActiveRecord::Base
   belongs_to :winner,      class_name: 'User', foreign_key: :winner_id
 
   validates :home_score, :away_score, :numericality => { only_integer: true, :allow_nil => true }
-  validate :check_score_equality
+  # validate :check_score_equality
   attr_accessible :home_score, :away_score
 
   before_save :create_match_hash, :set_winner
@@ -38,11 +38,11 @@ class Match < ActiveRecord::Base
     self.match_hash = Digest::MD5.hexdigest("I fart at your general direction #{Time.now} #{rand 1000}")
   end
 
-  def check_score_equality
-    if home_score == away_score
-      errors.add(:base, "home and away score can't be equal")
-    end
-  end
+  # def check_score_equality
+  #   if home_score == away_score
+  #     errors.add(:base, "home and away score can't be equal")
+  #   end
+  # end
 
 end
 
