@@ -1,9 +1,9 @@
 class MatchesController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource :tournament
+#  load_and_authorize_resource :tournament
   load_and_authorize_resource :match
 
-  before_filter :fetch_match_and_tournament, only: [:edit, :update]
+  before_filter :fetch_match_and_tournament, only: [:edit, :update, :trashtalk]
 
   def edit
   end
@@ -19,26 +19,8 @@ class MatchesController < ApplicationController
     end
   end
 
-  private
-
-  def fetch_match_and_tournament
-    @match = Match.find(params[:id])
-    @tournament = Tournament.find(params[:tournament_id])
-  end
-
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to tournaments_path, :alert => exception.message
-  end
-
   #POST /tournaments/1/matches/2/trashtalk
   def trashtalk
-    begin
-      @tournament = Tournament.find(params[:tournament_id])
-      @match = Match.find(params[:id])
-    rescue
-      redirect_to root_path
-      return
-    end
 
     if params[:comment].blank? || !@match.round.active || @match.played?
       redirect_to tournament_path(@tournament)
@@ -60,5 +42,18 @@ class MatchesController < ApplicationController
     redirect_to tournament_path(@tournament)
 
   end
+
+  private
+
+  def fetch_match_and_tournament
+    @match = Match.find(params[:id])
+    @tournament = Tournament.find(params[:tournament_id])
+  end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    puts exception.message
+    redirect_to tournaments_path, :alert => exception.message
+  end
+
 
 end

@@ -11,7 +11,7 @@ describe MatchesController do
   end
 
   describe "POST trashtalk" do
-    context "invalid data (tournament, match or comment)" do
+    context "invalid data for comment" do
       let(:tournament) { FactoryGirl.create(:tournament) }
       let(:round) { FactoryGirl.create(:round, tournament: tournament, active: true) }
       let(:match) { FactoryGirl.create(:match, round: round) }
@@ -21,29 +21,9 @@ describe MatchesController do
       let(:inactive_round) { FactoryGirl.create(:round, tournament: tournament, active: false) }
       let(:inactive_match) { FactoryGirl.create(:match, round: inactive_round) }
 
-      it "should redirect to /" do
-        post :trashtalk, { :tournament_id => '-1', :id => match.id}
-        response.should redirect_to( root_path )
-
-        post :trashtalk, { :tournament_id => tournament.id, :id => '-1'}
-        response.should redirect_to( root_path )
-      end
-
-      context "should redirect to tournament page" do
-        it "if no comment is given" do
-          post :trashtalk, { :tournament_id => tournament.id, :id => match.id}
-          response.should redirect_to tournament_path tournament
-        end
-
-        it "if round is inactive (pasted)" do
-          post :trashtalk, { :tournament_id => tournament.id, :id => inactive_match.id }
-          response.should redirect_to tournament_path tournament
-        end
-
-        it "if match is played" do
-          post :trashtalk, { :tournament_id => tournament.id, :id => played_match.id }
-          response.should redirect_to tournament_path tournament
-        end
+      before do
+        tournament.users << user
+        match.home_player = user
       end
 
     end
