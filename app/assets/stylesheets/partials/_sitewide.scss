@@ -17,7 +17,7 @@ $dark_white:#dfdfdf;
 
 //Font declarations
 $basic_font_stack:'Source Sans Pro', Verdana,Arial,sans-serif;
-$marker_font: 'Permanent Marker', cursive;
+$marker_font: Overlock, cursive;
 $akronim_font: 'Calligraffitti', cursive;
 
 // The basic unit of measure
@@ -51,6 +51,7 @@ header {
       text-decoration:none;
       span {
         font-family: $marker_font;
+        font-weight:900;
         font-size:70px;
         position:relative;
         z-index:1;
@@ -62,8 +63,8 @@ header {
         line-height:140px;
         color:$error;
         position:relative;
-        left:-22px;
-        bottom:-20px;
+        left:-30px;
+        bottom:-30px;
         z-index:0;
         display:inline;
       }
@@ -188,6 +189,31 @@ section {
      background: #1b435e;
 }
 
+.fancy_form {
+  width:60%;
+  margin:0 auto;
+  border-radius:10px;
+  border:1px solid $dark_white;
+  @include box-shadow(0px,0px,40px,0px,rgba(0,0,0,0.3));
+  padding:0;
+  background-color:$dirty_white;
+  margin-bottom:2*$bu;
+  overflow:hidden;
+  h2 {
+    background-color:$dark_black;
+    color:$dirty_white;
+    padding:$bu/2 $bu;
+    text-align:center;
+    margin-bottom:0;
+    font-weight:400;
+    font-family:$marker_font;
+    text-shadow:1px 1px 0px black;
+  }
+  form {
+    padding:$bu*2;
+  }
+}
+
 label {
   font-weight:bold;
   font-size:$bu*1.5;
@@ -207,9 +233,14 @@ input[type='text'], input[type='password'], input[type='email'],textarea {
   h2 {
     font:bold $bu*1.4 $basic_font_stack;
     margin-bottom:$bu;
+    background-color:transparent;
+    color:$main_black;
+    text-shadow:none;
   }
   ul {
     li {
+      list-style-type:disc;
+      list-style-position:inside;
       font-size:$bu;
     }
   }
