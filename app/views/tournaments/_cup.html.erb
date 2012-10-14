@@ -11,11 +11,25 @@
         <% round.matches.each do |match| %>
           <td colspan="<%= (@tournament.users.length / 2) / round.matches.length %>">
             <%= render :partial => "player", :object => match.home_player %>
-          </td>  
+          </td>
           <td colspan="<%= (@tournament.users.length / 2) / round.matches.length %>">
             <%= render :partial => "player", :object =>  match.away_player  %>
-          </td>  
+          </td>
         <% end %>
       </tr>
+  <% end %>
+
+  <% if @tournament.closed? && @tournament.winner %>
+    <tr>
+      <th colspan="<%= @tournament.users.length %>">
+        Winner
+      </th>
+    </tr>
+
+    <tr>
+      <td colspan="<%= @tournament.users.length %>">
+        <%= render :partial => "player", :object => @tournament.winner %>
+      </td>
+    </tr>
   <% end %>
 </table>
