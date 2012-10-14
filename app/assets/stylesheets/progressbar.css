@@ -5,9 +5,9 @@
 .bar_mortice {
   height: 20px;
   background: #777;
-  -moz-box-shadow: inset 0px 1px 2px 0px #333, inset 0px -1px 1px 0px #d0d0d0, 0px 1px 1px 0px #f0f0f0;
-  box-shadow: inset 0px 1px 2px 0px #333, inset 0px -1px 1px 0px #d0d0d0, 0px 1px 0px 0px #f0f0f0;
-  border: 5px solid #a0a0a0;
+  -moz-box-shadow: inset 0px 1px 2px 0px #333;
+  box-shadow: inset 0px 1px 2px 0px #333;
+  border: 1px solid #a0a0a0;
   margin-top: 3px;
 }
 
@@ -21,7 +21,6 @@
   background: -ms-linear-gradient(top,  #fff 0%,#e5e5e5 100%);
   background: linear-gradient(top,  #fff 0%,#e5e5e5 100%);
   border-top: 1px solid #fff;
-  border-bottom: 1px solid #999;
   box-sizing: border-box;
   padding-left: 5px;
 }
