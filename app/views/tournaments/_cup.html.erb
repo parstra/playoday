@@ -1,5 +1,12 @@
-<table class="cup">
+<table>
   <% @tournament.rounds.each do |round| %>
+    <% if round == @tournament.rounds.last %>
+      <tr>
+        <th colspan="<%= @tournament.users.size %>">
+          The Final
+        </th>
+      </tr>
+    <% end %>
       <tr>
         <% round.matches.each do |match| %>
           <td colspan="<%= (@tournament.users.length / 2) / round.matches.length %>">

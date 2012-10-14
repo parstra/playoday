@@ -3,7 +3,7 @@
   <div class="stats">
     Player Count: <span><%= tournament.users.size %></span><br/>
     Round <span><%= tournament.rounds.size %></span> out of <%= tournament.total_rounds %>.
+    <%= (link_to "edit tournament", edit_tournament_path(tournament.id)) if can? :manage, tournament %>
   </div>
   <p><%= tournament.description %></p>
-  <%= (link_to "edit", edit_tournament_path(tournament.id)) if can? :manage, tournament %>
 </div>

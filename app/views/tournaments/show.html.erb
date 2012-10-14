@@ -2,8 +2,8 @@
   <%= render :partial => "tournament", :object => @tournament %>
 </section>
 
-<section class="tournament_rounds">
-<% if @tournament.game_type == 3 %>
+<section class="tournament_rounds <%= 'cup' if @tournament.cup? %>">
+<% if @tournament.swedish? %>
 <ul>
   <%= render :partial => "matchup", :collection => @matches %>
 </ul>
@@ -12,8 +12,8 @@
 <% end %>
 </section>
 
-<section class="leaderboard">
 <% if !@tournament.cup? %>
+<section class="leaderboard">
   <h2>Leaderboard</h2>
   <ol>
     <%#= render :partial => "leader" %>
@@ -21,6 +21,6 @@
     <%#= render :partial => "leader" %>
     <%#= render :partial => "leader" %>
   </ol>
-<% end %>
 </section>
+<% end %>
 <div class="cf"></div>
