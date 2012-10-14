@@ -13,7 +13,10 @@ Playoday::Application.routes.draw do
     end
   end
 
-  resources :tournaments
+  resources :tournaments do
+    get "register/:tournament_hash", :action => :register, :on => :collection, :as => "register"
+    post "recreate_hash", :on => :member
+  end
 
   match 'signup/:tournament_hash', :controller => :tournaments, :action => :signup, :as => :signup
 

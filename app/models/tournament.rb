@@ -103,6 +103,10 @@ class Tournament < ActiveRecord::Base
     end
   end
 
+  def update_tournament_hash
+    create_tournament_hash
+  end
+
   private
 
   def create_tournament_hash
