@@ -21,4 +21,7 @@
 /config/database.yml
 /.rvmrc
 
+# Ignore test coverage
+/coverage
+
 db/schema.rb
