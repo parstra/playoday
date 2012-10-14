@@ -29,8 +29,6 @@ class Tournament < ActiveRecord::Base
   validates :name, :owner_id, presence: true
   #validates :duration, :total_rounds, :round_duration, :company_id, presence: true
 
-  validates :name, :owner_id, presence: true
-
   # TODO: test this
   scope :for_user, lambda{|user|
     includes(:tournament_users).
