@@ -65,6 +65,12 @@ class Tournament < ActiveRecord::Base
     raise TournamentCannotOpen if !openable?
     raise NotEnoughPlayers if users.length < 2
 
+    num_of_players = self.users.length
+
+    if cup? && Math.log2(num_of_players).modulo(1) != 0
+      raise TournamentPlayerCountInvalid
+    end
+
     self.status = Tournament::OPEN
 
     # in a cup the rounds are determined by the number of players
@@ -159,6 +165,7 @@ class TournamentCannotOpen < Exception; end
 class NotEnoughPlayers < Exception; end
 class TournamentNotOpenYet < Exception; end
 class TournamentAllRoundsPlayed < Exception; end
+class TournamentPlayerCountInvalid < Exception; end
 
 # == Schema Information
 #

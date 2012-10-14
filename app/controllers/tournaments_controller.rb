@@ -101,10 +101,13 @@ class TournamentsController < ApplicationController
       @tournament.start
 
     rescue NotEnoughPlayers
-      flash[:notice] = "Not enough players to start this tournament"
+      flash[:alert] = "Not enough players to start this tournament"
       return redirect_to tournament_path(@tournament)
     rescue TournamentCannotOpen
-      flash[:notice] = "You cannot open this tournament"
+      flash[:alert] = "You cannot open this tournament"
+      return redirect_to tournament_path(@tournament)
+    rescue TournamentPlayerCountInvalid
+      flash[:alert] = "You need powers of two number of players for a cup"
       return redirect_to tournament_path(@tournament)
     end
 

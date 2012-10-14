@@ -82,6 +82,19 @@ describe Tournament do
       end
     end
 
+    context "that has an invalid number of players" do
+      subject {FactoryGirl.build(:tournament, :pending, :cup, {owner: user})}
+
+      before {
+        subject.users << FactoryGirl.create_list(:user, 6)
+        subject.save!
+      }
+
+      it "doesn't start" do
+        expect {subject.start}.to raise_error(TournamentPlayerCountInvalid)
+      end
+    end
+
     context "cup tournament" do
       context "that is pending and has at least two players" do
         subject {FactoryGirl.build(:tournament, :pending, :cup, {owner: user})}
