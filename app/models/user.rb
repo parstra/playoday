@@ -1,25 +1,33 @@
 class User < ActiveRecord::Base
 
-  attr_accessible :company_name
+  #gravatar
+  include Gravtastic
+  gravtastic
+
+  attr_accessor :company_name
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  after_save
-
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :company_name
 
   belongs_to :company
 
   has_many :tournament_users
   has_many :tournaments, through: :tournament_users
 
+  validates :email, immutable: true
+
+  after_save :assign_company
+
   private
 
   #create the name of company if dosn't exist
   def assign_company
-    self.company = Company.find_or_create_by_name(self.company_name)
+    if self.company_name.present?
+      self.company = Company.find_or_create_by_name(self.company_name)
+    end
   end
 
 end
