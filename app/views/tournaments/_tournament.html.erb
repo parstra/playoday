@@ -4,4 +4,6 @@
     <span><%= tournament.active_round %></span>&nbsp;/&nbsp;<%= tournament.total_rounds %>
   </div>
   <p><%= tournament.description %></p>
+
+  <%= (link_to "edit", edit_tournament_path(tournament.id)) if can? :manage, tournament %>
 </li>

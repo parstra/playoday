@@ -2,7 +2,9 @@
 <h2><%= @tournament.name %></h2>
 <p><%= @tournament.description %></p>
 
-<%= link_to "Edit the tournament", edit_tournament_path(@tournament) %>
+<% if can? :manage, @tournament %>
+  <%= link_to "Edit the tournament", edit_tournament_path(@tournament) %>
+<% end %>
 <%= @tournament.active_round %>/<%= @tournament.total_rounds %>
 </section>
 
