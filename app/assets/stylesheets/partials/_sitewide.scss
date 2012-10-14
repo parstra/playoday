@@ -74,23 +74,29 @@ header {
   }
   nav {
     float:right;
-    margin-top:20px;
+    margin-top:10px;
     width:80px;
     background-color:white;
-    height:60px;
+    height:50px;
     background-size:cover;
     background-image: image-url('dummy-avatar.png');
     background-position:center center;
     background-repeat:none;
     text-align:center;
-    border-bottom:40px solid white;
+    border:1px solid white;
+    border-bottom-width:40px;
     @include box-sizing(border-box);
     padding-top:75px;
+    border-radius:10px;
     a {
       color:$dark_black;
       text-decoration:none;
       border-bottom:1px dotted $dirty_white;
       display:block;
+    }
+    a:hover {
+      background-color:$dark_black;
+      color:$dirty_white;
     }
   }
 }
