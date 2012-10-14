@@ -412,7 +412,6 @@ describe TournamentsController do
   end
 
   describe "POST start" do
-
     context "tournament can start and logged user is owner" do
       let(:tournament){FactoryGirl.create(:tournament, :pending, :cup,{owner: user})}
       before do
@@ -460,7 +459,43 @@ describe TournamentsController do
         tournament.reload.should be_pending
       end
     end
-
   end
 
+  describe "POST next_round" do
+    context "tournament can move to next_round and logged user is owner" do
+      let(:tournament){FactoryGirl.create(:tournament, :pending, :cup,{owner: user})}
+      before do
+        tournament.users << FactoryGirl.create_list(:user, 4)
+        tournament.start
+      end
+
+      it "moves next round by owner" do
+        expect {post :next_round, id: tournament.id}.to change(Round, :count).by(1)
+        tournament.reload.should be_open
+      end
+
+      it "redirects to tournament page" do
+        post :next_round, id: tournament.id
+        response.should redirect_to(tournament_path(tournament))
+      end
+    end
+
+    context "tournament can go next round but logged user is not owner" do
+      let(:tournament){FactoryGirl.create(:tournament,
+                                          :pending, :cup,{owner: another_user})}
+      before do
+        tournament.users << FactoryGirl.create_list(:user, 4)
+        tournament.start
+      end
+
+      it "doesn't move to next round" do
+        expect {post :next_round, id: tournament.id}.to_not change(Round, :count).by(1)
+      end
+
+      it "redirects to tournament page" do
+        post :next_round, id: tournament.id
+        response.should redirect_to(tournaments_path)
+      end
+    end
+  end
 end

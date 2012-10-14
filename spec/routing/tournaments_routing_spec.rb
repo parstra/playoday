@@ -12,6 +12,12 @@ describe TournamentsController do
                                                      action: 'start',
                                                      id: '12'})
     end
+    it "routes to #start" do
+      post("/tournaments/12/next_round").should route_to({controller: 'tournaments',
+                                                     action: 'next_round',
+                                                     id: '12'})
+    end
+
 
   end
 
