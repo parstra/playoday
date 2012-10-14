@@ -3,12 +3,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :redirect_logged_in_users
 
-  def after_sign_in_path_for(resource)
-    if resource.is_a?(User)
-      tournaments_path
-    end
-  end
-
   private
 
   def redirect_logged_in_users
