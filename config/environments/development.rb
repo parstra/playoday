@@ -34,7 +34,4 @@ Playoday::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-
-  #show emails on a popup window instead of send
-  config.action_mailer.delivery_method = :letter_opener
 end
