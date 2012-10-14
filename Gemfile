@@ -27,15 +27,15 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'rspec-rails'
 
-gem "rspec-rails", :group => [:test, :development]
+group :test, :development do
+  gem "rspec-rails"
+  gem "guard-rspec"
+  gem "pry"
+  gem "factory_girl_rails", "~> 4.0.0"
+end
 
+gem "letter_opener", :group => [:development]
 gem "shoulda-matchers", :group => [:test]
-gem "guard-rspec", :group => [:test, :development]
-gem "pry", :group => [:test, :development]
 gem "simplecov", :group => :test, :require => false
 
-gem "factory_girl_rails", "~> 4.0.0"
-
 gem "capistrano", require: nil
-
-

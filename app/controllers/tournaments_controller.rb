@@ -11,6 +11,10 @@ class TournamentsController < ApplicationController
 
   end
 
+  # GET /signup
+  def signup
+  end
+
   # GET /show/id
   def show
 

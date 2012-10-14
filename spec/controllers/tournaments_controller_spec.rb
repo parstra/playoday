@@ -297,7 +297,7 @@ describe TournamentsController do
 
       it "redirects to the tournament page" do
         put :update, user_params
-        response.should redirect_to(tournaments_path)
+        response.should redirect_to(tournament_path(tournament))
       end
 
       it "doesn't update the tournament" do
@@ -320,7 +320,7 @@ describe TournamentsController do
 
       it "redirects to the tournament page" do
         put :update, user_params
-        response.should redirect_to(tournaments_path)
+        response.should redirect_to(tournament_path(tournament))
       end
 
       it "doesn't update the tournament" do
@@ -328,5 +328,47 @@ describe TournamentsController do
         tournament.reload.name.should_not == "some-name"
       end
     end
+  end
+
+  describe "signup with" do
+    # GET /signup/invalid
+    context "invalid hash" do
+      it "should redirect to home page"
+      it "should notufy that the tournament does not exist"
+    end
+
+    # GET /signup/a_valid_hash
+    context "valid hash" do
+      it "should prompt user to a create an account"
+      it "assigns a tournament"
+    end
+
+    #POST /signup/a_valid_hash
+    context "valid hash via POST" do
+      context "params should include a" do
+        it "tournament id"
+        it "valid username"
+        it "valid password"
+        it "valid password confirm"
+      end
+
+      context "valid data" do
+        it "should create a user"
+        it "should assign the user to the tournament"
+        it "should send a notification email"
+        it "should redirect to tournament page"
+      end
+
+      context "invalid data" do
+        context "flash message for" do
+          it "username duplication"
+          it "password mismatch"
+          it "password too weak"
+        end
+        it "should redirect to signup form"
+        it "assigns tournament"
+      end
+    end
+
   end
 end

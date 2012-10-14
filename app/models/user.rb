@@ -20,12 +20,18 @@ class User < ActiveRecord::Base
   validates :email, immutable: true
 
   after_save :assign_company
+  after_create :welcome_message
 
   def username 
     return self.email.split("@").first
   end
 
   private
+
+  #send welcome message after sign_up
+  def welcome_message
+    UserMailer.welcome_message(self).deliver
+  end
 
   #create the name of company if dosn't exist
   def assign_company
