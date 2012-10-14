@@ -1,7 +1,15 @@
 <section class="tournament_header <%= to_css_class(@tournament.status) %>">
   <%= render :partial => "tournament", :object => @tournament %>
   <% if @tournament.pending? && can?(:manage, @tournament) %>
-    <%= link_to "Start tournament", start_tournament_path(@tournament),
+    <%= button_to "Start tournament", start_tournament_path(@tournament),
+      :class => "base_button"%>
+  <% end %>
+
+  <% if @tournament.open? &&
+       @tournament.has_next_round? &&
+       @tournament.can_close_round? &&
+       can?(:manage, @tournament) %>
+    <%= button_to "Close round", next_round_tournament_path(@tournament),
       :class => "base_button"%>
   <% end %>
 </section>

@@ -101,6 +101,14 @@ class Tournament < ActiveRecord::Base
     self.status == OPEN
   end
 
+  def has_next_round?
+    true
+  end
+
+  def can_close_round?
+    true
+  end
+
   # Moves to the next round if the tournament is already open
   #
   # The actual move will be handled by the CupTournament and
