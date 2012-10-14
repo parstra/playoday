@@ -9,6 +9,11 @@ class Match < ActiveRecord::Base
 
   before_save :create_match_hash
 
+  # TODO: add tests for this
+  scope :for_user, lambda{|user|
+    where("home_player_id = :uid or away_player_id = :uid", {uid: user.id})
+  }
+
   def create_match_hash
     self.match_hash = Digest::MD5.hexdigest("I fart at your general direction #{Time.now} #{rand 1000}")
   end

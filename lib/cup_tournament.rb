@@ -1,13 +1,17 @@
 # Provides helper methods for the cup tournament
 #
-# Actually methods in this module try to bridge between the 
-#  Tournament, Round, Match models in the database and the 
-#  GameEngines::PlayerSet structures. 
+# Actually methods in this module try to bridge between the
+#  Tournament, Round, Match models in the database and the
+#  GameEngines::PlayerSet structures.
 #
 # Finaly , a new round and matches for that round are generated
 module CupTournament
 
-  # Moves to next 
+  # Moves to next round by:
+  #
+  # * creating a new round
+  # * generates a player set and passes it on to the cup game engine
+  # * finally creates the match pairs the engine has generated
   def move_to_next_round
     # we need the current round to determine wins for the next round
     current_round = self.rounds.last
@@ -32,6 +36,9 @@ module CupTournament
       end
 
       match_pairs = GameEngines::KnockOut.new(player_set).draw
+
+      current_round.active = false
+      current_round.save
     end
 
     # create a new round
