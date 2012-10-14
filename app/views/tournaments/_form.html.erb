@@ -11,9 +11,14 @@
   <% end %>
 
   <%= field_set_tag do %>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.label :total_rounds, "Total rounds <small>(only applicable to the swedish mode)</small>".html_safe %>
+    <%= f.text_field :total_rounds, :size => 5 %>
   <% end %>
 
-  <%= f.submit %>
+  <%= field_set_tag do %>
+    <%= f.label :description %>
+    <%= f.text_area :description, :cols => 80, :rows => 4 %>
+  <% end %>
+
+  <%= f.submit :class => "base_button" %>
 <% end %>
