@@ -202,7 +202,7 @@ $arrow_head:10px;
     padding:$bu*3 0;
     border-bottom:1px solid #ccc;
     @include box-shadow(0px,1px,0px,0px,white);
-    .score {
+    .score,#match_home_score,#match_away_score {
       border:1px solid $grey_black;
       font-family:$marker_font;
       background-color: $dirty_white;
@@ -211,6 +211,7 @@ $arrow_head:10px;
       display:inline-block;
       vertical-align:top;
       margin-right:$bu*3;
+      width:25px;
     }
     .player {
       display:inline-block;
@@ -250,7 +251,7 @@ $arrow_head:10px;
         left:40px;
         right:auto;
       }
-      .score {
+      .score,#match_home_score,#match_away_score {
         margin-left:$bu*3;
         margin-right:0;
       }

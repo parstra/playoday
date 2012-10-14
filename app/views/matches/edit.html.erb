@@ -13,7 +13,7 @@
     </div>
     <em>
       <% if can? :update, @match %>
-        <%= link_to "update game score", edit_tournament_match_path(@tournament.id, @match.id), :class => "base_button" %>
+        <%= f.submit :class => "base_button" %>
       <% end %>
       VS
     </em>
