@@ -1,9 +1,9 @@
-<li>
+<div class="tournament_summary">
   <h3><%= link_to tournament.name, tournament %></h3>
-  <div class="round_stats">
-    <span><%= tournament.active_round %></span>&nbsp;/&nbsp;<%= tournament.total_rounds %>
+  <div class="stats">
+    Player Count: <span><%= tournament.users.size %></span><br/>
+    Round <span><%= tournament.rounds.size %></span> out of <%= tournament.total_rounds %>.
   </div>
   <p><%= tournament.description %></p>
-
   <%= (link_to "edit", edit_tournament_path(tournament.id)) if can? :manage, tournament %>
-</li>
+</div>

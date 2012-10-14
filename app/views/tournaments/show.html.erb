@@ -1,11 +1,5 @@
 <section class="tournament_header <%= to_css_class(@tournament.status) %>">
-<h2><%= @tournament.name %></h2>
-<p><%= @tournament.description %></p>
-
-<% if can? :manage, @tournament %>
-  <%= link_to "Edit the tournament", edit_tournament_path(@tournament) %>
-<% end %>
-?/<%= @tournament.total_rounds %>
+  <%= render :partial => "tournament", :object => @tournament %>
 </section>
 
 <section class="tournament_rounds">

@@ -27,7 +27,7 @@ $sidebar_width: 400px;
 {
     border-color:$dark_black;
     color:white;
-    font-size:18px;
+    font-size:$bu;
     box-shadow:inset 0px 0px 75px 0px rgba(0,0,0,1);
 }
 
@@ -37,34 +37,38 @@ $sidebar_width: 400px;
     width:80px;
 }
 
+.tournament_summary {
+  border-bottom:1px dotted $light_black;
+  padding:$bu;
+  position:relative;
+  h3 {
+    font-weight:700;
+    font-size:$bu*2.5;
+    margin-bottom:$bu;
+    a {
+      color:$main_black;
+      text-decoration:none;
+    }
+  }
+  p {
+    color:$grey_black;
+  }
+  .stats {
+    font-weight:400;
+    font-size:$bu*1.5;
+    position:absolute;
+    right:$bu;
+    top:15px;
+    span {
+      color:$main_orange;
+    }
+  }
+}
+
 .tournaments_list {
   li {
     padding:$bu;
-    background-color:$dirty_white;
     position:relative;
-    h3 {
-      font-weight:700;
-      font-size:$bu*1.5;
-    }
-    p {
-      color:$grey_black;
-    }
-    .stats {
-      font-family:$marker_font;
-      font-size:$bu*3;
-      position:absolute;
-      right:$bu;
-      top:5px;
-      span {
-        color:$main_orange;
-      }
-    }
-  }
-  li:nth-child(2n+1) {
-    border-left:none;
-    border-right:none;
-    border-top:1px dotted $light_black;
-    border-bottom:1px dotted $light_black;
   }
 }
 

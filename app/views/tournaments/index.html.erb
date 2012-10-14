@@ -1,8 +1,12 @@
 <section>
 <h2>Tournaments</h2>
 <% if @tournaments.any? %>
-<ol class="tournaments_list">
-  <%= render :partial => "tournament", :collection => @tournaments %>
+  <ol class="tournaments_list">
+    <% for tournament in @tournaments %>
+    <li>
+      <%= render :partial => "tournament", :object => tournament %>
+    </li>
+    <% end %>
 </ol>
 <% else %>
   Nothing to show
