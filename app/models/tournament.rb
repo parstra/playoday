@@ -116,6 +116,37 @@ class Tournament < ActiveRecord::Base
     create_tournament_hash
   end
 
+  # Leaderboard only makes sense for swedish tournaments
+  #
+  # It returns players sorted by wins
+  def leaderboard
+
+    round_ids = self.round_ids
+
+    # get win counts by id
+    # it will be hash where keys are user ids and values are number of wins
+    wins_per_user = Match.where(round_id: round_ids).
+      where("winner_id is not null and played = true").
+      group(:winner_id).count
+
+    players = self.users.
+      sort_by{|p| wins_per_user[p.id] || 0}.reverse
+
+    if self.open?
+      total = self.rounds.length - 1
+    else
+      total = self.total_rounds
+    end
+
+    players.map{|player| OpenStruct.new({player: player,
+                                         wins: wins_per_user[player.id] || 0,
+                                         losses: total - (wins_per_user[player.id] || 0)})}
+  end
+
+  def top_three
+    leaderboard.slice(0,3)
+  end
+
   private
 
   def create_tournament_hash

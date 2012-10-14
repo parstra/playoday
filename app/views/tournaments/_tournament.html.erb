@@ -5,6 +5,9 @@
  <h3><%= link_to tournament.name, tournament %></h3>
   <p><%= tournament.description %></p>
   <div class="stats">
+    <% if tournament.open? && tournament.swedish? %>
+      <%= render partial: 'player', collection: tournament.top_three.map(&:player) %>
+    <% end %>
     Player Count: <span><%= tournament.users.size %></span><br/>
     Round <span><%= tournament.rounds.size %></span> out of <%= tournament.total_rounds %>.
     <%= (link_to "edit tournament".html_safe, edit_tournament_path(tournament.id)) if can? :manage, tournament %>

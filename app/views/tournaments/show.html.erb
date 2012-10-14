@@ -18,10 +18,7 @@
 <section class="leaderboard">
   <h2>Leaderboard</h2>
   <ol>
-    <%#= render :partial => "leader" %>
-    <%#= render :partial => "leader" %>
-    <%#= render :partial => "leader" %>
-    <%#= render :partial => "leader" %>
+    <%= render partial: 'leader', collection: @tournament.leaderboard %>
   </ol>
 </section>
 <% end %>

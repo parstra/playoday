@@ -159,9 +159,49 @@ describe Tournament do
       it "raises exception that there are no more rounds" do
         expect {subject.next_round}.to raise_error(TournamentAllRoundsPlayed)
       end
-
-
     end
+  end
+
+  context "leaderboard" do
+    subject {FactoryGirl.create(:tournament, :pending, :swedish)}
+
+    before {
+      subject.users << FactoryGirl.create_list(:user, 4)
+      subject.start
+
+      round = subject.rounds.last
+
+      round.matches.each do |m|
+        m.played = true
+        m.winner_id = m.home_player_id
+        m.save!
+      end
+
+      subject.next_round
+    }
+
+    it "calculates leaderboard players" do
+      users = subject.users
+
+      subject.leaderboard.map(&:player).map(&:id).should ==
+        [users.fourth, users.second, users.third, users.first].map(&:id)
+    end
+
+    it "calculates leaderboard wins" do
+      users = subject.users
+
+      subject.leaderboard.map(&:wins).should ==
+        [1, 1, 0, 0]
+    end
+
+    it "calculates leaderboard losses" do
+      users = subject.users
+
+      subject.leaderboard.map(&:losses).should ==
+        [0, 0, 1, 1]
+    end
+
+
   end
 
 
