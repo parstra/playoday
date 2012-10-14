@@ -14,7 +14,7 @@
       <span class="state">Not enough participants to start this tournament</span>
     <% end %>
   <% end %>
-  <%= render partial: 'player', collection: @tournament.users %>
+  <%= render partial: 'player', collection: @tournament.users, :locals => {:size => "large"} %>
   </div>
 <% else%>
   <% if @tournament.open? && can?(:manage, @tournament) %>

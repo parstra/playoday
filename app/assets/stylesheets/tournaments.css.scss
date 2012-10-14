@@ -322,6 +322,9 @@ $arrow_head:10px;
       color:$error;
       font-family:$marker_font;
     }
+    td:last-child:after {
+      content:"";
+    }
     th {
         text-align:center;
         padding:5px;

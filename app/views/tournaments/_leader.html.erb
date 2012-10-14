@@ -1,5 +1,5 @@
 <li class="leader cf">
-<%= render :partial => "player", object: leader.player %>
+<%= render :partial => "player", object: leader.player,:locals => {:size => ""} %>
 <div class="stats">
   <span><b> <%= leader.wins %></b> wins</span>
   <span><b> <%= leader.losses %></b> losses</span>
