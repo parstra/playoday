@@ -16,7 +16,9 @@ class TournamentsController < ApplicationController
 
     # get last round of this tournament
     if @tournament.open?
-      @round = @tournament.rounds.includes(:matches).last
+      @round = @tournament.rounds.includes({matches:
+                                            [:home_player, :away_player]
+                                           }).last
       @matches = @round.matches
     end
   end
