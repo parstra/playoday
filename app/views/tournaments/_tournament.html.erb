@@ -1,7 +1,7 @@
 <li>
-  <h3><%= tournament.name %></h3>
-  <div class="stats">
-    <span>3</span>&nbsp;/&nbsp;<%= tournament.total_rounds %>
+  <h3><%= link_to tournament.name, tournament %></h3>
+  <div class="round_stats">
+    <span><%= tournament.active_round %></span>&nbsp;/&nbsp;<%= tournament.total_rounds %>
   </div>
   <p><%= tournament.description %></p>
 </li>

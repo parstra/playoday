@@ -1,6 +1,40 @@
 // Place all the styles related to the tournaments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// This is a general playergotchi layout
+.playergotchi {
+    display:inline-block;
+    box-shadow:none;
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+    overflow:hidden;
+    height:50px;
+    border-radius:13px;
+    width:50px;
+    border:2px solid white;
+    color:transparent;
+    text-align:center;
+    font-family:$marker_font;
+    line-height:20px;
+}
+
+.large .playergotchi:hover,
+{
+    border-color:$dark_black;
+    color:white;
+    font-size:18px;
+    box-shadow:inset 0px 0px 75px 0px rgba(0,0,0,1);
+}
+
+.large .playergotchi {
+    height:100px;
+    border-radius:26px;
+    width:100px;
+}
+
+
 .tournaments_list {
   li {
     padding:$bu;
@@ -31,3 +65,66 @@
     border-bottom:1px dotted $light_black;
   }
 }
+
+.tournament_rounds {
+  .round {
+    padding:$bu 0;
+    .player {
+      display:inline-block;
+      width:30%;
+      text-align:right;
+      blockquote {
+        font-size:$bu*1.2;
+        font-style:italic;
+        margin:0px;
+        background-color:$dirty_white;
+        padding:$bu;
+        position:relative;
+        -webkit-filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
+        -moz-filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
+        -ms-filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
+        -o-filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
+        filter: drop-shadow(0 1px 5px rgba(0,0,0,.1));
+        margin-top:12px;
+        cite {
+          font-weight:700;
+        }
+      }
+      $arrow_head:10px;
+      blockquote:after {
+        content:"";
+        position:absolute;
+        top:-$arrow_head;
+        right:40px;
+        border-bottom:$arrow_head solid $dirty_white;
+        border-left:$arrow_head solid transparent;
+        border-right:$arrow_head solid transparent;
+      }
+    }
+    em + .player {
+      text-align:left;
+      $arrow_head:10px;
+      blockquote:after {
+        left:40px;
+        right:auto;
+      }
+    }
+    em {
+      font-size:60px;
+      font-family:$marker_font;
+      vertical-align:bottom;
+      margin:0px 3*$bu;
+    }
+  }
+  .round.small {
+    .player {
+      blockquote {
+        display:none;
+      }
+    }
+    em {
+      font-size:20px;
+    }
+  }
+}
+

@@ -1,1 +1,23 @@
-<h1><%= @tournament.name %></h1>
+<section class="tournament_header <%= to_css_class(@tournament.status) %>">
+<h2><%= @tournament.name %></h2>
+<p><%= @tournament.description %></p>
+
+<%= link_to "Edit the tournament", edit_tournament_path(@tournament) %>
+<%= @tournament.active_round %>/<%= @tournament.total_rounds %>
+</section>
+
+<section class="tournament_rounds">
+<ol>
+  <%= render :partial => "matchup", :locals => {:size => "large"} %>
+  <%= render :partial => "matchup", :locals => {:size => "small"} %>
+  <%= render :partial => "matchup", :locals => {:size => "small"} %>
+  <%= render :partial => "matchup", :locals => {:size => "small"} %>
+  <%= render :partial => "matchup", :locals => {:size => "small"} %>
+  <%= render :partial => "matchup", :locals => {:size => "small"} %>
+  <%= render :partial => "matchup", :locals => {:size => "small"} %>
+</ol>
+</section>
+
+<section class="leaderboard">
+
+</section>
