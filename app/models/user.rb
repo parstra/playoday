@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
 
   after_save :assign_company
 
+  def username 
+    return self.email.split("@").first
+  end
+
   private
 
   #create the name of company if dosn't exist
