@@ -2,13 +2,15 @@ class TournamentsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
 
-  before_filter :fetch_tournament, :only => [:show, :edit, :recreate_tournament_hash]
+  before_filter :fetch_tournament, :only => [:show, :edit,
+                                             :recreate_tournament_hash,
+                                             :start]
 
   # GET /index
   def index
     @tournaments = Tournament.for_user(current_user).
                               order("tournaments.created_at desc")
-    
+
     unless params[:all]
       @tournaments = @tournaments.not_closed.
         reorder("status asc, tournaments.created_at desc")
@@ -89,6 +91,24 @@ class TournamentsController < ApplicationController
       render :new
     end
 
+  end
+
+  # POST /start
+  def start
+
+    begin
+      @tournament.start
+
+    rescue NotEnoughPlayers
+      flash[:notice] = "Not enough players to start this tournament"
+      return redirect_to tournament_path(@tournament)
+    rescue TournamentCannotOpen
+      flash[:notice] = "You cannot open this tournament"
+      return redirect_to tournament_path(@tournament)
+    end
+
+    flash[:notice] = "Tournament started successfully"
+    redirect_to tournament_path(@tournament)
   end
 
   private

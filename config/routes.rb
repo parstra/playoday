@@ -16,6 +16,7 @@ Playoday::Application.routes.draw do
   resources :tournaments do
     get "register/:tournament_hash", :action => :register, :on => :collection, :as => "register"
     post "recreate_hash", :on => :member
+    post "start", :on => :member
     resources :matches, only: [:edit, :update, :show]
   end
 

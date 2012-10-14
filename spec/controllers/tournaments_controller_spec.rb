@@ -409,6 +409,57 @@ describe TournamentsController do
 
       response.should redirect_to(tournaments_path)
     end
+  end
+
+  describe "POST start" do
+
+    context "tournament can start and logged user is owner" do
+      let(:tournament){FactoryGirl.create(:tournament, :pending, :cup,{owner: user})}
+      before do
+        tournament.users << FactoryGirl.create_list(:user, 4)
+      end
+
+      it "starts by owner" do
+        post :start, id: tournament.id
+        tournament.reload.should be_open
+      end
+
+      it "redirects to tournament page" do
+        post :start, id: tournament.id
+        response.should redirect_to(tournament_path(tournament))
+      end
+    end
+
+    context "tournament can start but logged user is not owner" do
+      let(:tournament){FactoryGirl.create(:tournament,
+                                          :pending, :cup,{owner: another_user})}
+      before do
+        tournament.users << FactoryGirl.create_list(:user, 4)
+      end
+
+      it "doesn't start by owner" do
+        post :start, id: tournament.id
+        tournament.reload.should be_pending
+      end
+
+      it "redirects to tournament page" do
+        post :start, id: tournament.id
+        response.should redirect_to(tournament_path(tournament))
+      end
+    end
+
+    context "tournament cannot start" do
+      let(:tournament){FactoryGirl.create(:tournament, :pending, :cup,{owner: user})}
+      it "redirects to tournament if tournament cannot start" do
+        post :start, id: tournament.id
+        response.should redirect_to(tournament_path(tournament))
+      end
+
+      it "doesn't open the tournament" do
+        post :start, id: tournament.id
+        tournament.reload.should be_pending
+      end
+    end
 
   end
 
