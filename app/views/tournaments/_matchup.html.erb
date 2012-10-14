@@ -6,7 +6,7 @@
   <span class="playergotchi" style="background-image:url('<%= matchup.home_player.gravatar_url %>');"></span>
   <blockquote>
     <cite><%= matchup.home_player.username %></cite>:
-    <%= render :partial => 'trashtalk',
+    <%= render :partial => '/tournaments/trashtalk',
     :locals => { :matchup => matchup, :arena => :home } %>
   </blockquote>
 </div>
@@ -23,7 +23,7 @@
   <% end %>
   <blockquote>
     <cite><%= matchup.away_player.username %></cite>:
-    <%= render :partial => 'trashtalk',
+    <%= render :partial => '/tournaments/trashtalk',
     :locals => { :matchup => matchup, :arena => :away } %>
   </blockquote>
 </div>

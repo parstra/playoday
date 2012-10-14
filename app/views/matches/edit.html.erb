@@ -1,14 +1,30 @@
 <%= render :partial => "application/notice", :object => @match %>
-<%= @match.home_player.username %> vs <%= @match.away_player.username %>
+<h2>Enter your gamescore</h2>
 <%= form_for [@tournament,@match] do |f| %>
-  <%= field_set_tag do %>
-    <%= f.label :home_score %>
-    <%= f.text_field :home_score %>
-  <% end %>
-  <%= field_set_tag do %>
-    <%= f.label :away_score %>
-    <%= f.text_field :away_score %>
-  <% end %>
-
-  <%= f.submit :class => "base_button" %>
+  <ul class="tournament_rounds" style="float:none;margin-right:0;">
+    <li class="round large">
+    <div class="player">
+      <%= f.text_field :home_score %>
+      <span class="playergotchi" style="background-image:url('<%= @match.home_player.gravatar_url %>');"></span>
+      <blockquote>
+        <cite><%= @match.home_player.username %></cite>:
+        <%= @match.home_comment || "Hasn't made any statements yet" %>
+      </blockquote>
+    </div>
+    <em>
+      <% if can? :update, @match %>
+        <%= link_to "update game score", edit_tournament_match_path(@tournament.id, @match.id), :class => "base_button" %>
+      <% end %>
+      VS
+    </em>
+    <div class="player">
+      <span class="playergotchi" style="background-image:url('<%= @match.away_player.gravatar_url %>');"></span>
+      <%= f.text_field :away_score %>
+      <blockquote>
+        <cite><%= @match.away_player.username %></cite>:
+        <%= @match.away_comment || "Hasn't made any statements yet" %>
+      </blockquote>
+    </div>
+    </li>
+  </ul>
 <% end %>
