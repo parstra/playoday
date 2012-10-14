@@ -19,10 +19,10 @@ class User < ActiveRecord::Base
 
   validates :email, immutable: true
 
-  after_save :assign_company
+  before_save :assign_company
   after_create :welcome_message
 
-  def username 
+  def username
     return self.email.split("@").first
   end
 
