@@ -40,6 +40,11 @@ $sidebar_width: 400px;
 .tournament_summary {
   padding:$bu;
   position:relative;
+  z-index:2;
+  background:$dirty_white;
+  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   h3 {
     font-weight:700;
     font-size:$bu*2;
@@ -76,6 +81,31 @@ $sidebar_width: 400px;
   }
 }
 
+.tournament_summary.active:after {
+  content:"Active";
+  position:absolute;
+  z-index:0;
+  top:-20px;
+  padding:$bu/2 $bu;
+  border-radius:5px;
+  right:0px;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #da4f49;
+  *background-color: #bd362f;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
+  background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: linear-gradient(to bottom, #ee5f5b, #bd362f);
+  background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
+  background-repeat: repeat-x;
+  border-color: #bd362f #bd362f #802420;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+  
+}
+
 .public_url {
   padding:$bu;
   margin:2*$bu 0;
@@ -101,11 +131,8 @@ $sidebar_width: 400px;
     }
   }
   li {
-    padding:$bu;
     position:relative;
-  }
-  li:nth-child(2n) {
-    background-color:$dirty_white;
+   margin-bottom:$bu*2;
   }
   a.base_button {
     position:absolute;
