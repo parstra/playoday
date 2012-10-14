@@ -12,13 +12,15 @@ describe TournamentsController do
 
   describe "GET index" do
     let!(:my_tournament){
-      #TODO: update this factory to have a name
       FactoryGirl.create(:tournament, :cup, {owner: user})
     }
 
     let!(:another_tournament){
-      #TODO: update this factory to have a name
       FactoryGirl.create(:tournament, :cup, {owner: another_user})
+    }
+
+    let!(:closed_tournament){
+      FactoryGirl.create(:tournament, :cup, :closed, {owner: user})
     }
 
     it "renders the index template" do
@@ -30,6 +32,11 @@ describe TournamentsController do
       it "fetches tournaments that the user owns" do
         get :index
         assigns(:tournaments).should == [my_tournament]
+      end
+
+      it "fetches and closed tournaments if requested" do
+        get :index , all: true
+        assigns(:tournaments).should == [my_tournament, closed_tournament]
       end
     end
 

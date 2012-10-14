@@ -33,7 +33,7 @@ FactoryGirl.define do
       status Tournament::OPEN
     end
 
-    trait :close do
+    trait :closed do
       status Tournament::CLOSED
     end
 

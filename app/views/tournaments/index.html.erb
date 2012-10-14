@@ -1,6 +1,11 @@
-<section class="tournaments_list">
-<h2>Tournaments</h2>
+<section>
 <%= link_to "Create a new tournament", new_tournament_path, :class => "base_button"%>
+<h2>Tournaments
+  <%= link_to "Open", tournaments_path,
+    class: params[:all].blank? ? "selected" : nil %> /
+   <%= link_to "All", tournaments_path(all: 'true'),
+    class: params[:all].blank? ? "" : "selected" %>
+  </h2>
 <% if @tournaments.any? %>
   <ol class="tournaments_list">
     <% for tournament in @tournaments %>
