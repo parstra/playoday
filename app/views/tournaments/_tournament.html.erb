@@ -18,7 +18,7 @@
       <b>Leaders:</b>
       <%= render partial: 'player', collection: tournament.top_three.map(&:player), :locals => {:size => ""} %>
     </div>
-  <% elsif tournament.closed? && action_name != "show" %>
+  <% elsif tournament.closed? && action_name != "show" && tournament.winner %>
     <div class="leaders winner">
       <b>Winner:</b>
       <%= render partial: 'player', object: tournament.winner, :locals => {:size => ""} %>
