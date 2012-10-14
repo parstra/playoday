@@ -1,4 +1,12 @@
-<% if notice.errors.any? %>
+<% if flash[:alert] %>
+  <div id="alert" class="alert">
+    <span class="floatleft notice_text">
+      <%= flash[:alert] %>
+    </span>
+    <div class="clear"></div>
+  </div>
+<% end %>
+<% if notice && notice.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(notice.errors.count, "error") %> prohibited this <%= controller.controller_name %> from being saved:</h2>
 
@@ -7,5 +15,13 @@
       <li><%= msg %></li>
     <% end %>
     </ul>
+  </div>
+<% end %>
+<% if flash[:notice] %>
+  <div id="notice" class="notice">
+    <span class="floatleft notice_text">
+      <%= flash[:notice] %>
+    </span>
+    <div class="clear"></div>
   </div>
 <% end %>

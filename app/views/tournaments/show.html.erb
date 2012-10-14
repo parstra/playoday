@@ -1,3 +1,4 @@
+<%= render partial: "application/notice", object: @tournament %>
 <section class="tournament_header <%= to_css_class(@tournament.status) %>">
   <%= render :partial => "tournament", :object => @tournament %>
   </section>
