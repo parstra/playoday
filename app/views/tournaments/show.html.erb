@@ -9,11 +9,18 @@
 </section>
 
 <section class="tournament_rounds">
-<ol>
+<ul>
   <%= render :partial => "matchup", :collection => @matches, :locals => {:size => "large"} %>
-</ol>
+</ul>
 </section>
 
 <section class="leaderboard">
-
+<h2>Leaderboard</h2>
+<ol>
+  <%= render :partial => "player" %>
+  <%= render :partial => "player" %>
+  <%= render :partial => "player" %>
+  <%= render :partial => "player" %>
+</ol>
 </section>
+<div class="cf"></div>

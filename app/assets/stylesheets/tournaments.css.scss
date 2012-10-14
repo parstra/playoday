@@ -3,6 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // This is a general playergotchi layout
+$sidebar_width: 400px;
+
 .playergotchi {
     display:inline-block;
     box-shadow:none;
@@ -21,7 +23,7 @@
     background-color:white;
 }
 
-.large .playergotchi:hover,
+.playergotchi:hover,
 {
     border-color:$dark_black;
     color:white;
@@ -34,7 +36,6 @@
     border-radius:26px;
     width:100px;
 }
-
 
 .tournaments_list {
   li {
@@ -69,11 +70,13 @@
 
 $arrow_head:10px;
 .tournament_rounds {
+  float:left;
+  margin-right:$sidebar_width;
   .round {
     padding:$bu 0;
     .player {
       display:inline-block;
-      width:30%;
+      width:35%;
       text-align:right;
       blockquote {
         font-size:$bu*1.2;
@@ -113,7 +116,7 @@ $arrow_head:10px;
     em {
       font-size:60px;
       font-family:$marker_font;
-      vertical-align:bottom;
+      vertical-align:top;
       margin:0px 3*$bu;
       color:$error;
     }
@@ -130,3 +133,29 @@ $arrow_head:10px;
   }
 }
 
+.leaderboard {
+  float:right;
+  margin-left:-$sidebar_width;
+  width:$sidebar_width;
+  ol {
+    counter-reset:li;
+    li {
+      position:relative;
+      padding:0px 0px $bu 40px;
+    }
+    li:before {
+      content:counter(li) ". ";
+      counter-increment:li;
+      display:inline-block;
+      position:absolute;
+      left:0px;
+      top:5px;
+      height:40px;
+      width:40px;
+      color:white;
+      text-align:center;
+      font-family:$marker_font;
+      font-size:2*$bu;
+    }
+  }
+}
