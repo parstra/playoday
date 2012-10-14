@@ -11,6 +11,11 @@ t = Tournament.new({name: 'Ping pong hero',
 t.owner = User.first
 t.save!
 
+trash_talks = ["Feeling lucky punk?",
+               "Looks like i'm gonna kick some ass today",
+               "Don't eat yellow snow",
+               "When fear rears his ugly, you'll bravely turn your tail and fly"]
+
 User.all.each do |u| t.users << u end
 
 # first round
@@ -23,6 +28,7 @@ round.matches.each {|m|
   m.winner_id = [m.home_player_id, m.away_player_id][m.id.modulo(2)]
   m.home_score = m.winner_id == m.home_player_id ? 4 : 0
   m.away_score = m.winner_id == m.away_player_id ? 4 : 0
+  m.home_comment = trash_talks[m.id.modulo(4)]
   m.save!
 }
 
@@ -38,6 +44,7 @@ round.matches.each {|m|
   m.winner_id = [m.home_player_id, m.away_player_id][m.id.modulo(2)]
   m.home_score = m.winner_id == m.home_player_id ? 4 : 0
   m.away_score = m.winner_id == m.away_player_id ? 4 : 0
+  m.home_comment = trash_talks[m.id.modulo(4)]
   m.save!
 }
 
@@ -68,6 +75,7 @@ t.start
     m.winner_id = [m.home_player_id, m.away_player_id][m.id.modulo(2)]
     m.home_score = m.winner_id == m.home_player_id ? 4 : 0
     m.away_score = m.winner_id == m.away_player_id ? 4 : 0
+    m.home_comment = trash_talks[m.id.modulo(4)]
     m.save!
   }
 
@@ -96,6 +104,7 @@ t.start
     m.winner_id = [m.home_player_id, m.away_player_id][m.id.modulo(2)]
     m.home_score = m.winner_id == m.home_player_id ? 4 : 0
     m.away_score = m.winner_id == m.away_player_id ? 4 : 0
+    m.home_comment = trash_talks[m.id.modulo(4)]
     m.save!
   }
 
@@ -111,6 +120,7 @@ round.matches.each {|m|
   m.winner_id = [m.home_player_id, m.away_player_id][m.id.modulo(2)]
   m.home_score = m.winner_id == m.home_player_id ? 4 : 0
   m.away_score = m.winner_id == m.away_player_id ? 4 : 0
+  m.home_comment = trash_talks[m.id.modulo(4)]
   m.save!
 }
 
