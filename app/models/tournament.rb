@@ -185,15 +185,14 @@ class Tournament < ActiveRecord::Base
     players = self.users.
       sort_by{|p| wins_per_user[p.id] || 0}.reverse
 
-    if self.open?
-      total = self.rounds.length - 1
-    else
-      total = self.total_rounds
-    end
+    players.map{|player|
+      total_for_player = Match.where(round_id: round_ids).
+        where(played: true).for_user(player).count
+      wins = wins_per_user[player.id] || 0
+      losses = total_for_player - wins
 
-    players.map{|player| OpenStruct.new({player: player,
-                                         wins: wins_per_user[player.id] || 0,
-                                         losses: total - (wins_per_user[player.id] || 0)})}
+      OpenStruct.new({player: player, wins: wins, losses: losses})
+    }
   end
 
   def top_three
