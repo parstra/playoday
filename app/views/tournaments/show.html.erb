@@ -7,7 +7,7 @@
 <div class="participants">
     <% if can?(:manage, @tournament) %>
     <%= link_to "Start tournament", start_tournament_path(@tournament),
-      :class => "base_button"%>
+      :class => "base_button", :method => "post"%>
     <% end %>
   <% if @tournament.open? &&
        @tournament.has_next_round? &&
