@@ -46,6 +46,7 @@ h2 {
 
 header {
   border-bottom:6px solid #05A9CE;
+  background-color:$main_black;
   h1 {
     float:left; 
     a {
@@ -58,6 +59,7 @@ header {
         position:relative;
         z-index:1;
         display:inline;
+        color:white;
       }
       em {
         font-family: $akronim_font;
