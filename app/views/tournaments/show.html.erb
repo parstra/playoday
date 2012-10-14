@@ -1,5 +1,9 @@
 <section class="tournament_header <%= to_css_class(@tournament.status) %>">
   <%= render :partial => "tournament", :object => @tournament %>
+  <% if @tournament.pending? && can?(:manage, @tournament) %>
+    <%= link_to "Start tournament", start_tournament_path(@tournament),
+      :class => "base_button"%>
+  <% end %>
 </section>
 
 <section class="tournament_rounds <%= 'cup' if @tournament.cup? %>">
