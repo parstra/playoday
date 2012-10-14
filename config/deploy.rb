@@ -15,7 +15,7 @@ set :use_sudo, false
 
 set :playoday, "178.79.149.69"
 set :rails_env, "production"
-set :branch, "capcapcap"
+set :branch, "master"
 
 set :unicorn_binary, "/usr/local/bin/unicorn"
 set :unicorn_config, "#{current_path}/config/unicorn.rb"
