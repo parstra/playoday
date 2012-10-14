@@ -21,6 +21,8 @@ round = t.rounds.first
 round.matches.each {|m|
   m.played = true
   m.winner_id = [m.home_player_id, m.away_player_id][m.id.modulo(2)]
+  m.home_score = m.winner_id == m.home_player_id ? 4 : 0
+  m.away_score = m.winner_id == m.away_player_id ? 4 : 0
   m.save!
 }
 
@@ -92,6 +94,8 @@ t.start
   round.matches.each {|m|
     m.played = true
     m.winner_id = [m.home_player_id, m.away_player_id][m.id.modulo(2)]
+    m.home_score = m.winner_id == m.home_player_id ? 4 : 0
+    m.away_score = m.winner_id == m.away_player_id ? 4 : 0
     m.save!
   }
 
@@ -105,6 +109,8 @@ round = t.rounds.last
 round.matches.each {|m|
   m.played = true
   m.winner_id = [m.home_player_id, m.away_player_id][m.id.modulo(2)]
+  m.home_score = m.winner_id == m.home_player_id ? 4 : 0
+  m.away_score = m.winner_id == m.away_player_id ? 4 : 0
   m.save!
 }
 
