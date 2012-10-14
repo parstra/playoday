@@ -32,27 +32,27 @@
   <% end %>
 
   <% if @tournament.swedish? %>
+      <% if @previous_round %>
+        <ul>
+          <%= render :partial => "matchup", :collection => @previous_round.matches%>
+        </ul>
+      <% else %>
     <h2>Current round <small>(<%= @tournament.rounds.length %> / <%= @tournament.total_rounds %></small>)</h2>
     <ul>
       <%= render :partial => "matchup", :collection => @matches %>
     </ul>
+      <% end %>
 
     <% if @tournament.rounds.length > 1 %>
-      <h2>Previous Rounds
-
+      <h3>Previous Rounds
         <% @tournament.rounds.to(@tournament.rounds.length - 2).each_with_index do |round, index| %>
           <%= link_to (index + 1),
             tournament_path(:id => @tournament.id, :round_id => round.id),
             :class => round.id.to_s == params[:round_id] ? "selected" : "" %>
         <% end %>
-      </h2>
+      </h3>
 
-      <% if @previous_round %>
-        <ul>
-          <%= render :partial => "matchup", :collection => @previous_round.matches%>
-        </ul>
-      <% end %>
-    <% end %>
+   <% end %>
   <% else %>
     <h2>Cup Status</h2>
     <%= render :partial => "cup" %>

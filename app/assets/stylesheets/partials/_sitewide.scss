@@ -105,8 +105,6 @@ header {
 }
 
 footer {
-  background-color:$main_black;
-  border-top:1px solid $dirty_white;
   color:$dirty_white;
   width:100%;
   padding:$bu*2 0;
@@ -133,13 +131,16 @@ footer {
     }
   }
   .copyright {
-    color:$dark_white;
+    color:$main_black;
     font-size:11px;
     margin-top:$bu;
     border-top:1px dotted $light_black;
     padding-top:$bu;
     span {
       float:right;
+    }
+    a {
+      color:$dark_black;
     }
   }
 }

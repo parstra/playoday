@@ -309,6 +309,10 @@ $arrow_head:10px;
   .round:first-child {
     padding-top:0px;
   }
+  .round:last-child {
+    border-bottom:none;
+    box-shadow:none;
+  }
   .round.small {
     .player {
       blockquote {
@@ -381,7 +385,7 @@ $arrow_head:10px;
       }
     }
     li:before {
-      content:counter(li) ". ";
+      content:counter(li) ") ";
       counter-increment:li;
       display:inline-block;
       position:absolute;
