@@ -134,8 +134,27 @@ describe Tournament do
 
       end
     end
-
   end
+
+  context "moving to the next round" do
+    subject {FactoryGirl.create(:tournament, :pending, :cup)}
+    context "when tournament not open yet" do
+      it "raises exception" do
+        expect{subject.next_round}.to raise_error(TournamentNotOpenYet)
+      end
+    end
+    context "when tournament is open" do
+      before do
+        subject.status = Tournament::OPEN
+      end
+
+      it "creates a round" do
+        expect {subject.next_round}.to change(Round, :count).by(1)
+      end
+    end
+  end
+
+
 end
 
 

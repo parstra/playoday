@@ -57,15 +57,7 @@ class Tournament < ActiveRecord::Base
 
     self.status = Tournament::OPEN
 
-    # check the game engine and extend tournament
-    if self.game_type == CUP
-      self.extend CupTournament
-      self.move_to_next_round
-    else
-      self.extend SwedishTournament
-      self.move_to_next_round
-    end
-
+    next_round
     self.save!
   end
 
@@ -73,8 +65,28 @@ class Tournament < ActiveRecord::Base
     self.status == PENDING
   end
 
+  def pending?
+    openable?
+  end
+
   def open?
     self.status == OPEN
+  end
+
+  # Moves to the next round if the tournament is already open
+  #
+  # The actual move will be handled by the CupTournament and
+  #  SwedishTournament modules
+  def next_round
+    raise TournamentNotOpenYet if pending?
+    # check the game engine and extend tournament
+    if self.game_type == CUP
+      self.extend CupTournament
+      self.move_to_next_round
+    elsif self.game_type == SWEDISH
+      self.extend SwedishTournament
+      self.move_to_next_round
+    end
   end
 
   private
@@ -87,6 +99,7 @@ end
 
 class TournamentCannotOpen < Exception; end
 class NotEnoughPlayers < Exception; end
+class TournamentNotOpenYet < Exception; end
 
 # == Schema Information
 #
