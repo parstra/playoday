@@ -2,17 +2,40 @@ class TournamentsController < ApplicationController
   load_and_authorize_resource
 
   before_filter :authenticate_user!
-  before_filter :fetch_tournament, :only => [:show, :edit]
+  before_filter :fetch_tournament, :only => [:show, :edit, :recreate_tournament_hash]
 
   # GET /index
   def index
     @tournaments = Tournament.for_user(current_user).
                               order("tournaments.created_at desc")
-
   end
 
-  # GET /signup
-  def signup
+  # GET /register/:tournament_hash
+  def register
+    @tournament = Tournament.find_by_tournament_hash(params[:tournament_hash])
+    if !@tournament.nil? && @tournament.status == Tournament::PENDING &&
+        !current_user.tournaments.include?(@tournament)
+      current_user.tournaments << @tournament
+      current_user.save
+      flash[:notice] = "You have successfully register to the tournament"
+      redirect_to tournament_path(@tournament)
+    else
+      flash[:alert] = "Could not register to this tournament"
+      redirect_to tournaments_path
+    end
+  end
+
+  # POST /recreate_tournament_hash/:id
+  def recreate_hash
+    if @tournament.status == Tournament::PENDING
+      @tournament.update_tournament_hash
+      @tournament.save
+      flash[:notice] = "Tournament hash has successfully recreated"
+      redirect_to tournament_path(@tournament)
+    else
+      flash[:alert] = "Could not register to this tournament"
+      redirect_to tournaments_path
+    end
   end
 
   # GET /show/id

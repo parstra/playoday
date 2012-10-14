@@ -297,7 +297,7 @@ describe TournamentsController do
 
       it "redirects to the tournament page" do
         put :update, user_params
-        response.should redirect_to(tournament_path(tournament))
+        response.should redirect_to(tournaments_path)
       end
 
       it "doesn't update the tournament" do
@@ -320,7 +320,7 @@ describe TournamentsController do
 
       it "redirects to the tournament page" do
         put :update, user_params
-        response.should redirect_to(tournament_path(tournament))
+        response.should redirect_to(tournaments_path)
       end
 
       it "doesn't update the tournament" do
@@ -330,45 +330,79 @@ describe TournamentsController do
     end
   end
 
-  describe "signup with" do
-    # GET /signup/invalid
-    context "invalid hash" do
-      it "should redirect to home page"
-      it "should notufy that the tournament does not exist"
+  describe "GET register" do
+    context "invalid tournament hash" do
+      it "should redirect to tournaments" do
+        get :register, tournament_hash: "asdfsggf"
+        response.should redirect_to(tournaments_path)
+      end
     end
 
-    # GET /signup/a_valid_hash
     context "valid hash" do
-      it "should prompt user to a create an account"
-      it "assigns a tournament"
+      let(:tournament) { FactoryGirl.create(:tournament,
+                                            :cup, { owner: another_user }) }
+
+      it "should register" do
+        get :register, tournament_hash: tournament.tournament_hash
+        response.should redirect_to(tournament_path(tournament))
+      end
+
+      it "should not register if tournament is not pending" do
+        tournament.status = Tournament::CLOSED
+        tournament.save
+
+        get :register, tournament_hash: tournament.tournament_hash
+        response.should redirect_to(tournaments_path)
+      end
+
+      it "should not re-register if is allready in this tournament" do
+        user.tournaments << tournament
+        user.save
+
+        get :register, tournament_hash: tournament.tournament_hash
+        response.should redirect_to(tournaments_path)
+      end
+    end
+  end
+
+  describe "POST recreate_tournament_hash" do
+    let(:tournament) { FactoryGirl.create(:tournament,
+                                          :cup, { owner: user }) }
+    let(:another_tournament) { FactoryGirl.create(:tournament,
+                                                  :cup, { owner: another_user }) }
+
+    it "should recreate tournament hash" do
+      hash = tournament.tournament_hash
+      post :recreate_hash, { id: tournament.id }
+
+      tournament.reload
+      tournament.tournament_hash.should_not == hash
+
+      response.should redirect_to(tournament_path(tournament))
     end
 
-    #POST /signup/a_valid_hash
-    context "valid hash via POST" do
-      context "params should include a" do
-        it "tournament id"
-        it "valid username"
-        it "valid password"
-        it "valid password confirm"
-      end
+    it "should not recreate tournament hash if is not owner" do
+      hash = another_tournament.tournament_hash
+      post :recreate_hash, { id: another_tournament.id }
 
-      context "valid data" do
-        it "should create a user"
-        it "should assign the user to the tournament"
-        it "should send a notification email"
-        it "should redirect to tournament page"
-      end
+      another_tournament.reload
+      another_tournament.tournament_hash.should == hash
 
-      context "invalid data" do
-        context "flash message for" do
-          it "username duplication"
-          it "password mismatch"
-          it "password too weak"
-        end
-        it "should redirect to signup form"
-        it "assigns tournament"
-      end
+      response.should redirect_to(tournaments_path)
+    end
+
+    it "should not recreate tournament hash if tournament is not pending" do
+      hash = tournament.tournament_hash
+      tournament.status = Tournament::CLOSED
+      tournament.save
+      post :recreate_hash, { id: tournament.id }
+
+      tournament.reload
+      tournament.tournament_hash.should == hash
+
+      response.should redirect_to(tournaments_path)
     end
 
   end
+
 end

@@ -6,4 +6,5 @@
     <%= (link_to "edit tournament", edit_tournament_path(tournament.id)) if can? :manage, tournament %>
   </div>
   <p><%= tournament.description %></p>
+  <%= render partial: "manage_tournament", locals: { tournament: tournament } %>
 </div>
