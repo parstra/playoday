@@ -62,7 +62,7 @@ t = Tournament.new({name: 'Tennis Ninja',
                    total_rounds: 8,
                    game_type: Tournament::SWEDISH})
 
-t.owner = User.first
+t.owner = User.last
 t.save!
 
 User.all.each do |u| t.users << u end

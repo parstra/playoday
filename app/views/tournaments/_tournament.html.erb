@@ -8,10 +8,18 @@
    <%= (link_to "edit tournament".html_safe, edit_tournament_path(tournament.id)) if can? :manage, tournament %>
 </div>
     <div class="stats">
-    Round <span><%= tournament.rounds.size %></span> of <%= tournament.total_rounds %><br/>
     Player Count: <span><%= tournament.users.size %></span><br/>
     Tournament Mode: <b><%=  tournament.swedish? ? "Swedish" : "Cup" %></b>
-  </div>
+    <% if tournament.open? %>
+      <div class="bar_container">
+        <div class="bar_mortice">
+          <div class="progress" style="width: <%= (tournament.rounds.length - 1).to_f / tournament.total_rounds.to_f * 100%>%;">
+            <%= tournament.rounds.length - 1 %> / <%= tournament.total_rounds %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</div>
 
   <% if tournament.open? && tournament.swedish? && action_name != "show" %>
     <div class="leaders">
