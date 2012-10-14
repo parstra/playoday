@@ -23,9 +23,9 @@ describe MatchesController do
     end
     it "routes to #trash_talk" do
       post("/tournaments/1/matches/11/trashtalk").should route_to(controller: 'matches',
-                                                                   action: 'trashtalk',
-                                                                   tournament_id: '1',
-                                                                   id: '11')
+                                                                  action: 'trashtalk',
+                                                                  tournament_id: '1',
+                                                                  id: '11')
     end
   end
 

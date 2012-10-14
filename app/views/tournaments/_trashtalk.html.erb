@@ -1,6 +1,6 @@
 <% if arena == :home %>
   <% if matchup.home_comment.nil? && matchup.home_player.id == current_user.id %>
-    <%= form_tag('match_comment_path(matchup)') do %>
+    <%= form_tag(trashtalk_tournament_match_path(:tournament_id => @tournament.id, :id => matchup.id), method: :post) do %>
       <%= text_field_tag 'comment', nil, :placeholder => 'Enter statement' %>
       <%= submit_tag 'Submit' %>
     <% end %>
@@ -9,7 +9,7 @@
   <% end %>
 <% elsif arena == :away %>
   <% if matchup.away_comment.nil? && matchup.away_player.id == current_user.id %>
-    <%= form_tag('match_comment_path(matchup)') do %>
+    <%= form_tag(trashtalk_tournament_match_path(:tournament_id => @tournament.id, :id => matchup.id), method: :post) do %>
       <%= text_field_tag 'comment', nil, :placeholder => 'Enter statement' %>
       <%= submit_tag 'Submit' %>
     <% end %>

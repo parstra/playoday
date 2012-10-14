@@ -30,7 +30,35 @@ class MatchesController < ApplicationController
     redirect_to tournaments_path, :alert => exception.message
   end
 
+  #POST /tournaments/1/matches/2/trashtalk
   def trashtalk
+    begin
+      @tournament = Tournament.find(params[:tournament_id])
+      @match = Match.find(params[:id])
+    rescue
+      redirect_to root_path
+      return
+    end
+
+    if params[:comment].blank? || !@match.round.active
+      redirect_to tournament_path(@tournament)
+      return
+    end
+
+    if current_user == @match.home_player
+      if !@match.home_comment
+        @match.home_comment = params[:comment]
+        @match.save
+      end
+    elsif current_user == @match.away_player
+      if !@match.away_comment
+        @match.away_comment = params[:comment]
+        @match.save
+      end
+    end
+
+    redirect_to tournament_path(@tournament)
+
   end
 
 end
