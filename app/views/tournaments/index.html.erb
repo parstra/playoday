@@ -4,11 +4,11 @@
 <% if @tournaments.any? %>
   <ol class="tournaments_list">
     <% for tournament in @tournaments %>
-    <li>
+      <li>
       <%= render :partial => "tournament", :object => tournament %>
-    </li>
+      </li>
     <% end %>
-</ol>
+  </ol>
 <% else %>
   Nothing to show
 <% end %>

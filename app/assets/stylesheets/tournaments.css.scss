@@ -38,16 +38,19 @@ $sidebar_width: 400px;
 }
 
 .tournament_summary {
-  border-bottom:1px dotted $light_black;
   padding:$bu;
   position:relative;
   h3 {
     font-weight:700;
-    font-size:$bu*2.5;
+    font-size:$bu*2;
     margin-bottom:$bu;
     a {
       color:$main_black;
       text-decoration:none;
+      border-bottom:1px dotted $main_black;
+    }
+    a:hover {
+      border-bottom:1px solid $main_black;
     }
   }
   p {
@@ -89,6 +92,9 @@ $sidebar_width: 400px;
   li {
     padding:$bu;
     position:relative;
+  }
+  li:nth-child(2n) {
+    background-color:$dirty_white;
   }
   a.base_button {
     position:absolute;
