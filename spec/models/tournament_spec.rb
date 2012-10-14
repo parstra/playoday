@@ -103,7 +103,7 @@ describe Tournament do
 
       it "moves status to open" do
         subject.start
-        subject.status.should == Tournament::OPEN
+        subject.reload.status.should == Tournament::OPEN
       end
 
       it "creates a round" do

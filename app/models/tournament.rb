@@ -62,6 +62,8 @@ class Tournament < ActiveRecord::Base
       self.extend CupTournament
       self.move_to_next_round
     end
+
+    self.save!
   end
 
   def openable?
