@@ -17,17 +17,6 @@ describe Tournament do
 #  it { should validate_presence_of :round_duration }
 #  it { should validate_presence_of :company_id }
 
-
-  context "scopes" do
-    let!(:active_tournaments) { FactoryGirl.create_list(:tournament, 4, active: true) }
-    let!(:inactive_tournaments) { FactoryGirl.create_list(:tournament, 4, active: false) }
-
-    it "active fetches active tournaments" do
-      Tournament.active.collect(&:id).should =~ active_tournaments.collect(&:id)
-      (Tournament.active.collect(&:id) & inactive_tournaments.collect(&:id)).should be_empty
-    end
-  end
-
   context "methods" do
     let(:active_tournament) { FactoryGirl.create(:tournament, active: true) }
     let(:inactive_tournament) { FactoryGirl.create(:tournament, active: false) }
@@ -148,6 +137,7 @@ describe Tournament do
         expect{subject.next_round}.to raise_error(TournamentNotOpenYet)
       end
     end
+
     context "when tournament is open" do
       before do
         subject.status = Tournament::OPEN
@@ -156,6 +146,21 @@ describe Tournament do
       it "creates a round" do
         expect {subject.next_round}.to change(Round, :count).by(1)
       end
+    end
+
+    context "when total rounds have been played" do
+      subject {FactoryGirl.create(:tournament, :pending, :cup)}
+
+      before {
+        subject.users << FactoryGirl.create_list(:user, 2)
+        subject.start
+      }
+
+      it "raises exception that there are no more rounds" do
+        expect {subject.next_round}.to raise_error(TournamentAllRoundsPlayed)
+      end
+
+
     end
   end
 

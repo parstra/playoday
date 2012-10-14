@@ -29,13 +29,15 @@ class Tournament < ActiveRecord::Base
 
   validates :name, :owner_id, presence: true
 
-  scope :active, where(active: true)
   # TODO: test this
   scope :for_user, lambda{|user|
     includes(:tournament_users).
     where("tournament_users.user_id = :user_id or tournaments.owner_id = :user_id",
           {:user_id => user.id})
   }
+
+  # Returns all tournaments that are not closed (open or pending)
+  scope :not_closed, where(status: [OPEN, PENDING])
 
   before_create :create_tournament_hash
 
@@ -68,7 +70,13 @@ class Tournament < ActiveRecord::Base
     # in a cup the rounds are determined by the number of players
     # We add one to divide in case number of players is an odd number (e.g. 15)
     if self.cup?
-      self.total_rounds = (self.users.length + 1) / 2
+      player_count = self.users.length
+
+      if player_count.modulo(2).zero?
+        self.total_rounds = Math.log2(player_count)
+      else
+        self.total_rounds = Math.log2(player_count + 1)
+      end
     end
 
     next_round
@@ -93,6 +101,7 @@ class Tournament < ActiveRecord::Base
   #  SwedishTournament modules
   def next_round
     raise TournamentNotOpenYet if pending?
+    raise TournamentAllRoundsPlayed if self.rounds.length >= self.total_rounds
     # check the game engine and extend tournament
     if self.game_type == CUP
       self.extend CupTournament
@@ -118,6 +127,7 @@ end
 class TournamentCannotOpen < Exception; end
 class NotEnoughPlayers < Exception; end
 class TournamentNotOpenYet < Exception; end
+class TournamentAllRoundsPlayed < Exception; end
 
 # == Schema Information
 #
