@@ -1,10 +1,14 @@
 <section class="tournament_header <%= to_css_class(@tournament.status) %>">
   <%= render :partial => "tournament", :object => @tournament %>
-  <% if @tournament.pending? && can?(:manage, @tournament) %>
-    <%= button_to "Start tournament", start_tournament_path(@tournament),
+  </section>
+<section class="tournament_rounds <%= 'cup' if @tournament.cup? %>">
+<% if @tournament.pending? %>
+  <h2>Participations</h2>
+<div class="participants">
+    <% if can?(:manage, @tournament) %>
+    <%= link_to "Start tournament", start_tournament_path(@tournament),
       :class => "base_button"%>
-  <% end %>
-
+    <% end %>
   <% if @tournament.open? &&
        @tournament.has_next_round? &&
        @tournament.can_close_round? &&
@@ -12,12 +16,7 @@
     <%= button_to "Close round", next_round_tournament_path(@tournament),
       :class => "base_button"%>
   <% end %>
-</section>
 
-<section class="tournament_rounds <%= 'cup' if @tournament.cup? %>">
-<% if @tournament.pending? %>
-  <h2>Participations</h2>
-  <div id="participants">
     <%= render partial: 'player', collection: @tournament.users %>
   </div>
 <% else %>
