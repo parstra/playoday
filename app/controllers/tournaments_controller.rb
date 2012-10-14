@@ -8,10 +8,17 @@ class TournamentsController < ApplicationController
   def index
     @tournaments = Tournament.for_user(current_user).
                               order("tournaments.created_at desc")
+
   end
 
   # GET /show/id
   def show
+
+    # get last round of this tournament
+    if @tournament.open?
+      @round = @tournament.rounds.includes(:matches).last
+      @matches = @round.matches
+    end
   end
 
   # GET new

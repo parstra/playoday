@@ -46,7 +46,7 @@ describe TournamentsController do
   end
 
   describe "GET show" do
-    let(:tournament){FactoryGirl.create(:tournament,{owner: user})}
+    let(:tournament){FactoryGirl.create(:tournament, :cup, {owner: user})}
     let(:another_tournament){
       FactoryGirl.create(:tournament,{owner: another_user})
     }
@@ -60,6 +60,41 @@ describe TournamentsController do
       it "fetches tournament" do
         get :show, id: tournament.id
         assigns(:tournament).should eq(tournament)
+      end
+
+      context "open tournaments" do
+        before do
+          @round = Round.new
+          @round.active = true
+          @round.tournament = tournament
+          @round.save!
+
+          tournament.users << FactoryGirl.create_list(:user, 4)
+          tournament.status = Tournament::OPEN
+          tournament.save!
+
+          @match1 = Match.new
+          @match1.home_player_id = tournament.users.first.id
+          @match1.away_player_id = tournament.users.second.id
+          @match1.round = @round
+          @match1.save!
+
+          @match2 = Match.new
+          @match2.home_player_id = tournament.users.third.id
+          @match2.away_player_id = tournament.users.fourth.id
+          @match2.round = @round
+          @match2.save!
+        end
+
+        it "fetches tournament's current round" do
+          get :show, id: tournament.id
+          assigns(:round).should eq(@round)
+        end
+
+        it "fetches current's round matches" do
+          get :show, id: tournament.id
+          assigns(:matches).should eq([@match1, @match2])
+        end
       end
     end
 

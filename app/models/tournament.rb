@@ -68,6 +68,10 @@ class Tournament < ActiveRecord::Base
     self.status == PENDING
   end
 
+  def open?
+    self.status == OPEN
+  end
+
   private
 
   def create_tournament_hash
