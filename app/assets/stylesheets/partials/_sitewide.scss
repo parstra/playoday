@@ -255,6 +255,12 @@ input[type='text'], input[type='password'], input[type='email'],textarea {
   }
 }
 
+#notice {
+  background-color:#7AD68C;
+  padding:$bu;
+  color:white;
+}
+
 .field_with_errors input {
   border:1px solid $error;
 }
