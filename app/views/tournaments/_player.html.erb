@@ -1,5 +1,5 @@
 <div class="player <%= size %>">
   <span class="playergotchi" style="background-image:url('<%= player.gravatar_url %>');">
-    <em><%= player.username %> <%= "- #{player.company.name}" if !player.company.blank? %></em>
+    <em><%= player.username %> <%= "- #{player.company.name}" if !player.company.nil? %></em>
   </span>
 </div>
