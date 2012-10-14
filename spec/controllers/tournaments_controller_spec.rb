@@ -492,6 +492,12 @@ describe TournamentsController do
       before do
         tournament.users << FactoryGirl.create_list(:user, 4)
         tournament.start
+
+        tournament.current_round.matches.each do |m|
+          m.winner = m.home_player
+          m.played = true
+          m.save!
+        end
       end
 
       it "doesn't move to next round" do
@@ -504,4 +510,76 @@ describe TournamentsController do
       end
     end
   end
+
+  describe "POST close" do
+    context "tournament can close and logged user is owner" do
+      let(:tournament){FactoryGirl.create(:tournament, :pending, :cup,{owner: user})}
+      before do
+        tournament.users << FactoryGirl.create_list(:user, 2)
+        tournament.start
+
+        tournament.current_round.matches.each do |m|
+          m.winner = m.home_player
+          m.played = true
+          m.save!
+        end
+      end
+
+      it "closes by owner" do
+        post :close, id: tournament.id
+        tournament.reload.should be_closed
+      end
+
+      it "redirects to tournament page" do
+        post :close, id: tournament.id
+        response.should redirect_to(tournament_path(tournament))
+      end
+    end
+
+    context "tournament can close but logged user is not owner" do
+      let(:tournament){FactoryGirl.create(:tournament,
+                                          :pending, :cup,{owner: another_user})}
+      before do
+        tournament.users << FactoryGirl.create_list(:user, 2)
+        tournament.start
+
+        tournament.current_round.matches.each do |m|
+          m.winner = m.home_player
+          m.played = true
+          m.save!
+        end
+      end
+
+      it "doesn't close" do
+        post :close, id: tournament.id
+        tournament.reload.should_not be_closed
+      end
+
+      it "redirects to tournament page" do
+        post :close, id: tournament.id
+        response.should redirect_to(tournaments_path)
+      end
+    end
+
+    context "tournament cant' close" do
+      let(:tournament){FactoryGirl.create(:tournament,
+                                          :pending, :cup,{owner: user})}
+      before do
+        tournament.users << FactoryGirl.create_list(:user, 2)
+        tournament.start
+      end
+
+      it "doesn't close" do
+        post :close, id: tournament.id
+        tournament.reload.should_not be_closed
+      end
+
+      it "redirects to tournament page" do
+        post :close, id: tournament.id
+        response.should redirect_to(tournament_path(tournament))
+      end
+    end
+
+  end
+
 end

@@ -17,6 +17,7 @@ Playoday::Application.routes.draw do
     get "register/:tournament_hash", :action => :register, :on => :collection, :as => "register"
     post "recreate_hash", :on => :member
     post "start", :on => :member
+    post "close", :on => :member
     post "next_round", :on => :member
     resources :matches, only: [:edit, :update, :show] do
       post "trashtalk", :action => :trashtalk, :on => :member

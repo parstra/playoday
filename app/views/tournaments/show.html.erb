@@ -10,17 +10,23 @@
     <%= link_to "Start tournament", start_tournament_path(@tournament),
       :class => "base_button", :method => "post"%>
     <% end %>
-  <% if @tournament.open? &&
-       @tournament.has_next_round? &&
-       @tournament.can_close_round? &&
-       can?(:manage, @tournament) %>
-    <%= button_to "Close round", next_round_tournament_path(@tournament),
-      :class => "base_button"%>
-  <% end %>
-
     <%= render partial: 'player', collection: @tournament.users %>
   </div>
-<% else %>
+<% else%>
+  <% if @tournament.open? && can?(:manage, @tournament) %>
+    <% if @tournament.has_next_round? && @tournament.can_close_round? %>
+      <%= button_to "Close round", next_round_tournament_path(@tournament),
+        :class => "base_button"%>
+    <% elsif @tournament.has_next_round? && !@tournament.can_close_round? %>
+      <span class="state">Cannot close this round yet. All matches must be played first</span>
+    <% elsif !@tournament.closable? %>
+      <span class="state">Cannot close tournament. Matches of the last round must be played first</span>
+    <% elsif @tournament.closable? %>
+      <%= button_to "Close tournament", close_tournament_path(@tournament),
+        :class => "base_button"%>
+    <% end %>
+  <% end %>
+
   <% if @tournament.swedish? %>
     <h2>Current round <small>(<%= @tournament.rounds.length %> / <%= @tournament.total_rounds %></small>)</h2>
     <ul>

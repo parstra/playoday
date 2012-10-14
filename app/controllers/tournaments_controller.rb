@@ -5,6 +5,7 @@ class TournamentsController < ApplicationController
   before_filter :fetch_tournament, :only => [:show, :edit,
                                              :recreate_tournament_hash,
                                              :next_round,
+                                             :close,
                                              :start]
 
   # GET /index
@@ -131,7 +132,22 @@ class TournamentsController < ApplicationController
     end
 
     flash[:notice] = "Next round succesfully registered"
-    return redirect_to tournament_path(@tournament)
+    redirect_to tournament_path(@tournament)
+  end
+
+  def close
+    authorize! :manage, @tournament
+
+    begin
+      @tournament.close
+
+    rescue TournamentCannotBeClosed
+      flash[:alert] = "Cannot close this tournament"
+      return redirect_to tournament_path(@tournament)
+    end
+
+    flash[:notice] = "Tournament closed successfully"
+    redirect_to tournament_path(@tournament)
   end
 
   private
