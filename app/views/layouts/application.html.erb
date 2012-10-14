@@ -20,17 +20,20 @@
           <header>
           <div class="wrapper cf">
             <h1>
-              <a href="/">
+              <% target = root_path %>
+              <% target = tournaments_path if user_signed_in? %>
+              <a href="<%= target %>">
                 <span>play</span>
                 <em>O</em>
                 <span>day</span></a>
             </h1>
-            <nav>
             <% if user_signed_in? %>
-              <%= link_to (image_tag current_user.gravatar_url), edit_user_registration_path %>
+            <nav style="background-image:url('<%= current_user.gravatar_url %>');">
+              <%= link_to "Profile", edit_user_registration_path %>
               <%= link_to "Sign out", destroy_user_session_path, :method => "delete" %>
             <% else %>
-                <%= link_to "Sign in".html_safe, new_user_session_path %>&nbsp;|&nbsp;
+            <nav>
+                <%= link_to "Sign in".html_safe, new_user_session_path %>
                 <%= link_to "Sign up".html_safe, new_user_registration_path %>
             <% end %>
             </nav>

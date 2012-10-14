@@ -74,11 +74,23 @@ header {
   }
   nav {
     float:right;
-    margin-top:60px;
+    margin-top:20px;
+    width:80px;
+    background-color:white;
+    height:60px;
+    background-size:cover;
+    background-image: image-url('dummy-avatar.png');
+    background-position:center center;
+    background-repeat:none;
+    text-align:center;
+    border-bottom:40px solid white;
+    @include box-sizing(border-box);
+    padding-top:75px;
     a {
       color:$dark_black;
       text-decoration:none;
       border-bottom:1px dotted $dirty_white;
+      display:block;
     }
   }
 }
